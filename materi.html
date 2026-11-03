@@ -157,6 +157,10 @@ details p{background:transparent;font-size:14px}
   table.op{font-size:12px}
   table.op th,table.op td{padding:2px 4px}
   table.op th small{display:block;font-weight:400;font-size:8.5px;color:#6b7280;letter-spacing:0}
+
+.tv{display:inline-block;font-family:monospace;font-weight:800;font-size:10.5px;padding:0 4px;border-radius:3px;vertical-align:1px;letter-spacing:0}
+.tv.t{background:#dff2e4;color:#1e7a3c;border:1px solid #b9dfc3}
+.tv.f{background:#fbe4e1;color:#a93226;border:1px solid #f0c2bb}
 </style>
 </head>
 <body>
@@ -313,7 +317,16 @@ details p{background:transparent;font-size:14px}
     <p><b>Kaidah Emas:</b> <span class="m">p → q</span> bernilai <b>FALSE HANYA JIKA premis benar tapi akibatnya salah (<span class="m">T → F</span>)</b>. Sisanya SELALU TRUE!</p>
   </div>
 
-  <div class="sec">Hukum Ekuivalensi Logika (Logical Equivalence)</div>
+  
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>Hitung semua operator sekaligus.</b>
+    Misal <span class="m">p</span> = "Hari ini hujan" (<span class="tv t">T</span>) dan <span class="m">q</span> = "Jalanan basah" (<span class="tv t">T</span>).
+    <p><span class="m">¬p</span> = <span class="tv f">F</span> (hujan memang terjadi, jadi negasinya salah) &nbsp;·&nbsp; <span class="m">p ∧ q</span> = <span class="tv t">T</span> ∧ <span class="tv t">T</span> = <span class="tv t">T</span> &nbsp;·&nbsp; <span class="m">p ∨ q</span> = <span class="tv t">T</span> ∨ <span class="tv t">T</span> = <span class="tv t">T</span></p>
+    <p><span class="m">p ⊕ q</span> = <span class="tv f">F</span> (dua-duanya T, jadi "salah satu saja" tidak terpenuhi) &nbsp;·&nbsp; <span class="m">p → q</span> = <span class="tv t">T</span> → <span class="tv t">T</span> = <span class="tv t">T</span> &nbsp;·&nbsp; <span class="m">p ↔ q</span> = <span class="tv t">T</span></p>
+    <p><b>Uji kasus kedua:</b> hujan (<span class="tv t">T</span>) tapi jalanan kering (<span class="tv f">F</span>) → <span class="m">p ∧ q</span> = <span class="tv t">T</span> ∧ <span class="tv f">F</span> = <span class="tv f">F</span>, <span class="m">p ∨ q</span> = <span class="tv t">T</span>, <span class="m">p → q</span> = <span class="tv f">F</span>. Di sini kelihatan: <b>∧ butuh dua-duanya T</b>, <b>∨ cukup satu T</b>.</p>
+  </div>
+<div class="sec">Hukum Ekuivalensi Logika (Logical Equivalence)</div>
   <p>Dua proposisi majemuk dikatakan <b>ekuivalen secara logika (<span class="m">p ≡ q</span>)</b> jika tabel kebenarannya bernilai persis sama di setiap baris, atau <span class="m">p ↔ q</span> merupakan <b>tautologi</b>.</p>
   <div class="step"><div class="n">1</div><div class="body"><b>Bentuk Disjungsi Implikasi:</b> <span class="m big">p → q ≡ ¬p ∨ q</span> (Ini rumus paling sering dipakai!).</div></div>
   <div class="contoh">
@@ -452,7 +465,16 @@ details p{background:transparent;font-size:14px}
   </div>
   <p style="margin-left:34px;font-size:13.5px;color:#555">Bonus: <span class="m">∃!x P(x)</span> = "ada <b>tepat satu</b> x" (unik).</p>
 
-  <div class="sec">Cara Menerjemahkan Kalimat ke Simbol (Sering Keluar!)</div>
+  
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>∀ vs ∃ di kelas yang sama.</b>
+    Domain: mahasiswa di kelas. <span class="m">P(x)</span> = "x membawa laptop".
+    <p>Kenyataan: Budi bawa laptop (<span class="tv t">T</span>), Ani bawa laptop (<span class="tv t">T</span>), Citra <b>tidak</b> bawa (<span class="tv f">F</span>).</p>
+    <p><span class="m">∀x P(x)</span> = "Semua membawa laptop" → <span class="tv f">F</span>, karena Citra membuat <span class="m">P(Citra)</span> = <span class="tv f">F</span>. Satu saksi saja sudah meruntuhkan ∀.</p>
+    <p><span class="m">∃x P(x)</span> = "Ada yang membawa laptop" → <span class="tv t">T</span>, karena Budi sudah cukup jadi saksi. Satu saksi saja sudah membuktikan ∃.</p>
+  </div>
+<div class="sec">Cara Menerjemahkan Kalimat ke Simbol (Sering Keluar!)</div>
   <div class="tblwrap">
     <table>
       <thead><tr><th>Kalimat Bahasa Indonesia</th><th>Bentuk Logika</th><th>Kunci</th></tr></thead>
@@ -470,7 +492,16 @@ details p{background:transparent;font-size:14px}
     <p>Aturannya: <b>Universal → pakai →</b> (kalau dia mahasiswa, maka rajin). <b>Eksistensial → pakai ∧</b> (ada yang sekaligus mahasiswa dan rajin).</p>
   </div>
 
-  <div class="sec">Negasi Kuantor (De Morgan untuk Kuantor)</div>
+  
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>Kalimat "semua" vs "ada" dan nilai T/F-nya.</b>
+    Domain: mahasiswa BINUS. <span class="m">M(x)</span> = "x mahasiswa BINUS", <span class="m">L(x)</span> = "x punya laptop".
+    <p>"Semua mahasiswa BINUS punya laptop" → <span class="m">∀x (M(x) → L(x))</span>.</p>
+    <p>Uji per orang: Andi mahasiswa (<span class="tv t">T</span>) dan punya laptop (<span class="tv t">T</span>) → <span class="tv t">T</span> → <span class="tv t">T</span> = <span class="tv t">T</span> (tidak melanggar). Budi mahasiswa (<span class="tv t">T</span>) tapi tidak punya laptop (<span class="tv f">F</span>) → <span class="tv t">T</span> → <span class="tv f">F</span> = <span class="tv f">F</span> → pernyataan "semua" <b>gagal</b>.</p>
+    <p>"Ada mahasiswa BINUS yang punya laptop" → <span class="m">∃x (M(x) ∧ L(x))</span>. Untuk Andi: <span class="tv t">T</span> ∧ <span class="tv t">T</span> = <span class="tv t">T</span> → pernyataan <b>benar</b>. Kalau ada orang yang punya laptop tapi bukan mahasiswa BINUS (<span class="tv f">F</span> ∧ <span class="tv t">T</span> = <span class="tv f">F</span>), dia <b>tidak</b> dihitung.</p>
+  </div>
+<div class="sec">Negasi Kuantor (De Morgan untuk Kuantor)</div>
   <p class="ind m">¬(∀x P(x)) ≡ ∃x ¬P(x)</p>
   <p class="ind m">¬(∃x P(x)) ≡ ∀x ¬P(x)</p>
   <p><b>Logikanya:</b> menyangkal "semua benar" cukup tunjukkan "ada yang salah". Menyangkal "ada yang benar" berarti "semuanya salah".</p>
@@ -486,7 +517,16 @@ details p{background:transparent;font-size:14px}
     <div class="ans"><span class="lbl">Jawaban</span><span class="m">∃x (P(x) ∧ ¬Q(x))</span> — "ada x yang memenuhi P tapi tidak memenuhi Q".</div>
   </div>
 
-  <div class="sec">Kuantor Bersarang (Nested Quantifiers)</div>
+  
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>Negasi membalik kuantor dan menyangkal isinya.</b>
+    Pernyataan: "Semua mahasiswa membawa laptop" = <span class="m">∀x P(x)</span> → <span class="tv f">F</span> (Citra tidak bawa).
+    <p>Negasinya <span class="m">¬∀x P(x) ≡ ∃x ¬P(x)</span> = "Ada mahasiswa yang <b>tidak</b> membawa laptop" → <span class="tv t">T</span>.</p>
+    <p>Cek lewat Citra: <span class="m">P(Citra)</span> = <span class="tv f">F</span>, maka <span class="m">¬P(Citra)</span> = <span class="tv t">T</span>. Karena ada satu x yang membuat ¬P benar, <span class="m">∃x ¬P(x)</span> = <span class="tv t">T</span>. Cocok: yang asli <span class="tv f">F</span>, negasinya <span class="tv t">T</span>.</p>
+    <p><b>Jebakan:</b> negasi ∀ <u>bukan</u> ∀¬. Kuantornya ikut berubah (∀ → ∃), baru isinya dinegasi.</p>
+  </div>
+<div class="sec">Kuantor Bersarang (Nested Quantifiers)</div>
   <p>Urutan kuantor <b>sangat menentukan</b> kalau jenisnya beda:</p>
   <div class="contoh">
     <span class="lbl2">Contoh Singkat</span>
@@ -580,7 +620,16 @@ details p{background:transparent;font-size:14px}
     <div class="ans"><span class="lbl">Kesimpulan</span>Maka <span class="m">r + s</span> dapat dinyatakan sebagai rasio dua bilangan bulat → <b>r + s rasional</b>. ∎</div>
   </div>
 
-  <div class="sec">2 · Bukti Kontraposisi (Proof by Contraposition)</div>
+  
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>Cek nilai T/F untuk satu kasus nyata.</b>
+    Pernyataan: "Jika n ganjil, maka n² ganjil".
+    <p>Ambil <span class="m">n = 3</span>: premis "3 ganjil" = <span class="tv t">T</span>. Hasil <span class="m">3² = 9</span>, dan "9 ganjil" = <span class="tv t">T</span>. Jadi <span class="m">T → T = T</span>, pernyataan tidak dilanggar.</p>
+    <p>Ambil <span class="m">n = 4</span>: premis "4 ganjil" = <span class="tv f">F</span>. Apa pun hasilnya, implikasi <span class="m">F → ... = T</span> (vacuously true) — inilah kenapa <b>satu contoh T tidak membuktikan apa-apa</b>, dan satu contoh F pada premis juga tidak menyangkal.</p>
+    <p>Yang membuktikan adalah aljabar umum: <span class="m">n = 2k+1 → n² = 4k²+4k+1 = 2(2k²+2k)+1</span>, bentuk ganjil untuk <b>semua</b> k.</p>
+  </div>
+<div class="sec">2 · Bukti Kontraposisi (Proof by Contraposition)</div>
   <p>Dasarnya ekuivalensi <span class="m">p → q ≡ ¬q → ¬p</span>. Jadi membuktikan kontraposisinya <b>sah</b> membuktikan pernyataan aslinya.</p>
   <p><b>Kapan dipakai?</b> Kalau asumsi <span class="m">p</span> susah diolah (misal bentuknya "tidak habis dibagi"), tapi <span class="m">¬q</span> gampang diolah.</p>
 
@@ -603,7 +652,16 @@ details p{background:transparent;font-size:14px}
     <p style="font-size:13px;color:#555"><b>Catatan:</b> ini kebalikan dari Contoh 1. Dua-duanya benar dan sering diminta berpasangan.</p>
   </div>
 
-  <div class="sec">3 · Bukti Kontradiksi (Proof by Contradiction)</div>
+  
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>Kontraposisi diuji dengan angka.</b>
+    Pernyataan asli: "Jika n² genap, maka n genap". Kontraposisinya: "Jika n ganjil, maka n² ganjil".
+    <p>Ambil <span class="m">n = 3</span>: <span class="m">¬q</span> = "3 ganjil" = <span class="tv t">T</span>, lalu <span class="m">3² = 9</span> → <span class="m">¬p</span> = "9 bukan genap" = <span class="tv t">T</span>. Hasil <span class="m">T → T = T</span>.</p>
+    <p>Kalau <span class="m">n = 4</span> (genap), <span class="m">¬q</span> = <span class="tv f">F</span>, implikasi otomatis <span class="tv t">T</span> — konsisten dengan aslinya yang juga <span class="tv t">T</span>.</p>
+    <p><b>Intinya:</b> tidak ada satu pun n yang membuat <span class="m">¬q</span> <span class="tv t">T</span> sementara <span class="m">¬p</span> <span class="tv f">F</span>, jadi kontraposisi selalu <span class="tv t">T</span> → pernyataan asli juga <span class="tv t">T</span>.</p>
+  </div>
+<div class="sec">3 · Bukti Kontradiksi (Proof by Contradiction)</div>
   <p><b>Alur:</b> Andaikan <span class="m">p ∧ ¬q</span> benar (premis benar TAPI kesimpulan salah). Olah sampai ketemu hal mustahil, misal <span class="m">r ∧ ¬r</span> atau <span class="m">1 = 0</span>.</p>
   <p>Karena kontradiksi mustahil, pengandaian salah → <span class="m">p → q</span> benar.</p>
 
@@ -621,7 +679,16 @@ details p{background:transparent;font-size:14px}
     <p><b>Kontradiksi</b> tetap membuktikan pernyataan asli, tapi lewat <b>pengandaian salah</b> yang berujung pada <span class="m">r ∧ ¬r</span>.</p>
   </div>
 
-  <div class="sec">4 · Counterexample (Menyangkal Pernyataan ∀)</div>
+  
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>Andaikan negasinya benar, lalu cari benturan.</b>
+    Klaim: "Tidak ada bilangan bulat positif terbesar".
+    <p>Andaikan klaim salah, yaitu <b>ada</b> bilangan terbesar, sebut <span class="m">N</span> (<span class="tv t">T</span> sebagai asumsi).</p>
+    <p>Tapi <span class="m">N + 1</span> juga bilangan bulat positif dan <span class="m">N + 1 &gt; N</span> (<span class="tv t">T</span>). Jadi <span class="m">N</span> bukan yang terbesar (<span class="tv f">F</span>).</p>
+    <p>Muncul <span class="m">N terbesar</span> <span class="tv t">T</span> <b>dan</b> <span class="m">N bukan terbesar</span> <span class="tv t">T</span> sekaligus → <span class="m">r ∧ ¬r</span> = <span class="tv f">F</span>, kemustahilan. Berarti asumsi salah, klaim asli <span class="tv t">T</span>.</p>
+  </div>
+<div class="sec">4 · Counterexample (Menyangkal Pernyataan ∀)</div>
   <p>Untuk membuktikan <span class="m">∀x P(x)</span> itu <b>SALAH</b>, cukup satu contoh yang membuat <span class="m">P(x)</span> false.</p>
   <p><b>Contoh:</b> "Semua bilangan prima itu ganjil." <b>Salah</b>, counterexample: <span class="m">2</span> adalah prima tapi genap.</p>
 
@@ -634,6 +701,15 @@ details p{background:transparent;font-size:14px}
     <p><b>3.</b> Buktikan dengan kontradiksi: tidak ada bilangan bulat terbesar.</p>
     <p><i>Kunci:</i> andaikan ada <span class="m">N</span> terbesar; maka <span class="m">N+1</span> juga bulat dan <span class="m">N+1 &gt; N</span> → kontradiksi dengan "terbesar".</p>
   </details>
+
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>Satu angka cukup untuk menjatuhkan "semua".</b>
+    Klaim: <span class="m">∀n (n² &gt; n)</span> untuk semua bilangan bulat.
+    <p>Uji <span class="m">n = 2</span>: <span class="m">4 &gt; 2</span> = <span class="tv t">T</span>. Uji <span class="m">n = 3</span>: <span class="m">9 &gt; 3</span> = <span class="tv t">T</span>. Terlihat benar…</p>
+    <p>Tapi uji <span class="m">n = 1</span>: <span class="m">1 &gt; 1</span> = <span class="tv f">F</span>. Karena ada satu n yang membuat <span class="m">P(n)</span> = <span class="tv f">F</span>, maka <span class="m">∀n P(n)</span> = <span class="tv f">F</span>.</p>
+    <p><b>Aturan:</b> ∀ butuh <b>semua</b> <span class="tv t">T</span> baru boleh <span class="tv t">T</span>; ∃ cukup <b>satu</b> <span class="tv t">T</span>.</p>
+  </div>
 </section>
 
 
@@ -696,7 +772,16 @@ details p{background:transparent;font-size:14px}
     </table>
   </div>
 
-  <div class="sec">Identitas Himpunan yang Sering Dipakai</div>
+  
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>Anggota yang sama, dicek satu per satu.</b>
+    <span class="m">A = {1,2,3,4}</span>, <span class="m">B = {3,4,5}</span>.
+    <p><span class="m">A ∪ B = {1,2,3,4,5}</span> · <span class="m">A ∩ B = {3,4}</span> · <span class="m">A − B = {1,2}</span> · <span class="m">Aᶜ</span> (semesta <span class="m">{1..6}</span>) <span class="m">= {5,6}</span>.</p>
+    <p>Cek keanggotaan: <span class="m">3 ∈ A</span> = <span class="tv t">T</span>, <span class="m">3 ∈ B</span> = <span class="tv t">T</span> → <span class="m">3 ∈ A ∩ B</span> = <span class="tv t">T</span>. Untuk <span class="m">5</span>: <span class="m">5 ∈ A</span> = <span class="tv f">F</span>, jadi <span class="m">5 ∉ A ∩ B</span> walaupun <span class="m">5 ∈ B</span> = <span class="tv t">T</span>.</p>
+    <p><b>Aturan:</b> irisan butuh <b>dua-duanya</b> <span class="tv t">T</span>; gabungan cukup <b>salah satu</b> <span class="tv t">T</span> — persis seperti ∧ dan ∨.</p>
+  </div>
+<div class="sec">Identitas Himpunan yang Sering Dipakai</div>
   <p class="ind m">A ∪ B = B ∪ A &nbsp;&nbsp;·&nbsp;&nbsp; A ∩ B = B ∩ A &nbsp;&nbsp;[Komutatif]</p>
   <p class="ind m">A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C) &nbsp;&nbsp;[Distributif]</p>
   <p class="ind m">A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)</p>
@@ -714,7 +799,16 @@ details p{background:transparent;font-size:14px}
     <div class="ans"><span class="lbl">Kesimpulan</span>Karena setiap <span class="m">x ∈ A ∩ B</span> juga memenuhi <span class="m">x ∈ A</span>, maka <span class="m">A ∩ B ⊆ A</span>. ∎</div>
   </div>
 
-  <div class="sec">Fungsi: Domain, Kodomain, Range</div>
+  
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>Identitas diuji dengan himpunan konkret.</b>
+    <span class="m">A = {1,2}</span>, <span class="m">B = {2,3}</span>, semesta <span class="m">S = {1,2,3}</span>.
+    <p><span class="m">A ∪ ∅ = {1,2} = A</span> — identitas. <span class="m">A ∩ S = {1,2} = A</span> — dominasi terbalik.</p>
+    <p>De Morgan himpunan: <span class="m">(A ∪ B)ᶜ = {1,2,3}ᶜ = ∅</span>; sisi kanan <span class="m">Aᶜ ∩ Bᶜ = {3} ∩ {1} = ∅</span>. Sama (<span class="tv t">T</span>).</p>
+    <p>Cek anggota: <span class="m">2 ∈ (A ∪ B)ᶜ</span> = <span class="tv f">F</span> karena <span class="m">2 ∈ A ∪ B</span> = <span class="tv t">T</span>; dan <span class="m">2 ∈ Aᶜ ∩ Bᶜ</span> = <span class="tv f">F</span> karena <span class="m">2 ∈ Aᶜ</span> = <span class="tv f">F</span>.</p>
+  </div>
+<div class="sec">Fungsi: Domain, Kodomain, Range</div>
   <p>Fungsi <span class="m">f: A → B</span> memasangkan <b>setiap</b> anggota <span class="m">A</span> (domain) ke <b>tepat satu</b> anggota <span class="m">B</span> (kodomain).</p>
   <p><b>Range/Image</b> = himpunan hasil yang benar-benar terpakai: <span class="m">f(A) = {f(x) | x ∈ A} ⊆ B</span>.</p>
   <div class="trap-card">
@@ -722,7 +816,16 @@ details p{background:transparent;font-size:14px}
     <p>Kodomain itu "daerah tujuan" (semua yang mungkin), range itu "yang benar-benar kena". Untuk uji surjektif, yang dibandingkan adalah <b>Range vs Kodomain</b>.</p>
   </div>
 
-  <div class="sec">Sifat Fungsi: Injektif, Surjektif, Bijektif</div>
+  
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>Satu input, satu output — dicek dengan angka.</b>
+    <span class="m">f: ℝ → ℝ</span>, <span class="m">f(x) = x²</span>.
+    <p><span class="m">f(3) = 9</span> (<span class="tv t">T</span> terdefinisi) · <span class="m">f(−3) = 9</span> (<span class="tv t">T</span>) · <span class="m">f(0) = 0</span> (<span class="tv t">T</span>).</p>
+    <p>Domain = ℝ (semua angka boleh masuk). Kodomain = ℝ (yang <b>boleh</b> keluar). Range = <span class="m">[0, ∞)</span> (yang <b>benar-benar</b> keluar).</p>
+    <p>Cek: <span class="m">9 ∈ range</span> = <span class="tv t">T</span> (dari x=3). <span class="m">−1 ∈ range</span> = <span class="tv f">F</span> — tidak ada angka yang dikuadratkan menghasilkan −1, walaupun <span class="m">−1 ∈ kodomain</span> = <span class="tv t">T</span>. <b>Range ⊆ kodomain, bukan sebaliknya.</b></p>
+  </div>
+<div class="sec">Sifat Fungsi: Injektif, Surjektif, Bijektif</div>
   <div class="step"><div class="n">1</div><div class="body">
     <b>Injektif (one-to-one)</b> — tidak ada dua input berbeda yang hasilnya sama.
     <p class="ind m">f(a) = f(b) ⟹ a = b</p>
@@ -745,7 +848,17 @@ details p{background:transparent;font-size:14px}
     <div class="ans"><span class="lbl">Kesimpulan</span>Karena tidak injektif dan tidak surjektif, maka <b>tidak bijektif</b> dan <b>tidak memiliki fungsi invers</b>.</div>
   </div>
 
-  <div class="sec">Himpunan Fuzzy (Fuzzy Set) — Slide 57–63</div>
+  
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>Baca dari daftar pasangan (pola TB1 No. 8).</b>
+    <span class="m">A = {a,b,c,d}</span>, <span class="m">B = {1,2,3}</span>, <span class="m">f = {(a,1),(b,3),(c,1),(d,2)}</span>.
+    <p><b>Injektif?</b> <span class="m">a → 1</span> dan <span class="m">c → 1</span>. Dua domain berbeda menabrak kodomain yang sama → <span class="tv f">F</span>.</p>
+    <p><b>Surjektif?</b> Kodomain <span class="m">{1,2,3}</span>: 1 dipakai (<span class="tv t">T</span>), 2 dipakai (<span class="tv t">T</span>), 3 dipakai (<span class="tv t">T</span>) → semua terpakai → <span class="tv t">T</span>.</p>
+    <p><b>Bijektif?</b> Butuh injektif <b>dan</b> surjektif. Injektif <span class="tv f">F</span>, jadi bijektif <span class="tv f">F</span>.</p>
+    <p><b>Cara cepat:</b> injektif = "tidak ada panah menumpuk"; surjektif = "tidak ada anggota B yang menganggur".</p>
+  </div>
+<div class="sec">Himpunan Fuzzy (Fuzzy Set) — Slide 57–63</div>
   <p>Di himpunan biasa (crisp), keanggotaan cuma 0 atau 1. Di <b>fuzzy set</b>, keanggotaan itu <b>derajat</b> di antara 0 dan 1:</p>
   <p class="big m">μ_A(x) ∈ [0, 1]</p>
   <p>Contoh: "tinggi badan 170 cm" tidak cuma "tinggi/bukan", tapi bisa <span class="m">μ = 0,7</span> (cukup tinggi).</p>
@@ -781,6 +894,16 @@ details p{background:transparent;font-size:14px}
       <span class="m">Ā = {(x₁, 0.8), (x₂, 0.3), (x₃, 0.0)}</span>
     </div>
     <p style="font-size:13px;color:#555"><b>Jangan lupa:</b> hasilnya harus ditulis ulang dalam bentuk himpunan pasangan berurutan, bukan cuma tabel. Dosen menilai notasi.</p>
+  </div>
+
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>Derajat keanggotaan: angka 0–1, bukan cuma T/F.</b>
+    <span class="m">μF(Alice) = 0.6</span>, <span class="m">μR(Alice) = 0.3</span>.
+    <p>Komplemen: <span class="m">μFᶜ(Alice) = 1 − 0.6 = 0.4</span> — makin tinggi μ, makin kecil komplemennya.</p>
+    <p>Gabungan: <span class="m">μ(F ∪ R)(Alice) = max(0.6, 0.3) = 0.6</span> — mengambil yang <b>paling kuat</b> (mirip ∨).</p>
+    <p>Irisan: <span class="m">μ(F ∩ R)(Alice) = min(0.6, 0.3) = 0.3</span> — mengambil yang <b>paling lemah</b> (mirip ∧).</p>
+    <p>Bandingkan: <span class="m">0.6 &gt; 0.3</span> = <span class="tv t">T</span>, jadi Alice lebih condong ke F daripada R. Kalau nilainya 0 (<span class="tv f">F</span>) artinya tidak anggota sama sekali, 1 (<span class="tv t">T</span>) artinya anggota penuh.</p>
   </div>
 </section>
 
@@ -862,7 +985,16 @@ details p{background:transparent;font-size:14px}
   <p><b>Kongruensi:</b> <span class="m">a ≡ b (mod m)</span> artinya <span class="m">m | (a − b)</span>, yaitu <span class="m">a</span> dan <span class="m">b</span> punya sisa yang sama saat dibagi <span class="m">m</span>.</p>
   <p class="ind">Contoh: <span class="m">17 ≡ 2 (mod 5)</span> karena <span class="m">17 − 2 = 15</span> habis dibagi 5.</p>
 
-  <div class="sec">Tahap 1 · Algoritma Euclidean</div>
+  
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>Cek bagi habis dan sisa pembagian.</b>
+    <span class="m">3 | 12</span> = <span class="tv t">T</span> karena <span class="m">12 = 3 · 4</span> dan 4 bilangan bulat.
+    <p><span class="m">5 | 12</span> = <span class="tv f">F</span> karena <span class="m">12 = 5 · 2 + 2</span> → sisanya 2, bukan 0.</p>
+    <p>Modulo: <span class="m">17 mod 12 = 5</span> (karena <span class="m">17 = 1·12 + 5</span>) · <span class="m">12 mod 17 = 12</span> (karena <span class="m">12 = 0·17 + 12</span>).</p>
+    <p>Kongruensi: <span class="m">17 ≡ 5 (mod 12)</span> = <span class="tv t">T</span> sebab <span class="m">17 − 5 = 12</span> habis dibagi 12. Tapi <span class="m">17 ≡ 6 (mod 12)</span> = <span class="tv f">F</span> sebab <span class="m">17 − 6 = 11</span> tidak habis dibagi 12.</p>
+  </div>
+<div class="sec">Tahap 1 · Algoritma Euclidean</div>
   <p>Untuk mencari <span class="m">gcd(141, 19)</span>, tulis pembagian bertingkat. <b>Wajib tulis semua baris</b> — ini yang dinilai:</p>
   <p class="ind m">141 = 7 · 19 + 8</p>
   <p class="ind m">19 &nbsp;= 2 · 8 &nbsp;+ 3</p>
@@ -872,7 +1004,15 @@ details p{background:transparent;font-size:14px}
   <div class="ans"><span class="lbl">Hasil Tahap 1</span><span class="m">gcd(141, 19) = 1</span> (artinya 141 dan 19 <b>relatif prima / koprima</b>).</div>
   <p style="font-size:13px;color:#555"><b>Kenapa boleh berhenti di sisa 0?</b> Karena <span class="m">gcd(a,b) = gcd(b, r)</span> di setiap langkah, jadi FPB tidak berubah sampai sisanya 0, dan saat itu FPB = pembagi terakhir.</p>
 
-  <div class="sec">Tahap 2 · Substitusi Mundur (Identitas Bézout)</div>
+  
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>Rantai pembagian sampai sisa 0.</b>
+    <span class="m">gcd(48, 18)</span>: <span class="m">48 = 2·18 + 12</span> (sisa 12) → <span class="m">18 = 1·12 + 6</span> (sisa 6) → <span class="m">12 = 2·6 + 0</span> (sisa 0).
+    <p>Sisa terakhir yang <b>tidak nol</b> adalah 6 → <span class="m">gcd(48,18) = 6</span>. Cek: 48 habis dibagi 6 (<span class="tv t">T</span>), 18 habis dibagi 6 (<span class="tv t">T</span>), dan tidak ada pembagi lebih besar yang memenuhi dua-duanya.</p>
+    <p>Pasangan ujian <span class="m">gcd(141, 19)</span>: <span class="m">141 = 7·19 + 8</span> → <span class="m">19 = 2·8 + 3</span> → <span class="m">8 = 2·3 + 2</span> → <span class="m">3 = 1·2 + 1</span> → <span class="m">2 = 2·1 + 0</span>. Sisa terakhir bukan nol = 1 → <b>koprima</b>.</p>
+  </div>
+<div class="sec">Tahap 2 · Substitusi Mundur (Identitas Bézout)</div>
   <p>Target: menemukan <span class="m">s</span> dan <span class="m">t</span> sehingga</p>
   <p class="big m">s·a + t·b = gcd(a, b)</p>
   <p>Caranya: <b>mulai dari baris sisa 1</b>, lalu ganti setiap sisa dengan bentuk <span class="m">(bilangan − hasil kali)</span> dari baris di atasnya.</p>
@@ -883,7 +1023,15 @@ details p{background:transparent;font-size:14px}
   <div class="ans"><span class="lbl">Hasil Bézout</span><span class="m box">52 · 19 + (−7) · 141 = 1</span> &nbsp;→&nbsp; <span class="m">s = 52</span>, <span class="m">t = −7</span>.</div>
   <p style="font-size:13px;color:#555"><b>Cek cepat (wajib lu lakukan di kertas buram):</b> <span class="m">52·19 = 988</span> dan <span class="m">7·141 = 987</span>. Selisihnya 1 ✓. Kalau nggak 1, berarti ada langkah yang salah.</p>
 
-  <div class="sec">Tahap 3 · Invers Modulo</div>
+  
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>Dari sisa kembali ke atas: 1 = … · 141 + … · 19.</b>
+    <span class="m">1 = 3 − 1·2</span>, lalu <span class="m">2 = 8 − 2·3</span> → <span class="m">1 = 3·3 − 8</span>, lalu <span class="m">3 = 19 − 2·8</span> → <span class="m">1 = 3·19 − 7·8</span>, lalu <span class="m">8 = 141 − 7·19</span> → <span class="m">1 = 52·19 − 7·141</span>.
+    <p>Bentuk Bézout: <span class="m">(−7)(141) + 52(19) = 1</span>.</p>
+    <p><b>Cek angka (wajib, biar yakin):</b> <span class="m">−7 · 141 = −987</span> (<span class="tv t">T</span>), <span class="m">52 · 19 = 988</span> (<span class="tv t">T</span>), dan <span class="m">−987 + 988 = 1</span> (<span class="tv t">T</span>). Kalau hasilnya bukan 1, berarti ada langkah substitusi yang salah.</p>
+  </div>
+<div class="sec">Tahap 3 · Invers Modulo</div>
   <p>Dari <span class="m">52·19 − 7·141 = 1</span>, ambil modulo 141. Suku <span class="m">−7·141</span> jadi 0 (karena kelipatan 141), sisanya:</p>
   <p class="big m">52 · 19 ≡ 1 (mod 141)</p>
   <p>Bentuk <span class="m">a·x ≡ 1 (mod m)</span> berarti <span class="m">x</span> adalah <b>invers</b> dari <span class="m">a</span>. Jadi:</p>
@@ -893,7 +1041,15 @@ details p{background:transparent;font-size:14px}
     <p><span class="m">a⁻¹ (mod m)</span> hanya ada jika <span class="m">gcd(a, m) = 1</span>. Kalau tidak koprima, <b>tidak ada invers</b> — jangan dipaksa cari!</p>
   </div>
 
-  <div class="sec">Tahap 4 · Menyelesaikan Kongruensi Linear ax ≡ b (mod m)</div>
+  
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>Koefisien Bézout langsung jadi invers.</b>
+    Dari <span class="m">(−7)(141) + 52(19) = 1</span>, ambil modulo 141: suku <span class="m">(−7)(141)</span> habis dibagi 141 → jadi 0 (<span class="tv t">T</span>), sehingga <span class="m">52 · 19 ≡ 1 (mod 141)</span>.
+    <p>Maka <span class="m">19⁻¹ ≡ 52 (mod 141)</span>.</p>
+    <p><b>Cek:</b> <span class="m">19 · 52 = 988 = 7 · 141 + 1</span> → sisanya 1 (<span class="tv t">T</span>). Kalau sisanya bukan 1, berarti 19 tidak punya invers (gcd ≠ 1).</p>
+  </div>
+<div class="sec">Tahap 4 · Menyelesaikan Kongruensi Linear ax ≡ b (mod m)</div>
   <p><b>Aturan keberadaan solusi:</b> <span class="m">ax ≡ b (mod m)</span> punya solusi <b>jika dan hanya jika</b> <span class="m">gcd(a, m) | b</span>.</p>
 
   <div class="worked">
@@ -931,6 +1087,15 @@ details p{background:transparent;font-size:14px}
     <p><b>3.</b> Selesaikan <span class="m">7x ≡ 3 (mod 26)</span>.</p>
     <p><i>Kunci:</i> <span class="m">x ≡ 15 · 3 = 45 ≡ 19 (mod 26)</span>.</p>
   </details>
+
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>Kalikan kedua sisi dengan invers.</b>
+    Selesaikan <span class="m">19x ≡ 10 (mod 141)</span>.
+    <p>Kalikan dua sisi dengan <span class="m">19⁻¹ ≡ 52</span>: <span class="m">x ≡ 52 · 10 = 520 (mod 141)</span>.</p>
+    <p>Kurangi kelipatan 141: <span class="m">520 − 3·141 = 520 − 423 = 97</span>, jadi <span class="m">x ≡ 97 (mod 141)</span>.</p>
+    <p><b>Cek:</b> <span class="m">19 · 97 = 1843</span>, dan <span class="m">1843 − 13·141 = 1843 − 1833 = 10</span> → benar (10 ≡ 10). Solusi lain: <span class="m">97 + 141 = 238</span>, dst.</p>
+  </div>
 </section>
 
 
@@ -1035,7 +1200,15 @@ details p{background:transparent;font-size:14px}
     <p style="font-size:13px;color:#555"><b>Kapan pakai komplemen?</b> Kalau kata kuncinya "paling banyak / paling sedikit / tidak boleh", biasanya komplemen jauh lebih cepat.</p>
   </div>
 
-  <div class="sec">Prinsip Inklusi–Eksklusi (PIE)</div>
+  
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>Kali (product) vs tambah (sum) — bedanya di kata "dan" / "atau".</b>
+    <b>Product rule:</b> menu 3 appetizer, 4 main course, 2 dessert → pilihan menu lengkap = <span class="m">3 · 4 · 2 = 24</span> (semua dipilih sekaligus, "dan").
+    <p><b>Sum rule:</b> mau makan <b>salah satu</b> — appetizer saja <b>atau</b> main course saja = <span class="m">3 + 4 = 7</span> pilihan ("atau", tidak boleh dua-duanya).</p>
+    <p><b>Permutasi vs kombinasi:</b> <span class="m">P(10,3) = 10·9·8 = 720</span> (urutan penting: juara 1, 2, 3) vs <span class="m">C(10,3) = 720 / 3! = 120</span> (urutan tidak penting: tim 3 orang). Cek: <span class="m">120 · 6 = 720</span> (<span class="tv t">T</span>), jadi C selalu lebih kecil dari P.</p>
+  </div>
+<div class="sec">Prinsip Inklusi–Eksklusi (PIE)</div>
   <p>Dipakai kalau himpunan <b>tumpang tindih</b> dan kita nggak mau hitung dobel:</p>
   <p class="big m">|A ∪ B| = |A| + |B| − |A ∩ B|</p>
   <p class="big m">|A ∪ B ∪ C| = |A| + |B| + |C| − |A∩B| − |A∩C| − |B∩C| + |A∩B∩C|</p>
@@ -1063,6 +1236,15 @@ details p{background:transparent;font-size:14px}
     <p><b>4.</b> Di kelas 30 orang, 18 suka kopi, 12 suka teh, 6 suka keduanya. Berapa yang suka kopi atau teh?</p>
     <p><i>Kunci:</i> <span class="m">18 + 12 − 6 = 24</span>.</p>
   </details>
+
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>Hitung yang dobel, jangan dikurangi dua kali.</b>
+    Banyak bilangan 1–100 yang habis dibagi 2 <b>atau</b> 3 <b>atau</b> 5.
+    <p>Masing-masing: <span class="m">⌊100/2⌋ = 50</span>, <span class="m">⌊100/3⌋ = 33</span>, <span class="m">⌊100/5⌋ = 20</span>. Jumlah kasar <span class="m">103</span> — terlalu besar karena yang dobel ikut terhitung.</p>
+    <p>Kurangi irisan: <span class="m">⌊100/6⌋ = 16</span> (2∧3), <span class="m">⌊100/10⌋ = 10</span> (2∧5), <span class="m">⌊100/15⌋ = 6</span> (3∧5). Hasil <span class="m">103 − 32 = 71</span>.</p>
+    <p>Yang habis dibagi ketiganya (<span class="m">⌊100/30⌋ = 3</span>) tadi terpotong 3 kali lalu dikembalikan 3 kali → harus ditambah lagi: <span class="m">71 + 3 = 74</span>. Cek satu contoh: <span class="m">30</span> dihitung di 50 (<span class="tv t">T</span>), 33 (<span class="tv t">T</span>), 20 (<span class="tv t">T</span>) → total 3 kali, akhirnya tetap terhitung 1 kali.</p>
+  </div>
 </section>
 
 
