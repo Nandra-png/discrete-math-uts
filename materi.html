@@ -1,0 +1,1192 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Buku Materi UTS Discrete Math — dari Nol sampai Bisa Ngerjain</title>
+<style>
+:root{
+  --ink:#1c2430; --ink-soft:#4a5568; --red:#c0392b; --blue:#1f5fa8;
+  --paper:#fdfaf2; --rule:rgba(80,120,175,.14); --margin-line:rgba(215,65,65,.55);
+  --edge:#cac3ad; --desk:#e5e1d4; --ok:#1e7a3c;
+  --sticky:#fff9b0; --sticky-edge:#e9de89;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--desk);
+  background-image:radial-gradient(circle at 20% 0%,#f0ece0 0%,#d8d3c2 70%);
+  color:var(--ink);
+  font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  padding:22px 14px 90px;
+}
+.wrap{max-width:1520px;margin:0 auto;display:grid;
+  grid-template-columns:248px minmax(0,920px) 300px;gap:22px;align-items:start;justify-content:center}
+.rail{position:sticky;top:14px;max-height:calc(100vh - 28px);overflow-y:auto;overflow-x:hidden;padding:8px 4px 30px}
+.rail::-webkit-scrollbar{width:5px}
+.rail::-webkit-scrollbar-thumb{background:#c9c2ad;border-radius:3px}
+.panel{position:relative;background:linear-gradient(175deg,#fffbc7 0%,var(--sticky) 40%,#fef39c 100%);
+  border:1px solid var(--sticky-edge);border-radius:4px;
+  box-shadow:0 2px 4px rgba(60,50,20,.08),0 8px 18px rgba(60,50,20,.14);
+  padding:16px 15px;margin-bottom:16px}
+.panel h4{margin:0 0 10px;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;
+  color:#61531e;border-bottom:1.5px dashed rgba(150,130,50,.3);padding-bottom:5px}
+.total{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px}
+.total b{font-size:20px;font-weight:800;color:#2c2206}
+.total span{font-size:11px;color:#61531e;font-weight:700}
+.pbar{height:6px;border-radius:999px;background:#e5dc9b;overflow:hidden;margin-bottom:10px}
+.pbar i{display:block;height:100%;background:var(--red);border-radius:999px}
+.road{list-style:none;margin:10px 0 0;padding:0;position:relative}
+.road::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:1.5px;background:#d8cc8a}
+.road li{position:relative;padding:0 0 0 26px;margin:0 0 3px}
+.road a{display:block;text-decoration:none;color:#2b2308;font-size:12.5px;font-weight:700;line-height:1.35;
+  padding:5px 7px;border-radius:5px}
+.road a:hover{background:rgba(255,255,255,.6)}
+.road a small{display:block;font-size:10.5px;color:#61531e;font-weight:500;margin-top:1px}
+.road .dot{position:absolute;left:4px;top:10px;width:11px;height:11px;border-radius:50%;background:#fff;border:2px solid #b8ab6a}
+.road li.now .dot{border-color:var(--red);background:var(--red);box-shadow:0 0 0 3px rgba(192,57,43,.2)}
+.road li.now a{background:rgba(255,255,255,.8);color:var(--red)}
+main{min-width:0}
+.sheet{position:relative;background:var(--paper);
+  background-image:
+    linear-gradient(to right,transparent 0 84px,var(--margin-line) 84px 85.5px,transparent 85.5px),
+    repeating-linear-gradient(to bottom,transparent 0 33px,var(--rule) 33px 34px);
+  background-position:0 0,0 38px;border-radius:4px;border:1px solid #dcd5bf;
+  box-shadow:0 2px 0 #cfc8b4,0 10px 24px rgba(60,50,30,.15);
+  padding:32px 42px 48px 110px;font-size:15.5px;line-height:1.75;margin:0 0 26px;scroll-margin-top:14px}
+.sheet::before,.sheet::after{content:"";position:absolute;left:28px;width:22px;height:22px;border-radius:50%;
+  background:var(--desk);box-shadow:inset 0 2px 4px rgba(0,0,0,.24),0 0 0 1px #d3ccb8}
+.sheet::before{top:68px}.sheet::after{bottom:68px}
+.head{display:flex;align-items:flex-start;gap:15px;margin-bottom:10px}
+.badge{flex:0 0 auto;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:#fff;
+  border:2.5px solid var(--red);color:var(--red);font-weight:800;font-size:22px;box-shadow:2px 2px 0 rgba(192,57,43,.18)}
+.head h2{font-size:22px;font-weight:800;letter-spacing:-.01em;margin:0}
+.head .sub{font-size:13px;color:var(--ink-soft);font-weight:500;margin-top:3px}
+.sec{font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);
+  margin:20px 0 6px;display:flex;align-items:center;gap:8px}
+.sec::after{content:"";flex:1;height:1px;background:#d8e2ee}
+p{margin:6px 0;background:rgba(253,250,242,.86)}
+.m{font-family:'Cambria Math',Cambria,Georgia,serif;font-style:italic}
+.m b{font-style:normal}
+.analogi{background:#fefbf2;border:1.5px dashed #c49742;border-left:5px solid #d48b14;border-radius:8px;padding:12px 15px;margin:12px 0}
+.analogi h4{margin:0 0 5px;color:#8f5600;font-size:14.5px;font-weight:800}
+.analogi p{margin:4px 0;font-size:13.5px;line-height:1.7;background:transparent}
+.analogi .kesimpulan{background:#fff;border:1px solid #ebd8b0;border-radius:6px;padding:8px 11px;margin-top:8px;
+  font-size:13px;color:#613e05;font-weight:700;line-height:1.6}
+.trap-card{background:#fff5f3;border:1.5px solid #f1cfc8;border-left:4px solid var(--red);border-radius:8px;padding:11px 15px;margin:12px 0}
+.trap-card b{color:var(--red);font-size:14px}
+.trap-card p{margin:4px 0;font-size:13.5px;line-height:1.7;background:transparent}
+.step{display:flex;gap:11px;margin:8px 0}
+.step .n{flex:0 0 auto;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--red);
+  color:#fff;font-size:12px;font-weight:800;margin-top:3px}
+.step .body{flex:1 1 auto;min-width:0;background:rgba(253,250,242,.86)}
+.step .body p{background:transparent}
+.ans{margin:12px 0 8px 34px;padding:9px 14px;border:2px solid var(--red);border-radius:4px;background:#fff7f5;line-height:1.7}
+.ans .lbl{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:3px}
+.box{display:inline-block;border:2px double var(--ink);border-radius:3px;padding:2px 10px;background:#fffdf5}
+.ind{margin-left:34px;background:rgba(253,250,242,.86)}
+.big{margin:6px 0 6px 34px;font-size:17px;background:rgba(253,250,242,.86);padding:2px 0}
+.tblwrap{overflow-x:auto;margin:8px 0 8px 34px;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;margin:6px 0;font-family:'Cambria Math',Cambria,serif;font-size:14.5px;line-height:1.45;background:#fff}
+th,td{border:1.5px solid #2b3340;padding:3px 9px;text-align:center;white-space:nowrap;background:#fff}
+thead th{background:#eef2f7;font-weight:700;font-family:'Segoe UI',sans-serif;font-size:12.5px}
+td.T{color:var(--ok);font-weight:700}
+td.F{color:#b03030;font-weight:700}
+.worked{background:#f7fcf4;border:1.5px solid #cde3c2;border-left:4px solid var(--ok);border-radius:8px;padding:11px 15px;margin:12px 0}
+.worked h4{margin:0 0 6px;font-size:12px;color:#1e7a3c;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.worked p{background:transparent}
+details{background:#f7f5ec;border:1.5px dashed #cfc6af;border-radius:8px;padding:10px 14px;margin:12px 0}
+details summary{cursor:pointer;font-weight:800;font-size:13.5px;color:var(--blue)}
+details[open] summary{margin-bottom:8px}
+details p{background:transparent;font-size:14px}
+.formula{font-family:'Cambria Math',Cambria,serif;font-size:13px;line-height:1.6;padding:6px 8px;border-radius:4px;
+  background:rgba(255,255,255,.62);margin-bottom:6px;border-left:3px solid #b8ab6a}
+.formula small{display:block;font-family:'Segoe UI',sans-serif;font-size:10.5px;color:#61531e;margin-top:2px}
+.kv{display:flex;justify-content:space-between;gap:8px;font-size:12px;padding:4px 0;border-bottom:1px dashed rgba(160,140,60,.35)}
+.kv:last-child{border-bottom:none}
+.kv span{color:#61531e;font-weight:600}
+.kv b{font-weight:800;text-align:right;color:#2c2206}
+.cheat-tag{display:inline-block;background:var(--red);color:#fff;font-size:9.5px;font-weight:800;
+  padding:2px 6px;border-radius:3px;text-transform:uppercase;letter-spacing:.05em;margin:6px 0 4px}
+.toggles{display:none;gap:8px;position:sticky;top:8px;z-index:60;margin-bottom:12px}
+.toggles button{flex:1;padding:8px;border-radius:4px;border:1px solid var(--sticky-edge);
+  background:linear-gradient(175deg,#fffbc7,var(--sticky));font-weight:800;font-size:12.5px;color:#332906;cursor:pointer}
+@media (max-width:1240px){
+  .wrap{grid-template-columns:220px minmax(0,1fr)}
+  .rail.right{display:none}
+  .toggles{display:flex}
+  .rail.right.open{display:block;position:fixed;top:0;right:0;bottom:0;width:300px;max-height:none;z-index:70;
+    background:var(--desk);padding:14px;box-shadow:-8px 0 24px rgba(40,30,10,.25);overflow:auto}
+}
+@media (max-width:900px){
+  .wrap{grid-template-columns:minmax(0,1fr)}
+  .rail.left{display:none;position:fixed;top:0;left:0;bottom:0;width:280px;max-height:none;z-index:70;
+    background:var(--desk);padding:14px;box-shadow:8px 0 24px rgba(40,30,10,.25);overflow:auto}
+  .rail.left.open{display:block}
+  .sheet{padding:20px 14px 26px 54px;font-size:14.5px;line-height:1.7;background-image:
+    linear-gradient(to right,transparent 0 38px,var(--margin-line) 38px 39.4px,transparent 39.4px),
+    repeating-linear-gradient(to bottom,transparent 0 33px,var(--rule) 33px 34px)}
+  .sheet::before,.sheet::after{left:12px;width:14px;height:14px}
+  .tblwrap,.big,.ind,.ans{margin-left:0}
+  .head h2{font-size:18px}.badge{width:42px;height:42px;font-size:18px}
+  table{font-size:12.5px} th,td{padding:2px 5px}
+}
+@media print{body{background:#fff;padding:0}.rail,.toggles{display:none!important}.wrap{display:block;max-width:none}
+  .sheet{box-shadow:none;border:none;border-radius:0;margin:0;page-break-after:always;max-width:none}}
+
+.contoh{background:#f4faf5;border:1px solid #cfe6d4;border-left:4px solid var(--ok);border-radius:4px;padding:10px 14px;margin:10px 0 14px;font-size:13.5px;line-height:1.7}
+.contoh .lbl2{display:inline-block;font-size:9.5px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--ok);padding:2px 7px;border-radius:3px;margin-right:7px;vertical-align:1px}
+.contoh p{margin:3px 0}
+.bedah{background:#fff;border:1px solid #ddd6c0;border-radius:5px;box-shadow:0 2px 0 #e6e0cc;padding:16px 18px;margin:16px 0}
+.bedah .top{display:flex;align-items:center;gap:7px;margin-bottom:8px}
+.bedah .no{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:var(--red);color:#fff;font-size:11px;font-weight:900}
+.bedah .ttl{font-size:11px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:var(--red)}
+.bedah .soal{font-size:14px;font-weight:600;line-height:1.65;margin:0 0 10px;padding:10px 13px;background:#fbf9f2;border:1px dashed #ddd5bd;border-radius:4px}
+.bedah h5{margin:12px 0 4px;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+.bedah .baca{font-size:13px;line-height:1.7;margin:2px 0}
+.bedah .baca b{color:var(--red)}
+.bedah ol,.bedah ul{padding-left:22px;margin:5px 0}
+.bedah ol li,.bedah ul li{font-size:13.5px;line-height:1.75;margin-bottom:3px}
+.bedah .jawab{background:#eaf8ee;border-left:4px solid var(--ok);border-radius:4px;padding:9px 13px;font-size:13.5px;line-height:1.65;margin-top:10px}
+.bedah .jeb{font-size:12.5px;color:#7a3b12;background:#fff6e8;border-left:3px solid #d98b2b;padding:7px 11px;border-radius:3px;margin-top:9px;line-height:1.6}
+
+  table.txt{width:100%;table-layout:fixed}
+  table.txt th,table.txt td{white-space:normal;word-wrap:break-word}
+
+  table.op{font-size:12px}
+  table.op th,table.op td{padding:2px 4px}
+  table.op th small{display:block;font-weight:400;font-size:8.5px;color:#6b7280;letter-spacing:0}
+</style>
+</head>
+<body>
+
+<div class="toggles">
+  <button type="button" onclick="document.getElementById('railLeft').classList.toggle('open')">☰ Daftar Materi</button>
+  <button type="button" onclick="document.getElementById('railRight').classList.toggle('open')">📌 Rumus Cepat</button>
+</div>
+
+<div class="wrap">
+
+<aside class="rail left" id="railLeft">
+  <div class="panel">
+    <div class="total"><b>6 Modul</b><span>UTS Discrete</span></div>
+    <div class="pbar"><i style="width:100%"></i></div>
+    <h4>Urutan Belajar</h4>
+    <ul class="road">
+      <li class="now"><span class="dot"></span><a href="#peta">Peta Ujian &amp; Cara Pakai<small>Baca 5 menit dulu</small></a></li>
+      <li><span class="dot"></span><a href="#m1">1 · Logika Proposisi<small>Operator, tabel kebenaran, ekuivalensi</small></a></li>
+      <li><span class="dot"></span><a href="#m2">2 · Predikat &amp; Kuantor<small>∀, ∃, negasi, kuantor bersarang</small></a></li>
+      <li><span class="dot"></span><a href="#m3">3 · Metode Pembuktian<small>Langsung, kontraposisi, kontradiksi</small></a></li>
+      <li><span class="dot"></span><a href="#m4">4 · Himpunan &amp; Fungsi<small>Operasi, identitas, injektif/surjektif, fuzzy</small></a></li>
+      <li><span class="dot"></span><a href="#m5">5 · Teori Bilangan<small>Euclidean, Bézout, kongruensi linear</small></a></li>
+      <li><span class="dot"></span><a href="#m6">6 · Counting<small>Sum/product, permutasi, kombinasi, PIE</small></a></li>
+      <li><span class="dot"></span><a href="#cheat">Cheat Sheet A4<small>Yang wajib lu tulis tangan</small></a></li>
+      <li><span class="dot"></span><a href="#trap">10 Jebakan Nilai<small>Baca subuh sebelum ujian</small></a></li>
+    </ul>
+  </div>
+  <div class="panel" style="background:#fff4e6;border-color:#fad1a2">
+    <h4 style="color:#a84300;border-bottom-color:rgba(180,80,0,.3)">Ujian</h4>
+    <div class="kv" style="border-bottom-color:rgba(180,80,0,.25)"><span>Kalkulator</span><b>Tidak boleh</b></div>
+    <div class="kv" style="border-bottom-color:rgba(180,80,0,.25)"><span>Cheat sheet</span><b>1 A4 tulis tangan</b></div>
+    <div class="kv"><span>Dosen</span><b>Dr. Yasi Dani</b></div>
+  </div>
+</aside>
+
+<main>
+
+<!-- ================= PETA ================= -->
+<section class="sheet" id="peta">
+  <div class="head">
+    <div class="badge">UTS</div>
+    <div>
+      <h2>Persiapan UTS Discrete Mathematics (MATH6128031)</h2>
+      <div class="sub">Belajar dari nol · Dosen: Dr. Yasi Dani, S.Si., M.Si. · Referensi: Kenneth H. Rosen 8th ed.</div>
+    </div>
+  </div>
+
+  <div class="trap-card">
+    <b>Aturan main ujian (dari slide dosen):</b>
+    <p>1. <b>Kalkulator DILARANG.</b> Semua hitungan harus bisa lu selesaikan manual pakai tangan.</p>
+    <p>2. <b>Boleh bawa cheat-sheet 1 lembar A4 WAJIB TULIS TANGAN</b> (boleh bolak-balik). Contekan ketikan/print langsung disita!</p>
+    <p>3. Di matkul ini pengerjaan yang berbeda dari langkah slide dosen langsung disalahkan walau hasil akhirnya sama. <b>Format adalah nilai!</b></p>
+  </div>
+
+  <div class="sec">Peta 6 Topik Ujian</div>
+  <p>1. <b>Logika Proposisi:</b> Tabel kebenaran, ekuivalensi (De Morgan), tautologi, argumen valid.</p>
+  <p>2. <b>Predikat &amp; Kuantor:</b> Simbol <span class="m">∀</span> (universal), <span class="m">∃</span> (eksistensial), negasi kuantor De Morgan, kuantor bersarang.</p>
+  <p>3. <b>Metode Pembuktian:</b> Bukti langsung (direct), kontraposisi, kontradiksi, counterexample.</p>
+  <p>4. <b>Himpunan &amp; Fungsi:</b> Operasi himpunan, injektif (one-to-one), surjektif (onto), bijektif, himpunan fuzzy (komplemen, min, max).</p>
+  <p>5. <b>Teori Bilangan:</b> Algoritma pembagian, Euclidean algorithm (FPB/GCD), identitas Bézout (substitusi mundur), invers modulo, kongruensi linear.</p>
+  <p>6. <b>Counting (Kombinatorika):</b> Aturan penjumlahan &amp; perkalian, permutasi <span class="m">P(n,r)</span>, kombinasi <span class="m">C(n,r)</span>, prinsip inklusi-eksklusi (PIE).</p>
+</section>
+
+
+<!-- ================= KAMUS SOAL ================= -->
+<section class="sheet" id="kamus">
+  <div class="head">
+    <div class="badge">?</div>
+    <div>
+      <h2>Kamus Soal: Kalimat Ujian → Harus Ngapain</h2>
+      <div class="sub">Dibaca dulu sebelum masuk modul. Ini yang bikin lu nggak "blank" waktu baca soal.</div>
+    </div>
+  </div>
+
+  <div class="analogi">
+    <h4>Kenapa Ini Bagian Paling Penting</h4>
+    <p>Masalah lu kemarin bukan kurang rumus — tapi <b>nggak tahu soal itu minta apa</b>. Di ujian, langkah pertama bukan menghitung, tapi <b>menerjemahkan kalimat</b>: ini soal logika? kuantor? proof? himpunan? bilangan? counting?</p>
+    <p>Begitu tahu kategorinya, rumusnya cuma 1–2 dan langkahnya sudah tetap. Tabel di bawah adalah "kamus" itu.</p>
+  </div>
+
+  <div class="tblwrap">
+    <table class="txt">
+      <thead><tr><th style="width:34%">Kalimat di soal</th><th style="width:22%">Artinya</th><th>Yang harus lu tulis</th></tr></thead>
+      <tbody>
+        <tr><td style="text-align:left">"Tentukan nilai kebenaran dari …"</td><td>Logika</td><td style="text-align:left">Tentukan nilai tiap proposisi (T/F), lalu tabel kebenaran atau substitusi.</td></tr>
+        <tr><td style="text-align:left">"Buktikan bahwa … ≡ …" / "ekuivalen"</td><td>Logika</td><td style="text-align:left">Tabel kebenaran <span class="m">2ⁿ</span> baris, kolom perantara, bandingkan kolom terakhir.</td></tr>
+        <tr><td style="text-align:left">"Tuliskan negasi dari …"</td><td>Logika / Kuantor</td><td style="text-align:left">De Morgan. Kalau ada <span class="m">∀/∃</span>: <span class="m">¬∀→∃¬</span>, <span class="m">¬∃→∀¬</span>.</td></tr>
+        <tr><td style="text-align:left">"Terjemahkan ke dalam simbol logika"</td><td>Kuantor</td><td style="text-align:left">Tentukan domain + predikat, lalu pilih <span class="m">→</span> (semua) atau <span class="m">∧</span> (ada).</td></tr>
+        <tr><td style="text-align:left">"Tentukan nilai kebenaran <span class="m">∀x∃y …</span>"</td><td>Kuantor</td><td style="text-align:left">Baca dari kuantor paling kiri. Cari satu counterexample untuk mematahkan <span class="m">∀</span>.</td></tr>
+        <tr><td style="text-align:left">"Buktikan: jika P maka Q"</td><td>Proof</td><td style="text-align:left">Direct dulu. Kalau macet, kontraposisi. Kalau ada kata "tidak ada / irasional", kontradiksi.</td></tr>
+        <tr><td style="text-align:left">"Buktikan tidak ada …" / "tidak mungkin …"</td><td>Proof</td><td style="text-align:left">Kontradiksi: andaikan ada, turunkan sampai mustahil.</td></tr>
+        <tr><td style="text-align:left">"Sangkal pernyataan berikut" / "beri counterexample"</td><td>Proof</td><td style="text-align:left">Cukup satu contoh yang membuat pernyataan <span class="m">∀</span> gagal.</td></tr>
+        <tr><td style="text-align:left">"Tentukan apakah f injektif / surjektif / bijektif"</td><td>Himpunan</td><td style="text-align:left">Cek definisi satu-satu. Bandingkan <b>range vs kodomain</b> untuk surjektif.</td></tr>
+        <tr><td style="text-align:left">"Hitung derajat keanggotaan …"</td><td>Fuzzy</td><td style="text-align:left"><span class="m">∪ = max</span>, <span class="m">∩ = min</span>, komplemen <span class="m">1−μ</span>. Tulis hasil sebagai pasangan berurutan.</td></tr>
+        <tr><td style="text-align:left">"Tentukan FPB / gcd"</td><td>Bilangan</td><td style="text-align:left">Algoritma Euclidean, tulis semua baris sampai sisa 0.</td></tr>
+        <tr><td style="text-align:left">"Nyatakan sebagai kombinasi linear <span class="m">sa + tb</span>"</td><td>Bilangan</td><td style="text-align:left">Substitusi mundur dari sisa bukan nol terakhir.</td></tr>
+        <tr><td style="text-align:left">"Tentukan invers dari a modulo m"</td><td>Bilangan</td><td style="text-align:left">Cek <span class="m">gcd(a,m)=1</span> dulu. Lalu Bézout: <span class="m">sa + tm = 1</span> → <span class="m">a⁻¹ ≡ s</span>.</td></tr>
+        <tr><td style="text-align:left">"Selesaikan <span class="m">ax ≡ b (mod m)</span>"</td><td>Bilangan</td><td style="text-align:left">Hitung <span class="m">d = gcd(a,m)</span>. Kalau <span class="m">d ∤ b</span> → tidak ada solusi. Kalau ada → <span class="m">d</span> solusi.</td></tr>
+        <tr><td style="text-align:left">"Berapa banyak cara / susunan / tim"</td><td>Counting</td><td style="text-align:left">Tanya: urutan penting? Ya → <span class="m">P</span>. Tidak → <span class="m">C</span>. Ada "atau" tumpang tindih → PIE.</td></tr>
+        <tr><td style="text-align:left">"Paling banyak / paling sedikit / minimal"</td><td>Counting</td><td style="text-align:left">Jumlahkan kasus, atau pakai komplemen (total − yang dilarang).</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="trap-card">
+    <b>Urutan 3 langkah saat dapat soal (hafalkan, bukan rumusnya):</b>
+    <p><b>1. Klasifikasi</b> — soal ini masuk bab apa? (logika / kuantor / proof / himpunan / bilangan / counting)</p>
+    <p><b>2. Terjemahkan</b> — ubah kalimat jadi simbol. Tulis "Diketahui" dan "Ditanya" dulu, jangan hitung.</p>
+    <p><b>3. Pilih metode</b> — baru buka rumus. Kalau salah klasifikasi, sebagus apapun hitungannya tetap salah.</p>
+  </div>
+</section>
+
+<!-- ================= MODUL 1: LOGIKA PROPOSISI ================= -->
+<section class="sheet" id="m1">
+  <div class="head">
+    <div class="badge">1</div>
+    <div>
+      <h2>Modul 1 · Logika Proposisi &amp; Tabel Kebenaran</h2>
+      <div class="sub">Slide Session 1–3 · Rosen Bab 1.1, 1.2, 1.3</div>
+    </div>
+  </div>
+
+  <div class="analogi">
+    <h4>Dari Nol: Apa itu Proposisi?</h4>
+    <p>Proposisi adalah <b>kalimat pernyataan deklaratif yang nilainya PASTI Benar (T) atau Salah (F)</b>, tidak bisa dua-duanya sekaligus.</p>
+    <p>✓ <i>"Bandung ada di Jawa Barat"</i> → Proposisi (True).</p>
+    <p>✓ <i>"1 + 1 = 3"</i> → Proposisi (False, tapi tetap proposisi karena nilainya pasti!).</p>
+    <p>✗ <i>"Tolong tutup pintu itu!"</i> → Bukan proposisi (kalimat perintah).</p>
+    <p>✗ <i>"x + 2 = 5"</i> → Bukan proposisi, karena nilainya tergantung berapa <span class="m">x</span>-nya (ini namanya <b>predikat</b>, dibahas di Modul 2).</p>
+  </div>
+
+  <div class="sec">5 Operator Logika Wajib Hafal</div>
+  <div class="tblwrap">
+    <table class="op">
+      <thead>
+        <tr><th>p</th><th>q</th><th>¬p<small>negasi</small></th><th>p ∧ q<small>konjungsi</small></th><th>p ∨ q<small>disjungsi</small></th><th>p ⊕ q<small>xor</small></th><th>p → q<small>implikasi</small></th><th>p ↔ q<small>bi-implikasi</small></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>T</td><td>T</td><td class="F">F</td><td class="T">T</td><td class="T">T</td><td class="F">F</td><td class="T">T</td><td class="T">T</td></tr>
+        <tr><td>T</td><td>F</td><td class="F">F</td><td class="F">F</td><td class="T">T</td><td class="T">T</td><td class="F">F</td><td class="F">F</td></tr>
+        <tr><td>F</td><td>T</td><td class="T">T</td><td class="F">F</td><td class="T">T</td><td class="T">T</td><td class="T">T</td><td class="F">F</td></tr>
+        <tr><td>F</td><td>F</td><td class="T">T</td><td class="F">F</td><td class="F">F</td><td class="F">F</td><td class="T">T</td><td class="T">T</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="trap-card">
+    <b>JEBAKAN FATAL NOMOR 1: KENAPA F → F ITU TRUE?</b>
+    <p>Banyak yang langsung disalahin dosen karena mengisi <span class="m">F → F</span> adalah False. Salah total!</p>
+    <p><b>Analoginya:</b> Janji Papa: <i>"Kalau lu ranking 1 (p), Papa beliin motor baru (q)"</i>.</p>
+    <p>Kasus 1: Lu nggak ranking 1 (<span class="m">p = F</span>), lalu Papa nggak beliin motor (<span class="m">q = F</span>). Apakah Papa ingkar janji? <b>TIDAK</b>. Janji tetap sah / tidak dilanggar → <b>TRUE</b>!</p>
+    <p>Kasus 2: Lu ranking 1 (<span class="m">p = T</span>), tapi Papa nggak beliin motor (<span class="m">q = F</span>). Ini baru ingkar janji! → <b>FALSE</b>.</p>
+    <p><b>Kaidah Emas:</b> <span class="m">p → q</span> bernilai <b>FALSE HANYA JIKA premis benar tapi akibatnya salah (<span class="m">T → F</span>)</b>. Sisanya SELALU TRUE!</p>
+  </div>
+
+  <div class="sec">Hukum Ekuivalensi Logika (Logical Equivalence)</div>
+  <p>Dua proposisi majemuk dikatakan <b>ekuivalen secara logika (<span class="m">p ≡ q</span>)</b> jika tabel kebenarannya bernilai persis sama di setiap baris, atau <span class="m">p ↔ q</span> merupakan <b>tautologi</b>.</p>
+  <div class="step"><div class="n">1</div><div class="body"><b>Bentuk Disjungsi Implikasi:</b> <span class="m big">p → q ≡ ¬p ∨ q</span> (Ini rumus paling sering dipakai!).</div></div>
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>Bentuk Disjungsi Implikasi:</b> "Jika lu lapar (p), maka makan (q)".
+    <p>Ini ekuivalen dengan: "Lu tidak lapar (¬p), <b>atau</b> lu makan (q)". Nilai keduanya persis sama dalam kondisi apa pun. Makanya <span class="m">p → q ≡ ¬p ∨ q</span>.</p>
+  </div>
+
+  <div class="step"><div class="n">2</div><div class="body"><b>Hukum De Morgan:</b>
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>De Morgan:</b> "Gua tidak makan nasi DAN ayam" = "Gua tidak makan nasi, ATAU gua tidak makan ayam" (cukup salah satu nggak dimakan).
+    <p><span class="m">¬(p ∧ q) ≡ ¬p ∨ ¬q</span> — tanda kurung dibuka, ∧ berbalik jadi ∨, tiap huruf dinegasi.</p>
+  </div>
+
+    <p class="ind m">¬(p ∧ q) ≡ ¬p ∨ ¬q</p>
+    <p class="ind m">¬(p ∨ q) ≡ ¬p ∧ ¬q</p>
+  </div></div>
+  <div class="step"><div class="n">3</div><div class="body"><b>Kontraposisi:</b> <span class="m big">p → q ≡ ¬q → ¬p</span> (Nilai kebenarannya identik!).</div></div>
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>Kontraposisi:</b> "Jika hari hujan, jalanan basah" ≡ "Jika jalanan tidak basah, maka hari tidak hujan". Keduanya sama-sama benar.
+  </div>
+
+  <div class="step"><div class="n">4</div><div class="body"><b>Distributif:</b>
+    <p class="ind m">p ∧ (q ∨ r) ≡ (p ∧ q) ∨ (p ∧ r)</p>
+    <p class="ind m">p ∨ (q ∧ r) ≡ (p ∨ q) ∧ (p ∨ r)</p>
+  </div></div>
+
+  <div class="worked">
+    <h4>Worked Example: Buktikan Ekuivalensi dengan Tabel Kebenaran</h4>
+    <p><b>Soal:</b> Buktikan bahwa <span class="m">(p → q) ∧ (p → r) ≡ p → (q ∧ r)</span>.</p>
+    <p><b>Langkah wajib:</b> Buat tabel 8 baris terurut biner (<span class="m">TTT, TTF, TFT, TFF, FTT, FTF, FFT, FFF</span>), cantumkan kolom perantara bertahap!</p>
+    <div class="tblwrap">
+      <table>
+        <thead>
+          <tr><th>p</th><th>q</th><th>r</th><th>p → q</th><th>p → r</th><th>(p→q) ∧ (p→r)</th><th>q ∧ r</th><th>p → (q ∧ r)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>T</td><td>T</td><td>T</td><td class="T">T</td><td class="T">T</td><td class="T"><b>T</b></td><td class="T">T</td><td class="T"><b>T</b></td></tr>
+          <tr><td>T</td><td>T</td><td>F</td><td class="T">T</td><td class="F">F</td><td class="F"><b>F</b></td><td class="F">F</td><td class="F"><b>F</b></td></tr>
+          <tr><td>T</td><td>F</td><td>T</td><td class="F">F</td><td class="T">T</td><td class="F"><b>F</b></td><td class="F">F</td><td class="F"><b>F</b></td></tr>
+          <tr><td>T</td><td>F</td><td>F</td><td class="F">F</td><td class="F">F</td><td class="F"><b>F</b></td><td class="F">F</td><td class="F"><b>F</b></td></tr>
+          <tr><td>F</td><td>T</td><td>T</td><td class="T">T</td><td class="T">T</td><td class="T"><b>T</b></td><td class="T">T</td><td class="T"><b>T</b></td></tr>
+          <tr><td>F</td><td>T</td><td>F</td><td class="T">T</td><td class="T">T</td><td class="T"><b>T</b></td><td class="F">F</td><td class="T"><b>T</b></td></tr>
+          <tr><td>F</td><td>F</td><td>T</td><td class="T">T</td><td class="T">T</td><td class="T"><b>T</b></td><td class="F">F</td><td class="T"><b>T</b></td></tr>
+          <tr><td>F</td><td>F</td><td>F</td><td class="T">T</td><td class="T">T</td><td class="T"><b>T</b></td><td class="F">F</td><td class="T"><b>T</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="ans">
+      <span class="lbl">Kesimpulan Wajib Tulis</span>
+      Karena nilai kebenaran kolom <span class="m">(p → q) ∧ (p → r)</span> dan kolom <span class="m">p → (q ∧ r)</span> identik pada seluruh 8 baris (<span class="m">T, F, F, F, T, T, T, T</span>), maka terbukti kedua pernyataan tersebut <b>ekuivalen secara logika</b>.
+    </div>
+  </div>
+
+  <details>
+    <summary>Kuis Latihan Cepat Modul 1 (Klik untuk Buka)</summary>
+    <p><b>Pertanyaan:</b> Apakah <span class="m">¬(p → q)</span> ekuivalen dengan <span class="m">p ∧ ¬q</span>?</p>
+    <p><b>Jawaban:</b> <b>YA!</b> Karena <span class="m">p → q ≡ ¬p ∨ q</span>, maka ingkarannya: <span class="m">¬(p → q) ≡ ¬(¬p ∨ q) ≡ ¬(¬p) ∧ ¬q ≡ p ∧ ¬q</span> (menggunakan hukum De Morgan).</p>
+  </details>
+</section>
+
+
+  
+  <div class="bedah">
+    <div class="top"><span class="no">1</span><span class="ttl">Bedah Soal Tipe UTS · Logika Proposisi &amp; Aturan Inferensi</span></div>
+    <div class="soal">
+      <b>Soal:</b> Diketahui premis-premis berikut:<br>
+      (1) "Jika hari libur, Budi tidak kuliah."<br>
+      (2) "Budi kuliah atau ia pergi liburan."<br>
+      (3) "Hari ini hari libur."<br>
+      Buktikan apakah kesimpulan <b>"Budi pergi liburan"</b> sah (valid) secara logika!
+    </div>
+    <h5>1. Cara Membaca &amp; Membongkar Kalimat Soal</h5>
+    <div class="baca">
+      • Misalkan <span class="m">p</span> = "hari libur", <span class="m">q</span> = "Budi kuliah", <span class="m">r</span> = "Budi pergi liburan".<br>
+      • Kalimat (1) berbentuk <b>implikasi</b>: <span class="m">p → ¬q</span>.<br>
+      • Kalimat (2) berbentuk <b>disjungsi</b>: <span class="m">q ∨ r</span>.<br>
+      • Kalimat (3) adalah proposisi tunggal: <span class="m">p</span>. Yang diuji: <span class="m">r</span>.<br>
+      • <b>Pola soal ini:</b> ada "jika…maka…", ada "atau", lalu ditanya kesimpulannya sah atau tidak. Itu tanda soal <b>aturan inferensi</b>, bukan tabel kebenaran.
+    </div>
+    <h5>2. Langkah Pengerjaan Standar Dr. Yasi</h5>
+    <ol>
+      <li><b>Premis 1:</b> <span class="m">p → ¬q</span> &nbsp;&nbsp; <b>Premis 2:</b> <span class="m">q ∨ r</span> &nbsp;&nbsp; <b>Premis 3:</b> <span class="m">p</span></li>
+      <li>Dari <span class="m">p → ¬q</span> dan <span class="m">p</span>, gunakan <b>Modus Ponens</b> → diperoleh <span class="m">¬q</span> ("Budi tidak kuliah").</li>
+      <li>Dari <span class="m">q ∨ r</span> dan <span class="m">¬q</span>, gunakan <b>Disjunctive Syllogism</b> → diperoleh <span class="m">r</span> ("Budi pergi liburan").</li>
+    </ol>
+    <div class="jawab"><b>Kesimpulan:</b> Argumen <b>VALID</b>. Karena semua premis benar dan kesimpulan diturunkan sah, maka Budi pasti pergi liburan. ∎</div>
+    <div class="jeb"><b>Jebakan:</b> Jangan bikin tabel kebenaran 8 baris. Dua baris inferensi sudah cukup dan jauh lebih kecil kemungkinan salah hitung.</div>
+  </div>
+<!-- ================= MODUL 2: PREDIKAT & KUANTOR ================= -->
+<section class="sheet" id="m2">
+  <div class="head">
+    <div class="badge">2</div>
+    <div>
+      <h2>Modul 2 · Logika Predikat &amp; Kuantor</h2>
+      <div class="sub">Slide Session 4–6 · Rosen Bab 1.4, 1.5</div>
+    </div>
+  </div>
+
+  <div class="analogi">
+    <h4>Dari Nol: Kenapa Butuh Predikat?</h4>
+    <p>Kalimat <i>"<span class="m">x &gt; 5</span>"</i> belum bisa dinilai benar/salah, karena tergantung isi <span class="m">x</span>. Ini yang disebut <b>predikat</b> <span class="m">P(x)</span>.</p>
+    <p>Begitu <span class="m">x</span> diisi (misal <span class="m">x = 7</span>), barulah <span class="m">P(7)</span> jadi proposisi yang punya nilai T/F.</p>
+    <p><b>Kuantor</b> = alat untuk bilang "berapa banyak <span class="m">x</span> yang bikin <span class="m">P(x)</span> benar" <i>tanpa</i> harus nyebut satu-satu.</p>
+  </div>
+
+  <div class="sec">Dua Kuantor Utama</div>
+  <div class="step">
+    <div class="n">∀</div>
+    <div class="body">
+      <b>Kuantor Universal — "UNTUK SEMUA"</b>
+      <p class="m ind">∀x P(x)</p>
+      <p><b>TRUE</b> hanya jika <i>seluruh</i> anggota domain memenuhi <span class="m">P(x)</span>.</p>
+      <p><b>FALSE</b> kalau ketemu <b>SATU SAJA</b> yang gagal → namanya <b>counterexample</b>.</p>
+      <p style="font-size:13px;color:#555">Contoh: <i>"Semua mahasiswa BINUS pakai seragam"</i>. Ketemu 1 orang pakai kaos = langsung FALSE.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="n">∃</div>
+    <div class="body">
+      <b>Kuantor Eksistensial — "ADA / MINIMAL SATU"</b>
+      <p class="m ind">∃x P(x)</p>
+      <p><b>TRUE</b> kalau bisa nunjuk <b>satu contoh</b> yang memenuhi.</p>
+      <p><b>FALSE</b> kalau <i>tidak ada satu pun</i> anggota domain yang memenuhi.</p>
+      <p style="font-size:13px;color:#555">Contoh: <i>"Ada mahasiswa BINUS yang pernah ke Jepang"</i>. Cukup tunjuk 1 orang = TRUE.</p>
+    </div>
+  </div>
+  <p style="margin-left:34px;font-size:13.5px;color:#555">Bonus: <span class="m">∃!x P(x)</span> = "ada <b>tepat satu</b> x" (unik).</p>
+
+  <div class="sec">Cara Menerjemahkan Kalimat ke Simbol (Sering Keluar!)</div>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>Kalimat Bahasa Indonesia</th><th>Bentuk Logika</th><th>Kunci</th></tr></thead>
+      <tbody>
+        <tr><td style="text-align:left">Semua mahasiswa rajin</td><td><span class="m">∀x (M(x) → R(x))</span></td><td>pakai →</td></tr>
+        <tr><td style="text-align:left">Ada mahasiswa yang rajin</td><td><span class="m">∃x (M(x) ∧ R(x))</span></td><td>pakai ∧</td></tr>
+        <tr><td style="text-align:left">Tidak ada mahasiswa yang malas</td><td><span class="m">¬∃x (M(x) ∧ L(x))</span><br>≡ <span class="m">∀x (M(x) → ¬L(x))</span></td><td>negasi ∃</td></tr>
+        <tr><td style="text-align:left">Semua bilangan genap habis dibagi 2</td><td><span class="m">∀x (G(x) → H(x))</span></td><td>pakai →</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="trap-card">
+    <b>JEBAKAN NOMOR 2: "SEMUA" PAKAI ∧, "ADA" PAKAI → ?</b>
+    <p><b>JANGAN DIBALIK!</b> <span class="m">∀x (M(x) ∧ R(x))</span> artinya "SEMUA benda di dunia ini adalah mahasiswa DAN rajin" — jelas salah, karena kursi juga harus jadi mahasiswa.</p>
+    <p>Aturannya: <b>Universal → pakai →</b> (kalau dia mahasiswa, maka rajin). <b>Eksistensial → pakai ∧</b> (ada yang sekaligus mahasiswa dan rajin).</p>
+  </div>
+
+  <div class="sec">Negasi Kuantor (De Morgan untuk Kuantor)</div>
+  <p class="ind m">¬(∀x P(x)) ≡ ∃x ¬P(x)</p>
+  <p class="ind m">¬(∃x P(x)) ≡ ∀x ¬P(x)</p>
+  <p><b>Logikanya:</b> menyangkal "semua benar" cukup tunjukkan "ada yang salah". Menyangkal "ada yang benar" berarti "semuanya salah".</p>
+
+  <div class="worked">
+    <h4>Worked Example: Negasi Kalimat Berkuantor</h4>
+    <p><b>Soal:</b> Tuliskan negasi dari <span class="m">∀x (P(x) → Q(x))</span>.</p>
+    <p><b>Langkah:</b></p>
+    <p class="ind">1. <span class="m">¬∀x (P(x) → Q(x))</span></p>
+    <p class="ind">2. <span class="m">≡ ∃x ¬(P(x) → Q(x))</span> &nbsp;&nbsp;[negasi kuantor universal]</p>
+    <p class="ind">3. <span class="m">≡ ∃x ¬(¬P(x) ∨ Q(x))</span> &nbsp;&nbsp;[bentuk disjungsi implikasi]</p>
+    <p class="ind">4. <span class="m">≡ ∃x (P(x) ∧ ¬Q(x))</span> &nbsp;&nbsp;[De Morgan + negasi ganda]</p>
+    <div class="ans"><span class="lbl">Jawaban</span><span class="m">∃x (P(x) ∧ ¬Q(x))</span> — "ada x yang memenuhi P tapi tidak memenuhi Q".</div>
+  </div>
+
+  <div class="sec">Kuantor Bersarang (Nested Quantifiers)</div>
+  <p>Urutan kuantor <b>sangat menentukan</b> kalau jenisnya beda:</p>
+  <div class="contoh">
+    <span class="lbl2">Contoh Singkat</span>
+    <b>Kuantor Bersarang:</b> Domain bilangan bulat ℤ.<br>
+    • <span class="m">∀x ∃y (x + y = 0)</span> bernilai <b>TRUE</b>: untuk bilangan berapa pun x, kita bisa selalu memilih <span class="m">y = −x</span> sehingga hasilnya 0.<br>
+    • <span class="m">∃y ∀x (x + y = 0)</span> bernilai <b>FALSE</b>: tidak ada satu angka ajaib y yang jika ditambah bilangan apa pun selalu menghasilkan 0! Urutan kuantor membalik makna total.
+  </div>
+
+  <p class="ind m">∀x ∃y L(x, y) &nbsp;≠&nbsp; ∃y ∀x L(x, y)</p>
+  <p><b>Contoh nyata</b> (domain: semua orang, <span class="m">L(x,y)</span> = "x mencintai y"):</p>
+  <p class="ind">• <span class="m">∀x ∃y L(x,y)</span> = "Setiap orang mencintai <i>seseorang</i>" (boleh beda-beda orangnya) → masuk akal.</p>
+  <p class="ind">• <span class="m">∃y ∀x L(x,y)</span> = "Ada <i>satu</i> orang yang dicintai oleh semua orang" → jauh lebih kuat.</p>
+  <p>Kalau <b>jenisnya sama</b>, urutan boleh ditukar: <span class="m">∀x∀y ≡ ∀y∀x</span> dan <span class="m">∃x∃y ≡ ∃y∃x</span>.</p>
+</section>
+
+
+  
+  <div class="bedah">
+    <div class="top"><span class="no">2</span><span class="ttl">Bedah Soal Tipe UTS · Predikat &amp; Kuantor</span></div>
+    <div class="soal">
+      <b>Soal:</b> Domain = seluruh mahasiswa kelas X. Misalkan<br>
+      <span class="m">C(x)</span>: "x memiliki komputer" &nbsp;&nbsp; <span class="m">P(x)</span>: "x bisa memprogram Python".<br>
+      (a) Terjemahkan: <i>"Setiap mahasiswa yang memiliki komputer bisa memprogram Python."</i><br>
+      (b) Terjemahkan: <i>"Ada mahasiswa yang bisa Python tetapi tidak punya komputer."</i><br>
+      (c) Tentukan negasi (a) dan terjemahkan kembali ke Bahasa Indonesia!
+    </div>
+    <h5>1. Cara Membaca &amp; Membongkar Kalimat Soal</h5>
+    <div class="baca">
+      • "Setiap mahasiswa <b>yang</b> …" = ada syarat → pakai <span class="m">∀x</span> + <b>implikasi</b> <span class="m">→</span>.<br>
+      • "Ada mahasiswa yang … <b>tetapi</b> …" = dua sifat sekaligus → pakai <span class="m">∃x</span> + <b>konjungsi</b> <span class="m">∧</span>.<br>
+      • Negasi: <span class="m">¬∀</span> jadi <span class="m">∃¬</span>, lalu <span class="m">¬(A → B) ≡ A ∧ ¬B</span>.
+    </div>
+    <h5>2. Langkah Pengerjaan Standar Dr. Yasi</h5>
+    <ol>
+      <li><b>(a)</b> <span class="m">∀x (C(x) → P(x))</span></li>
+      <li><b>(b)</b> <span class="m">∃x (P(x) ∧ ¬C(x))</span></li>
+      <li><b>(c)</b> <span class="m">¬[∀x (C(x) → P(x))]</span><br>
+        <span class="m">≡ ∃x ¬(C(x) → P(x))</span> &nbsp;&nbsp;[negasi kuantor universal]<br>
+        <span class="m">≡ ∃x ¬(¬C(x) ∨ P(x))</span> &nbsp;&nbsp;[implikasi → disjungsi]<br>
+        <span class="m">≡ ∃x (C(x) ∧ ¬P(x))</span> &nbsp;&nbsp;[De Morgan]</li>
+    </ol>
+    <div class="jawab"><b>Makna negasinya:</b> "Ada mahasiswa yang punya komputer <b>tetapi tidak bisa</b> memprogram Python."</div>
+    <div class="jeb"><b>Jebakan maut:</b> (a) jangan ditulis <span class="m">∀x (C(x) ∧ P(x))</span>. Itu artinya <i>semua orang di kelas punya komputer dan semua bisa Python</i> — beda total dari kalimat aslinya.</div>
+  </div>
+<!-- ================= MODUL 3: PEMBUKTIAN ================= -->
+<section class="sheet" id="m3">
+  <div class="head">
+    <div class="badge">3</div>
+    <div>
+      <h2>Modul 3 · Metode Pembuktian</h2>
+      <div class="sub">Slide Session 7–8 · Rosen Bab 1.7 · Direct, Contraposition, Contradiction</div>
+    </div>
+  </div>
+
+  <p>Semua metode di bawah ini dipakai untuk membuktikan <b>implikasi <span class="m">p → q</span></b>. Bedanya cuma di <b>titik start</b>-nya. Hafalkan tabel ini dulu:</p>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>Metode</th><th>Mulai dari asumsi</th><th>Target akhir</th></tr></thead>
+      <tbody>
+        <tr><td><b>Direct</b></td><td><span class="m">p</span> benar</td><td>turunkan sampai <span class="m">q</span> benar</td></tr>
+        <tr><td><b>Contraposition</b></td><td><span class="m">¬q</span> benar</td><td>turunkan sampai <span class="m">¬p</span> benar</td></tr>
+        <tr><td><b>Contradiction</b></td><td><span class="m">p ∧ ¬q</span> benar</td><td>turunkan sampai muncul kemustahilan</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec">1 · Bukti Langsung (Direct Proof)</div>
+  <p><b>Alur:</b> Asumsikan <span class="m">p</span> benar → pakai definisi &amp; aljabar → tunjukkan <span class="m">q</span> benar.</p>
+
+  <div class="worked">
+    <h4>Contoh 1 (persis slide dosen): Jika n ganjil, maka n² ganjil</h4>
+    <p><b>Diketahui:</b> <span class="m">n</span> bilangan bulat ganjil.</p>
+    <p><b>Ditanya:</b> Buktikan <span class="m">n²</span> juga bilangan ganjil.</p>
+    <p><b>Definisi:</b> Bilangan bulat <span class="m">n</span> ganjil jika dapat ditulis <span class="m">n = 2k + 1</span> untuk suatu bilangan bulat <span class="m">k</span>.</p>
+    <p><b>Pembuktian:</b></p>
+    <p class="ind">Karena <span class="m">n</span> ganjil, misalkan <span class="m">n = 2k + 1</span> dengan <span class="m">k ∈ ℤ</span>.</p>
+    <p class="ind">Maka <span class="m">n² = (2k + 1)² = 4k² + 4k + 1</span></p>
+    <p class="ind"> <span class="m">= 2(2k² + 2k) + 1</span></p>
+    <p class="ind">Misalkan <span class="m">m = 2k² + 2k</span>. Karena <span class="m">k</span> bulat, maka <span class="m">m</span> juga bilangan bulat.</p>
+    <p class="ind">Diperoleh <span class="m">n² = 2m + 1</span>, yang berbentuk bilangan ganjil.</p>
+    <div class="ans"><span class="lbl">Kesimpulan</span>Jadi, terbukti bahwa jika <span class="m">n</span> bilangan bulat ganjil, maka <span class="m">n²</span> juga bilangan bulat ganjil. <b>∎</b></div>
+    <p style="font-size:13px;color:#555"><b>Kenapa langkah "misalkan m = 2k²+2k" wajib?</b> Karena dosen menilai definisi, bukan feeling. Tanpa menyatakan bahwa koefisiennya bilangan bulat, bentuk <span class="m">2(…) + 1</span> belum sah disebut ganjil.</p>
+  </div>
+
+  <div class="worked">
+    <h4>Contoh 2: Jika r dan s rasional, maka r + s rasional</h4>
+    <p><b>Definisi:</b> <span class="m">r</span> rasional jika <span class="m">r = p/q</span> dengan <span class="m">p, q ∈ ℤ</span> dan <span class="m">q ≠ 0</span>.</p>
+    <p class="ind">Misalkan <span class="m">r = a/b</span> (<span class="m">b ≠ 0</span>) dan <span class="m">s = c/d</span> (<span class="m">d ≠ 0</span>), dengan <span class="m">a, b, c, d ∈ ℤ</span>.</p>
+    <p class="ind"><span class="m">r + s = a/b + c/d = (ad + bc) / (bd)</span></p>
+    <p class="ind">Karena <span class="m">a,b,c,d</span> bulat, maka <span class="m">ad + bc</span> dan <span class="m">bd</span> juga bulat, dan <span class="m">bd ≠ 0</span> (hasil kali dua bilangan tak nol).</p>
+    <div class="ans"><span class="lbl">Kesimpulan</span>Maka <span class="m">r + s</span> dapat dinyatakan sebagai rasio dua bilangan bulat → <b>r + s rasional</b>. ∎</div>
+  </div>
+
+  <div class="sec">2 · Bukti Kontraposisi (Proof by Contraposition)</div>
+  <p>Dasarnya ekuivalensi <span class="m">p → q ≡ ¬q → ¬p</span>. Jadi membuktikan kontraposisinya <b>sah</b> membuktikan pernyataan aslinya.</p>
+  <p><b>Kapan dipakai?</b> Kalau asumsi <span class="m">p</span> susah diolah (misal bentuknya "tidak habis dibagi"), tapi <span class="m">¬q</span> gampang diolah.</p>
+
+  <div class="worked">
+    <h4>Contoh 3 (slide dosen): Jika 3n + 2 ganjil, maka n ganjil</h4>
+    <p><b>Kontraposisi:</b> Jika <span class="m">n</span> <b>tidak</b> ganjil (artinya <span class="m">n</span> genap), maka <span class="m">3n + 2</span> <b>tidak</b> ganjil (artinya genap).</p>
+    <p><b>Pembuktian:</b></p>
+    <p class="ind">Asumsikan <span class="m">n</span> genap, maka <span class="m">n = 2k</span> untuk suatu <span class="m">k ∈ ℤ</span>.</p>
+    <p class="ind"><span class="m">3n + 2 = 3(2k) + 2 = 6k + 2 = 2(3k + 1)</span></p>
+    <p class="ind">Karena <span class="m">3k + 1 ∈ ℤ</span>, maka <span class="m">3n + 2</span> berbentuk <span class="m">2m</span> → <b>genap</b>.</p>
+    <div class="ans"><span class="lbl">Kesimpulan</span>Kontraposisi terbukti benar, sehingga pernyataan asli "jika <span class="m">3n + 2</span> ganjil maka <span class="m">n</span> ganjil" juga <b>terbukti benar</b>. ∎</div>
+  </div>
+
+  <div class="worked">
+    <h4>Contoh 4 (slide dosen): Jika n² ganjil, maka n ganjil</h4>
+    <p><b>Kontraposisi:</b> Jika <span class="m">n</span> genap, maka <span class="m">n²</span> genap.</p>
+    <p class="ind">Misalkan <span class="m">n = 2k</span>, maka <span class="m">n² = (2k)² = 4k² = 2(2k²)</span>.</p>
+    <p class="ind">Karena <span class="m">2k² ∈ ℤ</span>, maka <span class="m">n²</span> genap. Kontraposisi terbukti.</p>
+    <div class="ans"><span class="lbl">Kesimpulan</span>Maka <span class="m">n²</span> ganjil ⟹ <span class="m">n</span> ganjil <b>terbukti</b>. ∎</div>
+    <p style="font-size:13px;color:#555"><b>Catatan:</b> ini kebalikan dari Contoh 1. Dua-duanya benar dan sering diminta berpasangan.</p>
+  </div>
+
+  <div class="sec">3 · Bukti Kontradiksi (Proof by Contradiction)</div>
+  <p><b>Alur:</b> Andaikan <span class="m">p ∧ ¬q</span> benar (premis benar TAPI kesimpulan salah). Olah sampai ketemu hal mustahil, misal <span class="m">r ∧ ¬r</span> atau <span class="m">1 = 0</span>.</p>
+  <p>Karena kontradiksi mustahil, pengandaian salah → <span class="m">p → q</span> benar.</p>
+
+  <div class="worked">
+    <h4>Contoh 5 (slide dosen): Jika 3n + 2 ganjil, maka n ganjil — versi kontradiksi</h4>
+    <p class="ind">Andaikan <span class="m">3n + 2</span> ganjil <b>TETAPI</b> <span class="m">n</span> genap.</p>
+    <p class="ind">Karena <span class="m">n</span> genap, <span class="m">n = 2k</span> → <span class="m">3n + 2 = 6k + 2 = 2(3k + 1)</span> = <b>genap</b>.</p>
+    <p class="ind">Padahal di awal diasumsikan <span class="m">3n + 2</span> <b>ganjil</b>. Berarti bilangan yang sama genap sekaligus ganjil → <b>kontradiksi</b>.</p>
+    <div class="ans"><span class="lbl">Kesimpulan</span>Pengandaian salah, maka haruslah <span class="m">n</span> ganjil. <b>Terbukti</b>. ∎</div>
+  </div>
+
+  <div class="trap-card">
+    <b>BEDA KONTRAPOSISI vs KONTRADIKSI (sering ketuker!)</b>
+    <p><b>Kontraposisi</b> membuktikan pernyataan <b>lain yang ekuivalen</b> (<span class="m">¬q → ¬p</span>), dan berhenti begitu <span class="m">¬p</span> tercapai. Tidak ada "kemustahilan".</p>
+    <p><b>Kontradiksi</b> tetap membuktikan pernyataan asli, tapi lewat <b>pengandaian salah</b> yang berujung pada <span class="m">r ∧ ¬r</span>.</p>
+  </div>
+
+  <div class="sec">4 · Counterexample (Menyangkal Pernyataan ∀)</div>
+  <p>Untuk membuktikan <span class="m">∀x P(x)</span> itu <b>SALAH</b>, cukup satu contoh yang membuat <span class="m">P(x)</span> false.</p>
+  <p><b>Contoh:</b> "Semua bilangan prima itu ganjil." <b>Salah</b>, counterexample: <span class="m">2</span> adalah prima tapi genap.</p>
+
+  <details>
+    <summary>Latihan Mandiri Modul 3 (Klik untuk Lihat Soal &amp; Kunci)</summary>
+    <p><b>1.</b> Buktikan: jika <span class="m">m</span> dan <span class="m">n</span> keduanya ganjil, maka <span class="m">m·n</span> ganjil.</p>
+    <p><i>Kunci:</i> <span class="m">m = 2a+1</span>, <span class="m">n = 2b+1</span> → <span class="m">mn = 4ab + 2a + 2b + 1 = 2(2ab + a + b) + 1</span> → ganjil.</p>
+    <p><b>2.</b> Buktikan kontraposisi: jika <span class="m">n²</span> genap maka <span class="m">n</span> genap.</p>
+    <p><i>Kunci:</i> kontraposisinya "jika <span class="m">n</span> ganjil maka <span class="m">n²</span> ganjil" — persis Contoh 1.</p>
+    <p><b>3.</b> Buktikan dengan kontradiksi: tidak ada bilangan bulat terbesar.</p>
+    <p><i>Kunci:</i> andaikan ada <span class="m">N</span> terbesar; maka <span class="m">N+1</span> juga bulat dan <span class="m">N+1 &gt; N</span> → kontradiksi dengan "terbesar".</p>
+  </details>
+</section>
+
+
+  
+  <div class="bedah">
+    <div class="top"><span class="no">3</span><span class="ttl">Bedah Soal Tipe UTS · Metode Pembuktian (Format 5 Langkah)</span></div>
+    <div class="soal">
+      <b>Soal:</b> Buktikan untuk setiap bilangan bulat <span class="m">n</span>: <i>"Jika <span class="m">3n + 2</span> ganjil, maka <span class="m">n</span> ganjil."</i> Gunakan <b>kontraposisi</b>.
+    </div>
+    <h5>1. Cara Membaca &amp; Membongkar Kalimat Soal</h5>
+    <div class="baca">
+      • Bentuk <span class="m">p → q</span> dengan <span class="m">p</span>: "3n + 2 ganjil", <span class="m">q</span>: "n ganjil".<br>
+      • Kalau direct: <span class="m">3n + 2 = 2k + 1 → 3n = 2k − 1 → n = (2k − 1)/3</span>. Bentuk pecahan, susah dibuktikan bulat.<br>
+      • Kontraposisi: <span class="m">¬q → ¬p</span> = <i>"Jika n genap, maka 3n + 2 genap."</i> Substitusi langsung, selesai dalam 3 baris.<br>
+      • <b>Aturan praktis:</b> kalau kesimpulan aslinya berbentuk "…ganjil/genap/prima" dan hipotesisnya bentuk linear, kontraposisi hampir selalu lebih gampang.
+    </div>
+    <h5>2. Langkah Pengerjaan Standar Dr. Yasi</h5>
+    <ol>
+      <li><b>Diketahui:</b> Untuk <span class="m">n ∈ ℤ</span>, jika <span class="m">3n + 2</span> ganjil maka <span class="m">n</span> ganjil.</li>
+      <li><b>Ditanya:</b> Buktikan dengan metode kontraposisi.</li>
+      <li><b>Kontraposisi:</b> Jika <span class="m">n</span> genap, maka <span class="m">3n + 2</span> genap.</li>
+      <li><b>Pembuktian:</b> Asumsikan <span class="m">n</span> genap. Menurut definisi, <span class="m">n = 2k</span> untuk suatu <span class="m">k ∈ ℤ</span>.<br>
+        <span class="m">3n + 2 = 3(2k) + 2 = 6k + 2 = 2(3k + 1)</span>.<br>
+        Misalkan <span class="m">m = 3k + 1</span>. Karena <span class="m">k ∈ ℤ</span>, maka <span class="m">m ∈ ℤ</span> (sifat tertutup).<br>
+        Diperoleh <span class="m">3n + 2 = 2m</span>, yaitu bilangan genap. Terbukti.</li>
+      <li><b>Kesimpulan:</b> Karena kontraposisi <span class="m">¬q → ¬p</span> benar, maka teorema asli <span class="m">p → q</span> juga benar. ∎</li>
+    </ol>
+    <div class="jeb"><b>Poin yang sering hilang:</b> kalimat "misalkan m = 3k + 1 dengan m ∈ ℤ". Tanpa itu, pembuktian dianggap belum menutup definisi bilangan genap.</div>
+  </div>
+<!-- ================= MODUL 4: HIMPUNAN & FUNGSI ================= -->
+<section class="sheet" id="m4">
+  <div class="head">
+    <div class="badge">4</div>
+    <div>
+      <h2>Modul 4 · Teori Himpunan &amp; Fungsi</h2>
+      <div class="sub">Slide Session 9–11 · Rosen Bab 2.1, 2.2, 2.3 + Fuzzy Set (slide 57–63)</div>
+    </div>
+  </div>
+
+  <div class="analogi">
+    <h4>Dari Nol: Himpunan itu Apa?</h4>
+    <p>Himpunan = <b>kumpulan objek</b> yang dianggap satu kesatuan. Objeknya disebut <b>elemen/anggota</b>.</p>
+    <p><span class="m">A = {1, 2, 3}</span> → <span class="m">1 ∈ A</span> ("1 anggota A"), <span class="m">5 ∉ A</span> ("5 bukan anggota A").</p>
+    <p>Urutan tidak penting dan elemen dobel dianggap satu: <span class="m">{1,2,3} = {3,1,2,2}</span>.</p>
+    <p>Himpunan kosong: <span class="m">∅ = {}</span>. Himpunan semesta: <span class="m">U</span> (semua yang lagi dibicarakan).</p>
+  </div>
+
+  <div class="sec">Operasi Himpunan</div>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>Operasi</th><th>Notasi</th><th>Arti</th><th>Contoh (A={1,2,3}, B={3,4})</th></tr></thead>
+      <tbody>
+        <tr><td>Gabungan</td><td><span class="m">A ∪ B</span></td><td>anggota A <b>atau</b> B</td><td style="text-align:left">{1,2,3,4}</td></tr>
+        <tr><td>Irisan</td><td><span class="m">A ∩ B</span></td><td>anggota A <b>dan</b> B</td><td style="text-align:left">{3}</td></tr>
+        <tr><td>Selisih</td><td><span class="m">A − B</span></td><td>di A tapi bukan di B</td><td style="text-align:left">{1,2}</td></tr>
+        <tr><td>Komplemen</td><td><span class="m">Ā</span> atau <span class="m">Aᶜ</span></td><td>di U tapi bukan di A</td><td style="text-align:left">tergantung U</td></tr>
+        <tr><td>Kardinalitas</td><td><span class="m">|A|</span></td><td>banyaknya anggota</td><td style="text-align:left">|A| = 3</td></tr>
+        <tr><td>Himpunan kuasa</td><td><span class="m">P(A)</span></td><td>semua subset A</td><td style="text-align:left">|P(A)| = 2³ = 8</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec">Identitas Himpunan yang Sering Dipakai</div>
+  <p class="ind m">A ∪ B = B ∪ A &nbsp;&nbsp;·&nbsp;&nbsp; A ∩ B = B ∩ A &nbsp;&nbsp;[Komutatif]</p>
+  <p class="ind m">A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C) &nbsp;&nbsp;[Distributif]</p>
+  <p class="ind m">A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)</p>
+  <p class="ind m">(A ∪ B)ᶜ = Aᶜ ∩ Bᶜ &nbsp;&nbsp;·&nbsp;&nbsp; (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ &nbsp;&nbsp;[De Morgan]</p>
+  <p class="ind m">A ∪ ∅ = A &nbsp;&nbsp;·&nbsp;&nbsp; A ∩ U = A &nbsp;&nbsp;[Identitas]</p>
+  <p class="ind m">A ∪ Aᶜ = U &nbsp;&nbsp;·&nbsp;&nbsp; A ∩ Aᶜ = ∅ &nbsp;&nbsp;[Komplemen]</p>
+
+  <div class="worked">
+    <h4>Worked Example: Membuktikan A ⊆ B (metode elemen)</h4>
+    <p><b>Soal:</b> Buktikan <span class="m">A ∩ B ⊆ A</span>.</p>
+    <p><b>Format wajib (jangan cuma gambar diagram!):</b></p>
+    <p class="ind">Ambil sembarang <span class="m">x ∈ A ∩ B</span>.</p>
+    <p class="ind">Berdasarkan definisi irisan, <span class="m">x ∈ A</span> <b>dan</b> <span class="m">x ∈ B</span>.</p>
+    <p class="ind">Khususnya, <span class="m">x ∈ A</span>.</p>
+    <div class="ans"><span class="lbl">Kesimpulan</span>Karena setiap <span class="m">x ∈ A ∩ B</span> juga memenuhi <span class="m">x ∈ A</span>, maka <span class="m">A ∩ B ⊆ A</span>. ∎</div>
+  </div>
+
+  <div class="sec">Fungsi: Domain, Kodomain, Range</div>
+  <p>Fungsi <span class="m">f: A → B</span> memasangkan <b>setiap</b> anggota <span class="m">A</span> (domain) ke <b>tepat satu</b> anggota <span class="m">B</span> (kodomain).</p>
+  <p><b>Range/Image</b> = himpunan hasil yang benar-benar terpakai: <span class="m">f(A) = {f(x) | x ∈ A} ⊆ B</span>.</p>
+  <div class="trap-card">
+    <b>JEBAKAN: KODOMAIN ≠ RANGE</b>
+    <p>Kodomain itu "daerah tujuan" (semua yang mungkin), range itu "yang benar-benar kena". Untuk uji surjektif, yang dibandingkan adalah <b>Range vs Kodomain</b>.</p>
+  </div>
+
+  <div class="sec">Sifat Fungsi: Injektif, Surjektif, Bijektif</div>
+  <div class="step"><div class="n">1</div><div class="body">
+    <b>Injektif (one-to-one)</b> — tidak ada dua input berbeda yang hasilnya sama.
+    <p class="ind m">f(a) = f(b) ⟹ a = b</p>
+    <p><b>Menyangkal:</b> cukup tunjuk <span class="m">a ≠ b</span> tapi <span class="m">f(a) = f(b)</span>.</p>
+  </div></div>
+  <div class="step"><div class="n">2</div><div class="body">
+    <b>Surjektif (onto)</b> — seluruh kodomain kena.
+    <p class="ind m">∀y ∈ B, ∃x ∈ A : f(x) = y</p>
+    <p><b>Menyangkal:</b> tunjuk satu <span class="m">y ∈ B</span> yang tidak punya pasangan (bukan anggota range).</p>
+  </div></div>
+  <div class="step"><div class="n">3</div><div class="body">
+    <b>Bijektif</b> — injektif <b>dan</b> surjektif sekaligus. Hanya fungsi bijektif yang punya <b>invers</b> <span class="m">f⁻¹: B → A</span>.
+  </div></div>
+
+  <div class="worked">
+    <h4>Worked Example: Uji Ketiga Sifat (tipe soal Tugas Besar)</h4>
+    <p><b>Diketahui:</b> <span class="m">A = {a, b, c, d}</span>, <span class="m">B = {1, 2, 3, 4, 5}</span>, fungsi <span class="m">f = {(a,2), (b,2), (c,4), (d,1)}</span>.</p>
+    <p><b>Uji Injektif:</b> <span class="m">f(a) = 2</span> dan <span class="m">f(b) = 2</span>, padahal <span class="m">a ≠ b</span>. → <b>BUKAN injektif</b>.</p>
+    <p><b>Uji Surjektif:</b> <span class="m">3 ∈ B</span> dan <span class="m">5 ∈ B</span> tidak punya pasangan, jadi <span class="m">Range = {1,2,4} ≠ B</span>. → <b>BUKAN surjektif</b>.</p>
+    <div class="ans"><span class="lbl">Kesimpulan</span>Karena tidak injektif dan tidak surjektif, maka <b>tidak bijektif</b> dan <b>tidak memiliki fungsi invers</b>.</div>
+  </div>
+
+  <div class="sec">Himpunan Fuzzy (Fuzzy Set) — Slide 57–63</div>
+  <p>Di himpunan biasa (crisp), keanggotaan cuma 0 atau 1. Di <b>fuzzy set</b>, keanggotaan itu <b>derajat</b> di antara 0 dan 1:</p>
+  <p class="big m">μ_A(x) ∈ [0, 1]</p>
+  <p>Contoh: "tinggi badan 170 cm" tidak cuma "tinggi/bukan", tapi bisa <span class="m">μ = 0,7</span> (cukup tinggi).</p>
+  <div class="tblwrap">
+    <table class="txt">
+      <thead><tr><th>Operasi</th><th>Rumus</th><th>Logika</th></tr></thead>
+      <tbody>
+        <tr><td>Komplemen</td><td><span class="m">μ_Ā(x) = 1 − μ_A(x)</span></td><td>kebalikannya</td></tr>
+        <tr><td>Union (∪)</td><td><span class="m">μ_(A∪B)(x) = max(μ_A(x), μ_B(x))</span></td><td>ambil yang <b>paling besar</b></td></tr>
+        <tr><td>Intersection (∩)</td><td><span class="m">μ_(A∩B)(x) = min(μ_A(x), μ_B(x))</span></td><td>ambil yang <b>paling kecil</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="worked">
+    <h4>Worked Example: Hitung Union, Intersection, Komplemen</h4>
+    <p><b>Diketahui:</b> <span class="m">X = {x₁, x₂, x₃}</span>, dengan</p>
+    <p class="ind"><span class="m">A = {(x₁, 0.2), (x₂, 0.7), (x₃, 1.0)}</span></p>
+    <p class="ind"><span class="m">B = {(x₁, 0.6), (x₂, 0.5), (x₃, 0.3)}</span></p>
+    <div class="tblwrap">
+      <table class="txt">
+        <thead><tr><th>x</th><th>μ_A</th><th>μ_B</th><th>μ_(A∪B) = max</th><th>μ_(A∩B) = min</th><th>μ_Ā = 1 − μ_A</th></tr></thead>
+        <tbody>
+          <tr><td>x₁</td><td>0.2</td><td>0.6</td><td><b>0.6</b></td><td><b>0.2</b></td><td><b>0.8</b></td></tr>
+          <tr><td>x₂</td><td>0.7</td><td>0.5</td><td><b>0.7</b></td><td><b>0.5</b></td><td><b>0.3</b></td></tr>
+          <tr><td>x₃</td><td>1.0</td><td>0.3</td><td><b>1.0</b></td><td><b>0.3</b></td><td><b>0.0</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="ans"><span class="lbl">Jawaban</span>
+      <span class="m">A ∪ B = {(x₁, 0.6), (x₂, 0.7), (x₃, 1.0)}</span><br>
+      <span class="m">A ∩ B = {(x₁, 0.2), (x₂, 0.5), (x₃, 0.3)}</span><br>
+      <span class="m">Ā = {(x₁, 0.8), (x₂, 0.3), (x₃, 0.0)}</span>
+    </div>
+    <p style="font-size:13px;color:#555"><b>Jangan lupa:</b> hasilnya harus ditulis ulang dalam bentuk himpunan pasangan berurutan, bukan cuma tabel. Dosen menilai notasi.</p>
+  </div>
+</section>
+
+
+  
+  <div class="bedah">
+    <div class="top"><span class="no">4</span><span class="ttl">Bedah Soal Tipe UTS · Fungsi &amp; Fuzzy Set (Persis TB1 No 8)</span></div>
+    <div class="soal">
+      <b>Soal Asli Tugas Besar 1:</b><br>
+      <span class="m">A = {a, b, c, d, e, f, g, h}</span>, <span class="m">B = {1, 2, 3, 4, 5, 6, 7}</span>.<br>
+      <span class="m">f = {(a,1), (b,3), (c,6), (d,2), (e,2), (f,4), (g,5), (h,2)}</span>.<br>
+      (a) Tentukan image f. Apakah f fungsi? Jelaskan injektif, surjektif, bijektif!<br>
+      (b) Himpunan fuzzy pada <span class="m">U = {Alice, Brian, Fred, Oscar, Rita}</span>:<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="m">F = {0.6 Alice, 0.9 Brian, 0.4 Fred, 0.1 Oscar, 0.5 Rita}</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="m">R = {0.4 Alice, 0.8 Brian, 0.2 Fred, 0.9 Oscar, 0.7 Rita}</span><br>
+      Tentukan <span class="m">F̄</span>, <span class="m">F ∪ R</span>, dan <span class="m">F ∩ R</span>!
+    </div>
+    <h5>1. Cara Membaca &amp; Membongkar Kalimat Soal</h5>
+    <div class="baca">
+      • <b>Cek fungsi:</b> semua 8 elemen A muncul tepat sekali sebagai input? Ya → fungsi.<br>
+      • <b>Image:</b> kumpulkan output tanpa duplikat → <span class="m">{1, 2, 3, 4, 5, 6}</span>. Angka 7 tidak muncul.<br>
+      • <b>Injektif:</b> ada output yang dipakai 2 input atau lebih? Ya, angka 2 dipakai d, e, h → <b>gagal</b>.<br>
+      • <b>Surjektif:</b> semua kodomain kena? Tidak, 7 kosong → <b>gagal</b>.<br>
+      • <b>Fuzzy:</b> komplemen <span class="m">1 − μ</span>, gabungan <span class="m">max</span>, irisan <span class="m">min</span>.
+    </div>
+    <h5>2. Langkah Pengerjaan Standar Dr. Yasi</h5>
+    <ol>
+      <li><b>Image:</b> <span class="m">image(f) = {1, 2, 3, 4, 5, 6}</span>.</li>
+      <li><b>Fungsi?</b> Ya. Setiap elemen domain A dipetakan ke tepat satu elemen kodomain B.</li>
+      <li><b>Sifat:</b><br>
+        • Tidak injektif: <span class="m">f(d) = f(e) = f(h) = 2</span> padahal d, e, h tiga elemen domain yang berbeda.<br>
+        • Tidak surjektif: <span class="m">7 ∈ B</span> tetapi <span class="m">7 ∉ image(f)</span>.<br>
+        • Tidak bijektif: syarat injektif dan surjektif tidak terpenuhi.</li>
+      <li><b>Fuzzy:</b> (lihat tabel di modul 4 — pola hitungnya max/min/1−μ)
+        <div class="tblwrap">
+          <table class="txt">
+            <thead><tr><th>Elemen</th><th>μ_F</th><th>μ_R</th><th>F̄ = 1−μ_F</th><th>F ∪ R = max</th><th>F ∩ R = min</th></tr></thead>
+            <tbody>
+              <tr><td>Alice</td><td>0.6</td><td>0.4</td><td>0.4</td><td>0.6</td><td>0.4</td></tr>
+              <tr><td>Brian</td><td>0.9</td><td>0.8</td><td>0.1</td><td>0.9</td><td>0.8</td></tr>
+              <tr><td>Fred</td><td>0.4</td><td>0.2</td><td>0.6</td><td>0.4</td><td>0.2</td></tr>
+              <tr><td>Oscar</td><td>0.1</td><td>0.9</td><td>0.9</td><td>0.9</td><td>0.1</td></tr>
+              <tr><td>Rita</td><td>0.5</td><td>0.7</td><td>0.5</td><td>0.7</td><td>0.5</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </li>
+    </ol>
+    <div class="jawab">
+      <b>Jawaban bentuk himpunan:</b><br>
+      <span class="m">F̄ = {0.4 Alice, 0.1 Brian, 0.6 Fred, 0.9 Oscar, 0.5 Rita}</span><br>
+      <span class="m">F ∪ R = {0.6 Alice, 0.9 Brian, 0.4 Fred, 0.9 Oscar, 0.7 Rita}</span><br>
+      <span class="m">F ∩ R = {0.4 Alice, 0.8 Brian, 0.2 Fred, 0.1 Oscar, 0.5 Rita}</span>
+    </div>
+  </div>
+<!-- ================= MODUL 5: TEORI BILANGAN ================= -->
+<section class="sheet" id="m5">
+  <div class="head">
+    <div class="badge">5</div>
+    <div>
+      <h2>Modul 5 · Teori Bilangan: Euclidean, Bézout, Kongruensi</h2>
+      <div class="sub">Slide Session 12 · Rosen Bab 4.3, 4.4 · Topik paling teknis di UTS</div>
+    </div>
+  </div>
+
+  <div class="analogi">
+    <h4>Dari Nol: Ini Sebenarnya Cuma "Bagi-Bagian"</h4>
+    <p>Algoritma Euclidean itu <b>pembagian bersusun yang diulang</b> sampai sisanya 0. Sisanya yang terakhir bukan nol = <b>FPB (gcd)</b>.</p>
+    <p>Contoh kecil: cari <span class="m">gcd(12, 8)</span>.</p>
+    <p class="ind"><span class="m">12 = 1 · 8 + 4</span></p>
+    <p class="ind"><span class="m">8 = 2 · 4 + 0</span> → sisa terakhir bukan nol = <span class="m">4</span>. Jadi <span class="m">gcd(12,8) = 4</span>. Selesai.</p>
+  </div>
+
+  <div class="sec">Konsep Dasar: Divisibilitas &amp; Modulo</div>
+  <p><b>Definisi:</b> <span class="m">a | b</span> ("a membagi b") jika ada bilangan bulat <span class="m">k</span> sehingga <span class="m">b = a·k</span>.</p>
+  <p><b>Algoritma pembagian:</b> untuk <span class="m">a ∈ ℤ</span>, <span class="m">d &gt; 0</span>, selalu ada <span class="m">q, r</span> unik dengan</p>
+  <p class="big m">a = d·q + r,&nbsp;&nbsp; 0 ≤ r &lt; d</p>
+  <p><b>Modulo:</b> <span class="m">a mod d = r</span> (sisa bagi). Contoh: <span class="m">17 mod 5 = 2</span> karena <span class="m">17 = 5·3 + 2</span>.</p>
+  <p><b>Kongruensi:</b> <span class="m">a ≡ b (mod m)</span> artinya <span class="m">m | (a − b)</span>, yaitu <span class="m">a</span> dan <span class="m">b</span> punya sisa yang sama saat dibagi <span class="m">m</span>.</p>
+  <p class="ind">Contoh: <span class="m">17 ≡ 2 (mod 5)</span> karena <span class="m">17 − 2 = 15</span> habis dibagi 5.</p>
+
+  <div class="sec">Tahap 1 · Algoritma Euclidean</div>
+  <p>Untuk mencari <span class="m">gcd(141, 19)</span>, tulis pembagian bertingkat. <b>Wajib tulis semua baris</b> — ini yang dinilai:</p>
+  <p class="ind m">141 = 7 · 19 + 8</p>
+  <p class="ind m">19 &nbsp;= 2 · 8 &nbsp;+ 3</p>
+  <p class="ind m">8 &nbsp;&nbsp;= 2 · 3 &nbsp;+ 2</p>
+  <p class="ind m">3 &nbsp;&nbsp;= 1 · 2 &nbsp;+ 1 &nbsp;&nbsp;← sisa bukan nol terakhir</p>
+  <p class="ind m">2 &nbsp;&nbsp;= 2 · 1 &nbsp;+ 0 &nbsp;&nbsp;← berhenti</p>
+  <div class="ans"><span class="lbl">Hasil Tahap 1</span><span class="m">gcd(141, 19) = 1</span> (artinya 141 dan 19 <b>relatif prima / koprima</b>).</div>
+  <p style="font-size:13px;color:#555"><b>Kenapa boleh berhenti di sisa 0?</b> Karena <span class="m">gcd(a,b) = gcd(b, r)</span> di setiap langkah, jadi FPB tidak berubah sampai sisanya 0, dan saat itu FPB = pembagi terakhir.</p>
+
+  <div class="sec">Tahap 2 · Substitusi Mundur (Identitas Bézout)</div>
+  <p>Target: menemukan <span class="m">s</span> dan <span class="m">t</span> sehingga</p>
+  <p class="big m">s·a + t·b = gcd(a, b)</p>
+  <p>Caranya: <b>mulai dari baris sisa 1</b>, lalu ganti setiap sisa dengan bentuk <span class="m">(bilangan − hasil kali)</span> dari baris di atasnya.</p>
+  <p class="ind m">1 = 3 − 1·2</p>
+  <p class="ind m">1 = 3 − 1·(8 − 2·3) = 3·3 − 8</p>
+  <p class="ind m">1 = 3·(19 − 2·8) − 8 = 3·19 − 7·8</p>
+  <p class="ind m">1 = 3·19 − 7·(141 − 7·19) = 52·19 − 7·141</p>
+  <div class="ans"><span class="lbl">Hasil Bézout</span><span class="m box">52 · 19 + (−7) · 141 = 1</span> &nbsp;→&nbsp; <span class="m">s = 52</span>, <span class="m">t = −7</span>.</div>
+  <p style="font-size:13px;color:#555"><b>Cek cepat (wajib lu lakukan di kertas buram):</b> <span class="m">52·19 = 988</span> dan <span class="m">7·141 = 987</span>. Selisihnya 1 ✓. Kalau nggak 1, berarti ada langkah yang salah.</p>
+
+  <div class="sec">Tahap 3 · Invers Modulo</div>
+  <p>Dari <span class="m">52·19 − 7·141 = 1</span>, ambil modulo 141. Suku <span class="m">−7·141</span> jadi 0 (karena kelipatan 141), sisanya:</p>
+  <p class="big m">52 · 19 ≡ 1 (mod 141)</p>
+  <p>Bentuk <span class="m">a·x ≡ 1 (mod m)</span> berarti <span class="m">x</span> adalah <b>invers</b> dari <span class="m">a</span>. Jadi:</p>
+  <div class="ans"><span class="lbl">Invers</span><span class="m box">19⁻¹ ≡ 52 (mod 141)</span></div>
+  <div class="trap-card">
+    <b>SYARAT INVERS ADA:</b>
+    <p><span class="m">a⁻¹ (mod m)</span> hanya ada jika <span class="m">gcd(a, m) = 1</span>. Kalau tidak koprima, <b>tidak ada invers</b> — jangan dipaksa cari!</p>
+  </div>
+
+  <div class="sec">Tahap 4 · Menyelesaikan Kongruensi Linear ax ≡ b (mod m)</div>
+  <p><b>Aturan keberadaan solusi:</b> <span class="m">ax ≡ b (mod m)</span> punya solusi <b>jika dan hanya jika</b> <span class="m">gcd(a, m) | b</span>.</p>
+
+  <div class="worked">
+    <h4>Contoh A: 19x ≡ 10 (mod 141) — gcd = 1, solusi tunggal</h4>
+    <p class="ind">Kalikan kedua ruas dengan invers <span class="m">19⁻¹ ≡ 52</span>:</p>
+    <p class="ind"><span class="m">x ≡ 52 · 10 = 520 (mod 141)</span></p>
+    <p class="ind">Sederhanakan: <span class="m">520 = 3 · 141 + 97</span></p>
+    <div class="ans"><span class="lbl">Jawaban</span><span class="m box">x ≡ 97 (mod 141)</span> &nbsp;·&nbsp; cek: <span class="m">19 · 97 = 1843 = 13·141 + 10</span> ✓</div>
+  </div>
+
+  <div class="worked">
+    <h4>Contoh B: 6x ≡ 9 (mod 15) — gcd = 3, solusi ada 3 buah</h4>
+    <p class="ind"><span class="m">gcd(6, 15) = 3</span>, dan <span class="m">3 | 9</span> → <b>solusi ada, sebanyak 3 buah</b> (karena gcd = 3).</p>
+    <p class="ind">Bagi semua (termasuk modulus) dengan 3:</p>
+    <p class="ind"><span class="m">2x ≡ 3 (mod 5)</span></p>
+    <p class="ind"><span class="m">gcd(2,5) = 1</span>, invers 2 mod 5 adalah 3 (karena <span class="m">2·3 = 6 ≡ 1</span>):</p>
+    <p class="ind"><span class="m">x ≡ 3 · 3 = 9 ≡ 4 (mod 5)</span></p>
+    <div class="ans"><span class="lbl">Jawaban</span><span class="m">x ≡ 4, 9, 14 (mod 15)</span> &nbsp;·&nbsp; cek: <span class="m">6·4=24≡9</span>, <span class="m">6·9=54≡9</span>, <span class="m">6·14=84≡9</span> ✓</div>
+    <p style="font-size:13px;color:#555"><b>Pola:</b> kalau <span class="m">gcd(a,m) = d</span> dan <span class="m">d | b</span>, selalu ada <b>d solusi</b> berbeda modulo <span class="m">m</span>, berjarak <span class="m">m/d</span>.</p>
+  </div>
+
+  <div class="worked">
+    <h4>Contoh C: 4x ≡ 5 (mod 6) — tidak ada solusi</h4>
+    <p class="ind"><span class="m">gcd(4, 6) = 2</span>, tetapi <span class="m">2 ∤ 5</span>.</p>
+    <div class="ans"><span class="lbl">Jawaban</span><b>Tidak ada solusi</b> (tidak ada <span class="m">x</span> bulat yang memenuhi).</div>
+    <p style="font-size:13px;color:#555"><b>Alasan cepat:</b> ruas kiri selalu genap, ruas kanan ganjil. Mustahil.</p>
+  </div>
+
+  <details>
+    <summary>Latihan Mandiri Modul 5 (Klik untuk Soal &amp; Kunci)</summary>
+    <p><b>1.</b> Cari <span class="m">gcd(252, 198)</span> dengan algoritma Euclidean.</p>
+    <p><i>Kunci:</i> 252 = 1·198 + 54; 198 = 3·54 + 36; 54 = 1·36 + 18; 36 = 2·18 + 0 → <b>gcd = 18</b>.</p>
+    <p><b>2.</b> Tentukan invers dari <span class="m">7</span> modulo <span class="m">26</span>.</p>
+    <p><i>Kunci:</i> 26 = 3·7 + 5; 7 = 1·5 + 2; 5 = 2·2 + 1 → 1 = 5 − 2·2 = 5 − 2(7−5) = 3·5 − 2·7 = 3(26−3·7) − 2·7 = 3·26 − 11·7. Jadi <span class="m">7⁻¹ ≡ −11 ≡ 15 (mod 26)</span>. Cek: 7·15 = 105 = 4·26 + 1 ✓</p>
+    <p><b>3.</b> Selesaikan <span class="m">7x ≡ 3 (mod 26)</span>.</p>
+    <p><i>Kunci:</i> <span class="m">x ≡ 15 · 3 = 45 ≡ 19 (mod 26)</span>.</p>
+  </details>
+</section>
+
+
+  
+  <div class="bedah">
+    <div class="top"><span class="no">5</span><span class="ttl">Bedah Soal Tipe UTS · Teori Bilangan (Bobot 15 Poin di TB1)</span></div>
+    <div class="soal">
+      <b>Soal Asli Tugas Besar 1 (No 9):</b><br>
+      (a) Gunakan Algoritma Euclidean untuk mencari <span class="m">gcd(141, 19)</span>.<br>
+      (b) Nyatakan hasilnya sebagai kombinasi linear 141 dan 19 (Bézout).<br>
+      (c) Tentukan invers 19 modulo 141, lalu selesaikan <span class="m">19x ≡ 10 (mod 141)</span>.
+    </div>
+    <h5>1. Cara Membaca &amp; Membongkar Kalimat Soal</h5>
+    <div class="baca">
+      • Ini satu rantai: (a) → dipakai (b) → dipakai (c). Salah di (a), gugur semua.<br>
+      • (a) bagi bersusun sampai sisa 0; sisa bukan nol terakhir = gcd.<br>
+      • (b) jalan mundur dari sisa terakhir, substitusi tiap sisa dengan baris di atasnya.<br>
+      • (c) koefisien pengali 19 pada Bézout = inversnya. Kalikan ke dua ruas.
+    </div>
+    <h5>2. Langkah Pengerjaan Standar Dr. Yasi</h5>
+    <ol>
+      <li><b>(a) Euclidean:</b><br>
+        <span class="m">141 = 7 · 19 + 8</span> &nbsp;(1)<br>
+        <span class="m">19 = 2 · 8 + 3</span> &nbsp;(2)<br>
+        <span class="m">8 = 2 · 3 + 2</span> &nbsp;(3)<br>
+        <span class="m">3 = 1 · 2 + 1</span> &nbsp;(4) ← sisa bukan nol terakhir<br>
+        <span class="m">2 = 2 · 1 + 0</span> &nbsp;(5) sisa 0, stop.<br>
+        Jadi <span class="m">gcd(141, 19) = 1</span>.</li>
+      <li><b>(b) Substitusi mundur:</b><br>
+        <span class="m">1 = 3 − 1·2</span><br>
+        <span class="m">= 3 − (8 − 2·3) = 3·3 − 8</span> &nbsp;[substitusi (3)]<br>
+        <span class="m">= 3(19 − 2·8) − 8 = 3·19 − 7·8</span> &nbsp;[substitusi (2)]<br>
+        <span class="m">= 3·19 − 7(141 − 7·19) = 52·19 − 7·141</span> &nbsp;[substitusi (1)]<br>
+        Jadi <span class="m">1 = (−7)·141 + 52·19</span>.</li>
+      <li><b>(c) Invers &amp; kongruensi:</b><br>
+        Dari <span class="m">52·19 − 7·141 = 1</span>, ambil mod 141 → <span class="m">52·19 ≡ 1 (mod 141)</span>, maka <span class="m">19⁻¹ ≡ 52</span>.<br>
+        <span class="m">19x ≡ 10 (mod 141)</span> × 52 → <span class="m">x ≡ 520 (mod 141)</span>.<br>
+        <span class="m">520 = 3·141 + 97</span> → <span class="m">x ≡ 97 (mod 141)</span>.</li>
+    </ol>
+    <div class="jawab"><b>Cek:</b> 19 × 97 = 1843 = 13 × 141 + 10 ✓</div>
+    <div class="jeb"><b>Tanpa kalkulator:</b> untuk 520 mod 141, kalikan 141 × 3 = 423 lalu kurangkan 520 − 423 = 97. Jangan bagi panjang.</div>
+  </div>
+<!-- ================= MODUL 6: COUNTING ================= -->
+<section class="sheet" id="m6">
+  <div class="head">
+    <div class="badge">6</div>
+    <div>
+      <h2>Modul 6 · Counting (Kombinatorika)</h2>
+      <div class="sub">Slide Session 13–14 · Rosen Bab 6.1, 6.3, 8.5</div>
+    </div>
+  </div>
+
+  <div class="analogi">
+    <h4>Dari Nol: Bedanya "DAN" vs "ATAU"</h4>
+    <p><b>Kaidah Perkalian (DAN):</b> kalau pekerjaan terdiri dari beberapa tahap berurutan, kalikan pilihan tiap tahap.</p>
+    <p>Contoh: 3 baju <b>dan</b> 2 celana → <span class="m">3 × 2 = 6</span> kombinasi outfit.</p>
+    <p><b>Kaidah Penjumlahan (ATAU):</b> kalau memilih <b>salah satu</b> dari beberapa kelompok yang tidak tumpang tindih, jumlahkan.</p>
+    <p>Contoh: mau minum kopi (4 pilihan) <b>atau</b> teh (3 pilihan) → <span class="m">4 + 3 = 7</span> pilihan.</p>
+  </div>
+
+  <div class="sec">Rumus Inti</div>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>Kasus</th><th>Rumus</th><th>Kunci ingat</th></tr></thead>
+      <tbody>
+        <tr><td>Permutasi r dari n</td><td><span class="m">P(n,r) = n! / (n−r)!</span></td><td><b>urutan penting</b></td></tr>
+        <tr><td>Kombinasi r dari n</td><td><span class="m">C(n,r) = n! / (r!(n−r)!)</span></td><td><b>urutan tidak penting</b></td></tr>
+        <tr><td>Permutasi dengan pengulangan</td><td><span class="m">n₁! · n₂! · …</span> dibagi <span class="m">n!</span></td><td>kata dengan huruf dobel</td></tr>
+        <tr><td>Kombinasi dengan pengulangan</td><td><span class="m">C(n+r−1, r)</span></td><td>boleh ambil ulang</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="ind" style="font-size:13.5px"><b>Cara cepat bedain P vs C:</b> tanya "kalau urutannya ditukar, hasilnya jadi kasus berbeda nggak?"</p>
+  <p class="ind" style="font-size:13.5px">Ketua–Wakil: (A,B) beda dengan (B,A) → <b>Permutasi</b>. Panitia 2 orang: (A,B) sama aja → <b>Kombinasi</b>.</p>
+  <p class="ind" style="font-size:13.5px">Nilai <span class="m">0! = 1</span> (bukan 0!) dan <span class="m">C(n,0) = C(n,n) = 1</span>.</p>
+
+  <div class="worked">
+    <h4>Contoh 1: Permutasi — Juara 1, 2, 3 dari 10 peserta</h4>
+    <p class="ind"><span class="m">P(10,3) = 10! / (10−3)! = 10 · 9 · 8 = 720</span></p>
+    <div class="ans"><span class="lbl">Jawaban</span>Ada <b>720</b> susunan juara.</div>
+    <p style="font-size:13px;color:#555"><b>Tips tanpa kalkulator:</b> jangan hitung 10!/7!, cukup tulis 3 faktor teratas: 10·9·8.</p>
+  </div>
+
+  <div class="worked">
+    <h4>Contoh 2: Kombinasi — Pilih 5 dari 10 pelamar</h4>
+    <p class="ind"><span class="m">C(10,5) = 10! / (5!·5!) = (10·9·8·7·6) / (5·4·3·2·1) = 252</span></p>
+    <div class="ans"><span class="lbl">Jawaban</span>Ada <b>252</b> cara memilih.</div>
+    <p style="font-size:13px;color:#555"><b>Cara hitung manual:</b> coret dulu — 10/5 = 2, 8/4 = 2, 9/3 = 3, lalu sisa (2·3·2·7·6)/2 = 252. Jangan kalikan 10! dulu, angkanya keburu gede.</p>
+  </div>
+
+  <div class="worked">
+    <h4>Contoh 3: Kasus "paling banyak" — 4 wanita, 6 pria, pilih 5, maksimal 3 wanita</h4>
+    <p><b>Cara 1 (langsung, jumlahkan kasus):</b></p>
+    <p class="ind">0 wanita: <span class="m">C(4,0)·C(6,5) = 1·6 = 6</span></p>
+    <p class="ind">1 wanita: <span class="m">C(4,1)·C(6,4) = 4·15 = 60</span></p>
+    <p class="ind">2 wanita: <span class="m">C(4,2)·C(6,3) = 6·20 = 120</span></p>
+    <p class="ind">3 wanita: <span class="m">C(4,3)·C(6,2) = 4·15 = 60</span></p>
+    <p class="ind">Total = <span class="m">6 + 60 + 120 + 60 = 246</span></p>
+    <p><b>Cara 2 (komplemen, lebih cepat):</b> total semua cara − kasus 4 wanita</p>
+    <p class="ind"><span class="m">C(10,5) − C(4,4)·C(6,1) = 252 − 6 = 246</span> ✓</p>
+    <div class="ans"><span class="lbl">Jawaban</span><b>246 cara</b>. Dua cara harus memberi hasil sama — kalau beda, ada yang salah.</div>
+    <p style="font-size:13px;color:#555"><b>Kapan pakai komplemen?</b> Kalau kata kuncinya "paling banyak / paling sedikit / tidak boleh", biasanya komplemen jauh lebih cepat.</p>
+  </div>
+
+  <div class="sec">Prinsip Inklusi–Eksklusi (PIE)</div>
+  <p>Dipakai kalau himpunan <b>tumpang tindih</b> dan kita nggak mau hitung dobel:</p>
+  <p class="big m">|A ∪ B| = |A| + |B| − |A ∩ B|</p>
+  <p class="big m">|A ∪ B ∪ C| = |A| + |B| + |C| − |A∩B| − |A∩C| − |B∩C| + |A∩B∩C|</p>
+  <p style="font-size:13.5px;color:#555">Polanya: tambah semua tunggal, kurangi semua pasangan, tambah yang triple. Bergantian + − +.</p>
+
+  <div class="worked">
+    <h4>Contoh 4: Bilangan 1–100 yang habis dibagi 2 atau 3 atau 5</h4>
+    <p class="ind"><span class="m">|A| = ⌊100/2⌋ = 50</span>, <span class="m">|B| = ⌊100/3⌋ = 33</span>, <span class="m">|C| = ⌊100/5⌋ = 20</span></p>
+    <p class="ind"><span class="m">|A∩B| = ⌊100/6⌋ = 16</span>, <span class="m">|A∩C| = ⌊100/10⌋ = 10</span>, <span class="m">|B∩C| = ⌊100/15⌋ = 6</span></p>
+    <p class="ind"><span class="m">|A∩B∩C| = ⌊100/30⌋ = 3</span></p>
+    <p class="ind"><span class="m">= 50 + 33 + 20 − (16 + 10 + 6) + 3</span></p>
+    <p class="ind"><span class="m">= 103 − 32 + 3 = 74</span></p>
+    <div class="ans"><span class="lbl">Jawaban</span>Ada <b>74</b> bilangan.</div>
+    <p style="font-size:13px;color:#555"><b>Kunci:</b> irisan "bagi 2 DAN 3" = bagi <b>KPK</b>(2,3) = 6. Bukan dijumlah, tapi dikali.</p>
+  </div>
+
+  <details>
+    <summary>Latihan Mandiri Modul 6 (Klik untuk Soal &amp; Kunci)</summary>
+    <p><b>1.</b> Berapa banyak kata sandi 4 angka (boleh berulang) dari digit 0–9?</p>
+    <p><i>Kunci:</i> <span class="m">10⁴ = 10.000</span>.</p>
+    <p><b>2.</b> Berapa banyak cara menyusun huruf dari kata "BUKU"?</p>
+    <p><i>Kunci:</i> 4 huruf dengan U dobel → <span class="m">4!/2! = 12</span>.</p>
+    <p><b>3.</b> Dari 8 orang dipilih 4 untuk tim voli (posisi tidak dibedakan). Berapa cara?</p>
+    <p><i>Kunci:</i> <span class="m">C(8,4) = 70</span>.</p>
+    <p><b>4.</b> Di kelas 30 orang, 18 suka kopi, 12 suka teh, 6 suka keduanya. Berapa yang suka kopi atau teh?</p>
+    <p><i>Kunci:</i> <span class="m">18 + 12 − 6 = 24</span>.</p>
+  </details>
+</section>
+
+
+  <div class="bedah">
+    <div class="top"><span class="no">6</span><span class="ttl">Bedah Soal Tipe UTS · Counting dengan Batasan (Persis TB1 No 7)</span></div>
+    <div class="soal">
+      <b>Soal Asli Tugas Besar 1:</b><br>
+      Kelompok berisi 4 wanita dan 6 pria (10 orang). Dibentuk tim 5 orang.<br>
+      (a) Berapa cara tanpa syarat?<br>
+      (b) Berapa cara jika <b>paling banyak 3 wanita</b>?<br>
+      (c) Berapa cara jika Andi (pria) <b>wajib ikut</b> dan Bonita (wanita) <b>tidak boleh ikut</b>?
+    </div>
+    <h5>1. Cara Membaca &amp; Membongkar Kalimat Soal</h5>
+    <div class="baca">
+      • Tidak ada jabatan (ketua/wakil) → urutan tidak penting → <b>kombinasi C(n, r)</b>, bukan permutasi.<br>
+      • "Paling banyak 3 wanita" = kasus 0, 1, 2, 3 wanita. Lebih cepat pakai <b>komplemen</b>: total − (kasus 4 wanita).<br>
+      • "A wajib, B dilarang": kuota berkurang 1 (A sudah masuk), calon berkurang 2 (A keluar dari calon, B dicoret).
+    </div>
+    <h5>2. Langkah Pengerjaan Standar Dr. Yasi</h5>
+    <ol>
+      <li><b>(a)</b> <span class="m">C(10,5) = (10·9·8·7·6)/(5·4·3·2·1) = 252</span> cara.</li>
+      <li><b>(b)</b> Kasus terlarang = tepat 4 wanita + 1 pria = <span class="m">C(4,4)·C(6,1) = 1·6 = 6</span>.<br>
+        <span class="m">252 − 6 = 246</span> cara.</li>
+      <li><b>(c)</b> Sisa kuota 4 orang, calon tersedia 8 orang → <span class="m">C(8,4) = (8·7·6·5)/(4·3·2·1) = 70</span> cara.</li>
+    </ol>
+    <div class="jawab"><b>Jawaban:</b> (a) 252, (b) 246, (c) 70 cara.</div>
+    <div class="jeb"><b>Cek cepat (b):</b> 0W+1W+2W+3W = 6 + 60 + 120 + 60 = 246 ✓. Kalau hasil dua metode beda, berarti ada kasus kelewat.</div>
+  </div>
+<!-- ================= CHEAT SHEET, JEBakan, QUICK REFERENCE ================= -->
+<section class="sheet" id="cheat">
+  <div class="head">
+    <div class="badge">A4</div>
+    <div>
+      <h2>Cheat Sheet 1 Lembar A4 Bolak-Balik</h2>
+      <div class="sub">Ini yang lu salin tangan. Jangan coba salin semua materi ke kertas!</div>
+    </div>
+  </div>
+  <div class="trap-card">
+    <b>ATURAN PENTING:</b>
+    <p>Dosen mengizinkan <b>1 lembar A4 tulisan tangan sendiri, depan-belakang</b>. Pakai halaman ini sebagai rancangan, lalu <b>tulis ulang pakai tangan</b>. Bagi tiap sisi jadi 3 kolom kecil; tulis padat dengan simbol, bukan kalimat panjang.</p>
+  </div>
+  <div class="sec">Sisi Depan · Logika, Kuantor, Pembuktian</div>
+  <div class="formula"><b>Truth table 2 variabel:</b> TT, TF, FT, FF. &nbsp; ¬: balik T/F; ∧: keduanya T; ∨: minimal satu T; →: <b>hanya T→F yang F</b>; ↔: sama-sama nilai.</div>
+  <div class="formula"><b>Ekuivalensi:</b> p→q ≡ ¬p∨q · p→q ≡ ¬q→¬p · ¬(p∧q) ≡ ¬p∨¬q · ¬(p∨q) ≡ ¬p∧¬q · p↔q ≡ (p→q)∧(q→p).</div>
+  <div class="formula"><b>Kuantor:</b> ¬∀xP ≡ ∃x¬P · ¬∃xP ≡ ∀x¬P · universal = counterexample 1 cukup untuk F · existential = 1 contoh cukup untuk T.</div>
+  <div class="formula"><b>Terjemahan:</b> semua A adalah B → ∀x(A→B) · ada A dan B → ∃x(A∧B) · tidak ada A dan B → ¬∃x(A∧B).</div>
+  <div class="formula"><b>Direct:</b> assume p → definisi/aljabar → q. &nbsp; <b>Contrapos:</b> assume ¬q → dapat ¬p. &nbsp; <b>Contradiction:</b> assume p∧¬q → mustahil (r∧¬r).</div>
+  <div class="formula"><b>Ganjil:</b> n=2k+1. &nbsp; <b>Genap:</b> n=2k. &nbsp; <b>Rasional:</b> n=p/q, p,q∈Z, q≠0. &nbsp; Jangan lupa tulis ∎.</div>
+  <div class="sec">Sisi Belakang · Himpunan, Bilangan, Counting</div>
+  <div class="formula"><b>Set:</b> A∪B = OR · A∩B = AND · A−B · Aᶜ · |P(A)|=2^|A| · (A∪B)ᶜ=Aᶜ∩Bᶜ · (A∩B)ᶜ=Aᶜ∪Bᶜ.</div>
+  <div class="formula"><b>Function:</b> injective: f(a)=f(b)⇒a=b · surjective: ∀y∈B ∃x∈A f(x)=y · bijective = dua-duanya · range vs codomain!</div>
+  <div class="formula"><b>Fuzzy:</b> μĀ=1−μA · μ(A∪B)=max(μA,μB) · μ(A∩B)=min(μA,μB), μ∈[0,1].</div>
+  <div class="formula"><b>Euclid:</b> a=bq+r, 0≤r&lt;b; ulangi sampai r=0; sisa bukan 0 terakhir=gcd. Bézout: gcd=s·a+t·b (substitusi mundur).</div>
+  <div class="formula"><b>Inverse:</b> a⁻¹ mod m ada iff gcd(a,m)=1. Jika sa+tm=1 → a⁻¹≡s mod m. ax≡b → x≡a⁻¹b mod m.</div>
+  <div class="formula"><b>Linear congruence:</b> d=gcd(a,m). Solusi iff d|b; jika ada, jumlah solusi mod m = d. Bagi a,b,m dengan d dulu.</div>
+  <div class="formula"><b>Counting:</b> product = DAN → × · sum = ATAU (disjoint) → + · P(n,r)=n!/(n−r)! · C(n,r)=n!/[r!(n−r)!].</div>
+  <div class="formula"><b>PIE:</b> |A∪B|=|A|+|B|−|A∩B| · 3 set: + singles − pair intersections + triple intersection.</div>
+</section>
+
+<section class="sheet" id="trap">
+  <div class="head">
+    <div class="badge">!</div>
+    <div>
+      <h2>10 Jebakan yang Bikin Nilai Jatuh</h2>
+      <div class="sub">Baca sebelum tidur dan ulang 10 menit sebelum masuk ruang ujian</div>
+    </div>
+  </div>
+  <ol style="padding-left:22px">
+    <li><b>Implikasi T→F</b> adalah satu-satunya FALSE. Jangan isi F→F sebagai false.</li>
+    <li><b>∀ vs ∃:</b> universal salah cukup 1 counterexample; existential benar cukup 1 contoh.</li>
+    <li>Kalimat "semua A adalah B" harus <span class="m">∀x(A→B)</span>, bukan <span class="m">∀x(A∧B)</span>.</li>
+    <li><b>Kontraposisi ≠ converse:</b> kontraposisi <span class="m">¬q→¬p</span> ekuivalen; converse <span class="m">q→p</span> belum tentu.</li>
+    <li>Direct proof mulai dari <span class="m">p</span>; contraposition mulai dari <span class="m">¬q</span>; jangan campur.</li>
+    <li><b>Range ≠ kodomain:</b> uji onto harus cek semua anggota kodomain benar-benar punya preimage.</li>
+    <li>Fuzzy union pakai <b>max</b>, fuzzy intersection pakai <b>min</b>, komplemen <span class="m">1−μ</span>.</li>
+    <li>Euclidean harus ditulis sampai sisa 0, lalu backward substitution dimulai dari sisa terakhir yang bukan nol.</li>
+    <li>Invers modulo cuma ada kalau gcd = 1. Jangan mengaku invers hanya karena bisa dibagi biasa.</li>
+    <li><b>Permutasi = urutan penting</b>; kombinasi = urutan tidak penting. PIE selalu kurangi irisan agar tidak double-count.</li>
+  </ol>
+  <div class="worked">
+    <h4>Format Jawaban Aman ala Dr. Yasi (Tulis di Setiap Soal Hitungan)</h4>
+    <p><b>Diketahui:</b> tulis informasi soal dan domain.</p>
+    <p><b>Ditanya:</b> tulis simbol yang dicari.</p>
+    <p><b>Definisi/Teorema:</b> sebut hukum yang dipakai (De Morgan, Euclidean, Bézout, dll).</p>
+    <p><b>Substitusi/Langkah:</b> tulis semua baris, jangan lompat hasil.</p>
+    <p><b>Kesimpulan:</b> jawab dalam kotak + cek cepat jika memungkinkan.</p>
+  </div>
+  <div class="analogi">
+    <h4>Strategi Malam Ini (karena besok ujian)</h4>
+    <p><b>Putaran 1 (45 menit):</b> baca kotak merah/kuning dan salin cheat sheet.</p>
+    <p><b>Putaran 2 (60 menit):</b> kerjakan ulang contoh Euclidean, 1 negasi kuantor, 1 direct proof, 1 tabel kebenaran, dan 1 kombinasi tanpa melihat jawaban.</p>
+    <p><b>Putaran 3 (15 menit):</b> cek 10 jebakan di atas. Setelah itu tidur; jangan tambah materi baru kalau otak sudah mentok.</p>
+    <div class="kesimpulan">Lu nggak perlu merasa "harus hafal semua". Fokus mengenali tipe soal → pilih rumus/metode → tulis langkah sesuai template → cek hasil. Itu yang bikin bisa ngerjain walau awalnya 0.</div>
+  </div>
+</section>
+
+</main>
+
+<aside class="rail right" id="railRight">
+  <div class="panel">
+    <h4>Formula Quick-Ref</h4>
+    <span class="cheat-tag">Logic</span>
+    <div class="formula">p → q ≡ ¬p ∨ q<small>implikasi</small></div>
+    <div class="formula">p → q ≡ ¬q → ¬p<small>kontraposisi</small></div>
+    <div class="formula">¬∀xP ≡ ∃x¬P<small>negasi universal</small></div>
+    <div class="formula">¬∃xP ≡ ∀x¬P<small>negasi eksistensial</small></div>
+    <span class="cheat-tag" style="background:var(--blue)">Set &amp; Fuzzy</span>
+    <div class="formula">(A∪B)ᶜ=Aᶜ∩Bᶜ<small>De Morgan</small></div>
+    <div class="formula">μ∪=max, μ∩=min, μᶜ=1−μ<small>fuzzy</small></div>
+    <span class="cheat-tag" style="background:#5a3791">Number</span>
+    <div class="formula">a=dq+r, 0≤r&lt;d<small>pembagian Euclidean</small></div>
+    <div class="formula">sa+tm=gcd(a,m)<small>Bézout</small></div>
+    <div class="formula">a⁻¹ ada ⇔ gcd(a,m)=1<small>syarat invers</small></div>
+    <span class="cheat-tag" style="background:#1e7a3c">Counting</span>
+    <div class="formula">P(n,r)=n!/(n−r)!<small>urutan penting</small></div>
+    <div class="formula">C(n,r)=n!/[r!(n−r)!]<small>urutan tidak penting</small></div>
+    <div class="formula">|A∪B|=|A|+|B|−|A∩B|<small>PIE</small></div>
+  </div>
+  <div class="panel" style="background:#f4fbf0;border-color:#bce5ad">
+    <h4 style="color:#206312;border-bottom-color:rgba(30,100,20,.3)">Sumber yang Dipakai</h4>
+    <div style="font-size:12px;line-height:1.65;color:#184a0d">
+      <b>Slide Binus Maya Session 1–14</b><br>
+      Logic, Quantifier, Method of Proof, Set Theory &amp; Function, Number Theory, Counting.<br><br>
+      <b>Playlist dosen Session 4–6:</b><br>
+      <a href="https://youtube.com/playlist?list=PLQPnG62Hvy6o" target="_blank" style="color:#206312;font-weight:700">youtube.com/playlist/PLQPnG62Hvy6o</a><br><br>
+      <b>Tugas Besar 1</b><br>
+      Contoh fuzzy/function/congruensi dipetakan ke pola soal di tugas besar yang lu kirim.
+    </div>
+  </div>
+</aside>
+
+</div>
+</body>
+</html>

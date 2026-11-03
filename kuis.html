@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kuis Mandiri UTS Discrete Mathematics (20 Soal)</title>
+<style>
+:root{
+  --ink:#1c2430; --ink-soft:#4a5568; --red:#c0392b; --blue:#1f5fa8;
+  --paper:#fdfaf2; --desk:#e5e1d4; --ok:#1e7a3c;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--desk);
+  background-image:radial-gradient(circle at 20% 0%,#f0ece0 0%,#d8d3c2 70%);
+  color:var(--ink);
+  font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,sans-serif;
+  margin:0;padding:20px 14px 80px;
+}
+.container{max-width:860px;margin:0 auto}
+.topbar{
+  display:flex;justify-content:space-between;align-items:center;
+  background:#fff;border:1px solid #dcd5bf;border-radius:6px;
+  padding:12px 18px;margin-bottom:18px;box-shadow:0 2px 6px rgba(0,0,0,.06);
+  position:sticky;top:10px;z-index:50;
+}
+.timer{font-size:18px;font-weight:800;color:var(--red);font-family:monospace}
+.prog-text{font-size:13px;font-weight:700;color:var(--ink-soft)}
+.card{
+  background:var(--paper);border:1px solid #dcd5bf;border-radius:6px;
+  padding:24px 28px;margin-bottom:18px;box-shadow:0 4px 14px rgba(60,50,30,.1);
+}
+.badge{
+  display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.08em;
+  text-transform:uppercase;color:#fff;background:var(--blue);
+  padding:3px 8px;border-radius:3px;margin-bottom:8px;
+}
+.q-title{font-size:16px;font-weight:700;line-height:1.5;margin:0 0 16px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{
+  background:#fff;border:1.5px solid #d8d2be;border-radius:5px;
+  padding:10px 14px;cursor:pointer;font-size:14px;line-height:1.4;
+  transition:border .15s,background .15s;text-align:left;display:flex;align-items:center;gap:10px;
+}
+.opt:hover{background:#fbf9f2;border-color:#b5ad95}
+.opt.selected{border-color:var(--blue);background:#eef5fc}
+.opt.correct{border-color:var(--ok);background:#eaf8ee;color:var(--ok);font-weight:700}
+.opt.wrong{border-color:var(--red);background:#fdeeee;color:var(--red)}
+.opt:disabled{cursor:default}
+.exp-box{
+  background:#f9f8f2;border-left:4px solid var(--blue);border-radius:4px;
+  padding:12px 15px;margin-top:14px;font-size:13px;line-height:1.6;display:none;
+}
+.btn{
+  display:inline-block;font-weight:800;font-size:14px;padding:10px 20px;
+  border-radius:5px;border:none;background:var(--red);color:#fff;
+  cursor:pointer;box-shadow:0 2px 0 #8e2b20;
+}
+.btn:hover{opacity:.95}
+.btn-group{display:flex;justify-content:space-between;margin-top:20px}
+.score-box{
+  background:#fff;border:2px solid var(--ok);border-radius:8px;
+  padding:26px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.08);margin-bottom:20px;
+}
+.score-box h2{margin:0 0 8px;font-size:26px;color:var(--ok)}
+.nav-link{text-decoration:none;color:var(--blue);font-weight:700;font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div style="margin-bottom:12px;display:flex;justify-content:space-between;align-items:center">
+    <a class="nav-link" href="index.html">← Kembali ke Dashboard UTS</a>
+    <span style="font-size:12px;color:var(--ink-soft)">MATH6128031 · Dr. Yasi Dani</span>
+  </div>
+
+  <div class="topbar">
+    <div>
+      <span class="prog-text" id="prog">Soal 1 dari 20</span>
+    </div>
+    <div class="timer" id="clock">25:00</div>
+  </div>
+
+  <div id="quiz-area">
+    <!-- Diisi otomatis oleh Javascript -->
+  </div>
+
+  <div id="result-area" style="display:none">
+    <!-- Diisi otomatis saat kuis selesai -->
+  </div>
+</div>
+
+<script>
+var questions = [{"id": 1, "topic": "1 · Logika", "type": "mc", "q": "Tentukan nilai kebenaran dari proposisi: 'Jika 2 + 2 = 5, maka bumi itu datar.'", "opts": ["A. True", "B. False", "C. Tidak dapat ditentukan", "D. Bukan proposisi"], "ans": 0, "exp": "Bentuknya adalah p → q. Di sini p = '2+2=5' bernilai FALSE. Sesuai aturan implikasi, jika premis bernilai False, maka nilai implikasi SELALU TRUE terlepas dari akibatnya q (prinsip vacuous truth)."}, {"id": 2, "topic": "1 · Logika", "type": "mc", "q": "Bentuk ekuivalensi yang benar untuk negasi dari implikasi ¬(p → q) adalah...", "opts": ["A. ¬p → ¬q", "B. p ∧ ¬q", "C. ¬p ∨ q", "D. ¬p ∧ q"], "ans": 1, "exp": "Karena p → q ≡ ¬p ∨ q, maka ¬(p → q) ≡ ¬(¬p ∨ q) ≡ ¬(¬p) ∧ ¬q ≡ p ∧ ¬q (menggunakan hukum De Morgan)."}, {"id": 3, "topic": "1 · Logika", "type": "mc", "q": "Pernyataan yang selalu bernilai Benar (True) untuk setiap kemungkinan nilai kebenaran dari proposisi pembentuknya disebut...", "opts": ["A. Kontingensi", "B. Kontradiksi", "C. Tautologi", "D. Ekuivalensi"], "ans": 2, "exp": "Tautologi adalah proposisi majemuk yang selalu bernilai T di setiap baris tabel kebenaran. Kebalikannya adalah kontradiksi (selalu F)."}, {"id": 4, "topic": "1 · Logika", "type": "mc", "q": "Kontraposisi dari pernyataan 'Jika hari ini hujan, maka jalanan basah' adalah...", "opts": ["A. Jika jalanan basah, maka hari ini hujan", "B. Jika hari ini tidak hujan, maka jalanan tidak basah", "C. Jika jalanan tidak basah, maka hari ini tidak hujan", "D. Hari ini hujan dan jalanan basah"], "ans": 2, "exp": "Kontraposisi dari p → q adalah ¬q → ¬p. Di sini p = 'hujan', q = 'jalanan basah'. Maka ¬q → ¬p adalah 'Jika jalanan tidak basah, maka hari ini tidak hujan'. (Pilihan A adalah konvers, B adalah invers)."}, {"id": 5, "topic": "2 · Kuantor", "type": "mc", "q": "Manakah bentuk negasi yang benar untuk pernyataan berkuantor: ∀x (P(x) → Q(x))?", "opts": ["A. ∃x (P(x) ∧ ¬Q(x))", "B. ∀x (¬P(x) → ¬Q(x))", "C. ∃x (¬P(x) ∨ Q(x))", "D. ∀x (P(x) ∧ ¬Q(x))"], "ans": 0, "exp": "¬[∀x (P(x) → Q(x))] ≡ ∃x ¬(P(x) → Q(x)) ≡ ∃x ¬(¬P(x) ∨ Q(x)) ≡ ∃x (P(x) ∧ ¬Q(x)). Kuantor universal berubah jadi eksistensial, dan negasi implikasi menghasilkan konjungsi p ∧ ¬q."}, {"id": 6, "topic": "2 · Kuantor", "type": "mc", "q": "Domain adalah semua bilangan bulat ℤ. Manakah pernyataan berikut yang bernilai FALSE?", "opts": ["A. ∀x ∃y (x + y = 0)", "B. ∃y ∀x (x + y = 0)", "C. ∃x ∃y (x + y = 10)", "D. ∀x (x² ≥ 0)"], "ans": 1, "exp": "Pilihan B menyatakan 'ada satu y yang jika ditambah x sembarang selalu menghasilkan 0' (y harus bernilai −x untuk SEMUA x sekaligus, yang mana mustahil karena x bervariasi). Sedangkan A benar (invers aditif: pilih y = −x)."}, {"id": 7, "topic": "2 · Kuantor", "type": "mc", "q": "Pernyataan 'Semua kucing suka ikan' jika diterjemahkan ke simbol logika berpredikat K(x): 'x adalah kucing' dan I(x): 'x suka ikan' adalah...", "opts": ["A. ∀x (K(x) ∧ I(x))", "B. ∀x (K(x) → I(x))", "C. ∃x (K(x) → I(x))", "D. ∃x (K(x) ∧ I(x))"], "ans": 1, "exp": "Kuantor universal (Semua) selalu dipasangkan dengan operator implikasi → : ∀x (K(x) → I(x)), artinya 'untuk semua x, jika x adalah kucing maka x suka ikan'. Jika pakai ∧ artinya 'semua benda di dunia adalah kucing dan suka ikan'."}, {"id": 8, "topic": "3 · Pembuktian", "type": "mc", "q": "Pada metode pembuktian secara Kontraposisi untuk membuktikan teorema 'p → q', langkah awal yang diasumsikan bernilai Benar adalah...", "opts": ["A. Asumsikan p bernilai True", "B. Asumsikan q bernilai True", "C. Asumsikan ¬q bernilai True", "D. Asumsikan p ∧ ¬q bernilai True"], "ans": 2, "exp": "Pembuktian kontraposisi membuktikan ¬q → ¬p. Jadi langkah awal adalah mengasumsikan negasi kesimpulan (¬q) bernilai True, lalu membuktikan bahwa negasi hipotesis (¬p) harus True."}, {"id": 9, "topic": "3 · Pembuktian", "type": "mc", "q": "Bentuk pembuktian dengan mengandaikan bahwa hipotesis bernilai Benar dan kesimpulan bernilai Salah (p ∧ ¬q) sampai menghasilkan kemustahilan disebut...", "opts": ["A. Direct Proof", "B. Proof by Contraposition", "C. Proof by Contradiction", "D. Proof by Counterexample"], "ans": 2, "exp": "Proof by Contradiction (Reductio ad Absurdum) mengasumsikan p ∧ ¬q bernilai True sampai muncul kontradiksi (r ∧ ¬r atau sesuatu yang mustahil seperti 1 = 0)."}, {"id": 10, "topic": "4 · Himpunan", "type": "mc", "q": "Diketahui f: A → B. Suatu fungsi disebut Injektif (One-to-One) jika dan hanya jika...", "opts": ["A. Setiap elemen B memiliki pasangan di A", "B. Jika f(a) = f(b) maka haruslah a = b", "C. Jumlah elemen A harus sama dengan B", "D. Range(f) = Kodomain(B)"], "ans": 1, "exp": "Definisi fungsi injektif adalah tidak ada dua elemen domain berbeda yang dipetakan ke elemen kodomain yang sama. Secara formal: f(a) = f(b) ⇒ a = b (atau a ≠ b ⇒ f(a) ≠ f(b))."}, {"id": 11, "topic": "4 · Himpunan", "type": "mc", "q": "Dua himpunan fuzzy A dan B memiliki derajat keanggotaan pada elemen x yaitu μ_A(x) = 0.7 dan μ_B(x) = 0.4. Berapakah nilai keanggotaan μ_(A ∩ B)(x) dan μ_Ā(x)?", "opts": ["A. 0.7 dan 0.3", "B. 0.4 dan 0.3", "C. 0.4 dan 0.6", "D. 0.28 dan 0.3"], "ans": 1, "exp": "Irisan himpunan fuzzy menggunakan fungsi minimum: min(0.7, 0.4) = 0.4. Komplemen menggunakan 1 − μ_A(x): 1 − 0.7 = 0.3."}, {"id": 12, "topic": "4 · Himpunan", "type": "mc", "q": "Jika sebuah himpunan memiliki kardinalitas |A| = 4, maka banyaknya anggota himpunan kuasa (Power Set) P(A) adalah...", "opts": ["A. 8", "B. 12", "C. 16", "D. 24"], "ans": 2, "exp": "Banyaknya anggota power set dari himpunan beranggotakan n elemen adalah |P(A)| = 2^n. Maka 2^4 = 16."}, {"id": 13, "topic": "5 · Bilangan", "type": "mc", "q": "Berapakah hasil dari gcd(252, 198) yang dihitung dengan Algoritma Euclidean?", "opts": ["A. 9", "B. 18", "C. 27", "D. 54"], "ans": 1, "exp": "252 = 1·198 + 54; 198 = 3·54 + 36; 54 = 1·36 + 18; 36 = 2·18 + 0. Sisa bukan nol terakhir adalah 18. Jadi gcd(252, 198) = 18."}, {"id": 14, "topic": "5 · Bilangan", "type": "mc", "q": "Syarat mutlak agar bilangan bulat a memiliki invers perkalian modulo m (a⁻¹ mod m) adalah...", "opts": ["A. m harus bilangan prima", "B. a harus lebih kecil dari m", "C. gcd(a, m) = 1 (a dan m relatif prima)", "D. a harus bernilai ganjil"], "ans": 2, "exp": "Invers perkalian modulo m ada jika dan hanya jika a dan m saling prima (koprima), yaitu gcd(a, m) = 1."}, {"id": 15, "topic": "5 · Bilangan", "type": "mc", "q": "Berapakah invers dari 7 modulo 26?", "opts": ["A. 11", "B. 15", "C. 19", "D. 21"], "ans": 1, "exp": "Kita cari x sehingga 7x ≡ 1 (mod 26). Uji: 7 × 15 = 105. 105 = 4 × 26 + 1 (sisa 1). Maka invers 7 mod 26 adalah 15."}, {"id": 16, "topic": "5 · Bilangan", "type": "mc", "q": "Berapakah nilai x yang memenuhi kongruensi linear 7x ≡ 3 (mod 26)?", "opts": ["A. 15", "B. 19", "C. 23", "D. 9"], "ans": 1, "exp": "Karena 7⁻¹ ≡ 15 (mod 26), kalikan kedua ruas dengan 15: x ≡ 15 × 3 = 45 ≡ 19 (mod 26) karena 45 = 1 × 26 + 19. Cek: 7 × 19 = 133 = 5 × 26 + 3 ✓."}, {"id": 17, "topic": "6 · Counting", "type": "mc", "q": "Berapa banyak cara memilih Ketua, Wakil, dan Sekretaris dari 10 orang kandidat?", "opts": ["A. 120", "B. 720", "C. 240", "D. 1000"], "ans": 1, "exp": "Karena posisi jabatan berbeda (Ketua ≠ Wakil ≠ Sekretaris), maka urutan PENTING → gunakan Permutasi: P(10, 3) = 10 × 9 × 8 = 720."}, {"id": 18, "topic": "6 · Counting", "type": "mc", "q": "Berapa banyak cara membentuk panitia 5 orang dari 10 orang tanpa membedakan jabatan?", "opts": ["A. 252", "B. 120", "C. 720", "D. 30240"], "ans": 0, "exp": "Urutan TIDAK penting → gunakan Kombinasi: C(10, 5) = 10! / (5! 5!) = (10 × 9 × 8 × 7 × 6) / (5 × 4 × 3 × 2 × 1) = 252."}, {"id": 19, "topic": "6 · Counting", "type": "mc", "q": "Dari 30 mahasiswa, 18 suka kopi, 12 suka teh, dan 6 suka kedua-duanya. Berapa mahasiswa yang suka kopi ATAU teh?", "opts": ["A. 30", "B. 24", "C. 26", "D. 20"], "ans": 1, "exp": "Prinsip Inklusi-Eksklusi: |A ∪ B| = |A| + |B| − |A ∩ B| = 18 + 12 − 6 = 24."}, {"id": 20, "topic": "6 · Counting", "type": "mc", "q": "Berapa banyak susunan kata berbeda yang dapat dibentuk dari huruf-huruf kata 'BUKU'?", "opts": ["A. 24", "B. 12", "C. 6", "D. 18"], "ans": 1, "exp": "Permutasi dengan elemen berulang: kata 'BUKU' terdiri dari 4 huruf dengan huruf 'U' muncul 2 kali. Maka total cara = 4! / 2! = (4 × 3 × 2 × 1) / 2 = 12."}];
+var curIdx = 0;
+var userAns = new Array(questions.length).fill(null);
+var timeLeft = 25 * 60; // 25 menit
+var timerId = null;
+
+function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+function startTimer() {
+  var clockEl = document.getElementById('clock');
+  timerId = setInterval(function() {
+    timeLeft--;
+    if (timeLeft <= 0) {
+      clearInterval(timerId);
+      clockEl.textContent = '00:00';
+      finishQuiz();
+      return;
+    }
+    var m = Math.floor(timeLeft / 60);
+    var s = timeLeft % 60;
+    clockEl.textContent = pad(m) + ':' + pad(s);
+  }, 1000);
+}
+
+function renderQuestion() {
+  var q = questions[curIdx];
+  document.getElementById('prog').textContent = 'Soal ' + (curIdx + 1) + ' dari ' + questions.length;
+  
+  var html = '<div class="card">';
+  html += '<span class="badge">' + q.topic + '</span>';
+  html += '<div class="q-title">' + (curIdx + 1) + '. ' + q.q + '</div>';
+  html += '<div class="opts">';
+  
+  for (var i = 0; i < q.opts.length; i++) {
+    var isSel = (userAns[curIdx] === i);
+    html += '<button type="button" class="opt' + (isSel ? ' selected' : '') + '" onclick="selectOpt(' + i + ')">';
+    html += q.opts[i];
+    html += '</button>';
+  }
+  html += '</div>';
+
+  html += '<div class="btn-group">';
+  html += '<button class="btn" style="background:#6c757d;box-shadow:0 2px 0 #4e555b" onclick="prevQ()"' + (curIdx === 0 ? ' disabled' : '') + '>← Sebelumnya</button>';
+  if (curIdx < questions.length - 1) {
+    html += '<button class="btn" onclick="nextQ()">Selanjutnya →</button>';
+  } else {
+    html += '<button class="btn" style="background:var(--ok);box-shadow:0 2px 0 #145529" onclick="finishQuiz()">Selesaikan Kuis</button>';
+  }
+  html += '</div>';
+  html += '</div>';
+
+  document.getElementById('quiz-area').innerHTML = html;
+}
+
+function selectOpt(idx) {
+  userAns[curIdx] = idx;
+  renderQuestion();
+}
+
+function prevQ() {
+  if (curIdx > 0) { curIdx--; renderQuestion(); }
+}
+
+function nextQ() {
+  if (curIdx < questions.length - 1) { curIdx++; renderQuestion(); }
+}
+
+function finishQuiz() {
+  clearInterval(timerId);
+  var correctCount = 0;
+  for (var i = 0; i < questions.length; i++) {
+    if (userAns[i] === questions[i].ans) { correctCount++; }
+  }
+
+  var score = Math.round((correctCount / questions.length) * 100);
+  document.getElementById('quiz-area').style.display = 'none';
+  document.getElementById('clock').parentElement.style.display = 'none';
+
+  var resHtml = '<div class="score-box">';
+  resHtml += '<h2>Hasil Latihan Kuis UTS</h2>';
+  resHtml += '<div style="font-size:42px;font-weight:900;color:var(--ink);margin:10px 0">' + score + ' <span style="font-size:20px;color:var(--ink-soft)">/ 100</span></div>';
+  resHtml += '<p style="font-size:15px;color:var(--ink-soft)">Benar: <b>' + correctCount + '</b> dari <b>' + questions.length + '</b> soal</p>';
+  
+  if (score >= 80) {
+    resHtml += '<div style="color:var(--ok);font-weight:800;font-size:16px">Mantap! Pemahaman konsep UTS lu udah matang. Tinggal rapikan tulisan tangan di lembar A4!</div>';
+  } else {
+    resHtml += '<div style="color:var(--red);font-weight:800;font-size:16px">Periksa lagi pembahasan soal di bawah yang masih salah. Buka kembali modul yang kurang!</div>';
+  }
+  resHtml += '<div style="margin-top:16px"><a class="btn" href="index.html">Kembali ke Dashboard</a></div>';
+  resHtml += '</div>';
+
+  resHtml += '<h3 style="margin:20px 0 10px">Pembahasan Lengkap 20 Soal</h3>';
+
+  for (var j = 0; j < questions.length; j++) {
+    var qj = questions[j];
+    var isRight = (userAns[j] === qj.ans);
+    resHtml += '<div class="card" style="border-left:5px solid ' + (isRight ? 'var(--ok)' : 'var(--red)') + '">';
+    resHtml += '<span class="badge" style="background:' + (isRight ? 'var(--ok)' : 'var(--red)') + '">' + qj.topic + ' · ' + (isRight ? 'BENAR' : 'SALAH') + '</span>';
+    resHtml += '<div class="q-title">' + (j + 1) + '. ' + qj.q + '</div>';
+    
+    resHtml += '<div class="opts">';
+    for (var k = 0; k < qj.opts.length; k++) {
+      var cls = 'opt';
+      if (k === qj.ans) cls += ' correct';
+      else if (k === userAns[j]) cls += ' wrong';
+      resHtml += '<div class="' + cls + '">' + qj.opts[k] + '</div>';
+    }
+    resHtml += '</div>';
+
+    resHtml += '<div class="exp-box" style="display:block">';
+    resHtml += '<b>Pembahasan:</b> ' + qj.exp;
+    resHtml += '</div>';
+    resHtml += '</div>';
+  }
+
+  document.getElementById('result-area').innerHTML = resHtml;
+  document.getElementById('result-area').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+window.onload = function() {
+  startTimer();
+  renderQuestion();
+};
+</script>
+
+</body>
+</html>

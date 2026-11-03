@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UTS Discrete Math — Dashboard Belajar</title>
+<style>
+:root{
+  --ink:#1c2430; --ink-soft:#4a5568; --red:#c0392b; --blue:#1f5fa8;
+  --paper:#fdfaf2; --rule:rgba(80,120,175,.14); --margin-line:rgba(215,65,65,.55);
+  --edge:#cac3ad; --desk:#e5e1d4; --ok:#1e7a3c;
+  --sticky:#fff9b0; --sticky-edge:#e9de89;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--desk);
+  background-image:radial-gradient(circle at 20% 0%,#f0ece0 0%,#d8d3c2 70%);
+  color:var(--ink);
+  font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  padding:22px 14px 90px;
+}
+.wrap{max-width:1520px;margin:0 auto;display:grid;
+  grid-template-columns:248px minmax(0,920px) 300px;gap:22px;align-items:start;justify-content:center}
+.rail{position:sticky;top:14px;max-height:calc(100vh - 28px);overflow-y:auto;overflow-x:hidden;padding:8px 4px 30px}
+.rail::-webkit-scrollbar{width:5px}
+.rail::-webkit-scrollbar-thumb{background:#c9c2ad;border-radius:3px}
+.panel{position:relative;background:linear-gradient(175deg,#fffbc7 0%,var(--sticky) 40%,#fef39c 100%);
+  border:1px solid var(--sticky-edge);border-radius:4px;
+  box-shadow:0 2px 4px rgba(60,50,20,.08),0 8px 18px rgba(60,50,20,.14);
+  padding:16px 15px;margin-bottom:16px}
+.panel h4{margin:0 0 10px;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;
+  color:#61531e;border-bottom:1.5px dashed rgba(150,130,50,.3);padding-bottom:5px}
+.total{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px}
+.total b{font-size:20px;font-weight:800;color:#2c2206}
+.total span{font-size:11px;color:#61531e;font-weight:700}
+.pbar{height:6px;border-radius:999px;background:#e5dc9b;overflow:hidden;margin-bottom:10px}
+.pbar i{display:block;height:100%;background:var(--red);border-radius:999px}
+.road{list-style:none;margin:10px 0 0;padding:0;position:relative}
+.road::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:1.5px;background:#d8cc8a}
+.road li{position:relative;padding:0 0 0 26px;margin:0 0 3px}
+.road a{display:block;text-decoration:none;color:#2b2308;font-size:12.5px;font-weight:700;line-height:1.35;
+  padding:5px 7px;border-radius:5px}
+.road a:hover{background:rgba(255,255,255,.6)}
+.road a small{display:block;font-size:10.5px;color:#61531e;font-weight:500;margin-top:1px}
+.road .dot{position:absolute;left:4px;top:10px;width:11px;height:11px;border-radius:50%;background:#fff;border:2px solid #b8ab6a}
+.road li.now .dot{border-color:var(--red);background:var(--red);box-shadow:0 0 0 3px rgba(192,57,43,.2)}
+.road li.now a{background:rgba(255,255,255,.8);color:var(--red)}
+main{min-width:0}
+.sheet{position:relative;background:var(--paper);
+  background-image:
+    linear-gradient(to right,transparent 0 84px,var(--margin-line) 84px 85.5px,transparent 85.5px),
+    repeating-linear-gradient(to bottom,transparent 0 33px,var(--rule) 33px 34px);
+  background-position:0 0,0 38px;border-radius:4px;border:1px solid #dcd5bf;
+  box-shadow:0 2px 0 #cfc8b4,0 10px 24px rgba(60,50,30,.15);
+  padding:32px 42px 48px 110px;font-size:15.5px;line-height:1.75;margin:0 0 26px;scroll-margin-top:14px}
+.sheet::before,.sheet::after{content:"";position:absolute;left:28px;width:22px;height:22px;border-radius:50%;
+  background:var(--desk);box-shadow:inset 0 2px 4px rgba(0,0,0,.24),0 0 0 1px #d3ccb8}
+.sheet::before{top:68px}.sheet::after{bottom:68px}
+.head{display:flex;align-items:flex-start;gap:15px;margin-bottom:10px}
+.badge{flex:0 0 auto;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:#fff;
+  border:2.5px solid var(--red);color:var(--red);font-weight:800;font-size:22px;box-shadow:2px 2px 0 rgba(192,57,43,.18)}
+.head h2{font-size:22px;font-weight:800;letter-spacing:-.01em;margin:0}
+.head .sub{font-size:13px;color:var(--ink-soft);font-weight:500;margin-top:3px}
+.sec{font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);
+  margin:20px 0 6px;display:flex;align-items:center;gap:8px}
+.sec::after{content:"";flex:1;height:1px;background:#d8e2ee}
+p{margin:6px 0;background:rgba(253,250,242,.86)}
+.m{font-family:'Cambria Math',Cambria,Georgia,serif;font-style:italic}
+.m b{font-style:normal}
+.analogi{background:#fefbf2;border:1.5px dashed #c49742;border-left:5px solid #d48b14;border-radius:8px;padding:12px 15px;margin:12px 0}
+.analogi h4{margin:0 0 5px;color:#8f5600;font-size:14.5px;font-weight:800}
+.analogi p{margin:4px 0;font-size:13.5px;line-height:1.7;background:transparent}
+.analogi .kesimpulan{background:#fff;border:1px solid #ebd8b0;border-radius:6px;padding:8px 11px;margin-top:8px;
+  font-size:13px;color:#613e05;font-weight:700;line-height:1.6}
+.trap-card{background:#fff5f3;border:1.5px solid #f1cfc8;border-left:4px solid var(--red);border-radius:8px;padding:11px 15px;margin:12px 0}
+.trap-card b{color:var(--red);font-size:14px}
+.trap-card p{margin:4px 0;font-size:13.5px;line-height:1.7;background:transparent}
+.step{display:flex;gap:11px;margin:8px 0}
+.step .n{flex:0 0 auto;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--red);
+  color:#fff;font-size:12px;font-weight:800;margin-top:3px}
+.step .body{flex:1 1 auto;min-width:0;background:rgba(253,250,242,.86)}
+.step .body p{background:transparent}
+.ans{margin:12px 0 8px 34px;padding:9px 14px;border:2px solid var(--red);border-radius:4px;background:#fff7f5;line-height:1.7}
+.ans .lbl{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:3px}
+.box{display:inline-block;border:2px double var(--ink);border-radius:3px;padding:2px 10px;background:#fffdf5}
+.ind{margin-left:34px;background:rgba(253,250,242,.86)}
+.big{margin:6px 0 6px 34px;font-size:17px;background:rgba(253,250,242,.86);padding:2px 0}
+.tblwrap{overflow-x:auto;margin:8px 0 8px 34px;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;margin:6px 0;font-family:'Cambria Math',Cambria,serif;font-size:14.5px;line-height:1.45;background:#fff}
+th,td{border:1.5px solid #2b3340;padding:3px 9px;text-align:center;white-space:nowrap;background:#fff}
+thead th{background:#eef2f7;font-weight:700;font-family:'Segoe UI',sans-serif;font-size:12.5px}
+td.T{color:var(--ok);font-weight:700}
+td.F{color:#b03030;font-weight:700}
+.worked{background:#f7fcf4;border:1.5px solid #cde3c2;border-left:4px solid var(--ok);border-radius:8px;padding:11px 15px;margin:12px 0}
+.worked h4{margin:0 0 6px;font-size:12px;color:#1e7a3c;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.worked p{background:transparent}
+details{background:#f7f5ec;border:1.5px dashed #cfc6af;border-radius:8px;padding:10px 14px;margin:12px 0}
+details summary{cursor:pointer;font-weight:800;font-size:13.5px;color:var(--blue)}
+details[open] summary{margin-bottom:8px}
+details p{background:transparent;font-size:14px}
+.formula{font-family:'Cambria Math',Cambria,serif;font-size:13px;line-height:1.6;padding:6px 8px;border-radius:4px;
+  background:rgba(255,255,255,.62);margin-bottom:6px;border-left:3px solid #b8ab6a}
+.formula small{display:block;font-family:'Segoe UI',sans-serif;font-size:10.5px;color:#61531e;margin-top:2px}
+.kv{display:flex;justify-content:space-between;gap:8px;font-size:12px;padding:4px 0;border-bottom:1px dashed rgba(160,140,60,.35)}
+.kv:last-child{border-bottom:none}
+.kv span{color:#61531e;font-weight:600}
+.kv b{font-weight:800;text-align:right;color:#2c2206}
+.cheat-tag{display:inline-block;background:var(--red);color:#fff;font-size:9.5px;font-weight:800;
+  padding:2px 6px;border-radius:3px;text-transform:uppercase;letter-spacing:.05em;margin:6px 0 4px}
+.toggles{display:none;gap:8px;position:sticky;top:8px;z-index:60;margin-bottom:12px}
+.toggles button{flex:1;padding:8px;border-radius:4px;border:1px solid var(--sticky-edge);
+  background:linear-gradient(175deg,#fffbc7,var(--sticky));font-weight:800;font-size:12.5px;color:#332906;cursor:pointer}
+@media (max-width:1240px){
+  .wrap{grid-template-columns:220px minmax(0,1fr)}
+  .rail.right{display:none}
+  .toggles{display:flex}
+  .rail.right.open{display:block;position:fixed;top:0;right:0;bottom:0;width:300px;max-height:none;z-index:70;
+    background:var(--desk);padding:14px;box-shadow:-8px 0 24px rgba(40,30,10,.25);overflow:auto}
+}
+@media (max-width:900px){
+  .wrap{grid-template-columns:minmax(0,1fr)}
+  .rail.left{display:none;position:fixed;top:0;left:0;bottom:0;width:280px;max-height:none;z-index:70;
+    background:var(--desk);padding:14px;box-shadow:8px 0 24px rgba(40,30,10,.25);overflow:auto}
+  .rail.left.open{display:block}
+  .sheet{padding:20px 14px 26px 54px;font-size:14.5px;line-height:1.7;background-image:
+    linear-gradient(to right,transparent 0 38px,var(--margin-line) 38px 39.4px,transparent 39.4px),
+    repeating-linear-gradient(to bottom,transparent 0 33px,var(--rule) 33px 34px)}
+  .sheet::before,.sheet::after{left:12px;width:14px;height:14px}
+  .tblwrap,.big,.ind,.ans{margin-left:0}
+  .head h2{font-size:18px}.badge{width:42px;height:42px;font-size:18px}
+  table{font-size:12.5px} th,td{padding:2px 5px}
+}
+@media print{body{background:#fff;padding:0}.rail,.toggles{display:none!important}.wrap{display:block;max-width:none}
+  .sheet{box-shadow:none;border:none;border-radius:0;margin:0;page-break-after:always;max-width:none}}
+
+/* ---- dashboard ---- */
+.hero{background:var(--paper);border:1px solid #dcd5bf;border-radius:6px;box-shadow:0 2px 0 #cfc8b4,0 12px 26px rgba(60,50,30,.16);padding:30px 34px;margin-bottom:22px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(192,57,43,.10),transparent 70%)}
+.hero h1{font-size:30px;margin:6px 0 8px;letter-spacing:-.02em;line-height:1.2}
+.hero p{font-size:14.5px;color:var(--ink-soft);margin:4px 0;background:transparent}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;background:#fff;border:1px solid #e2dcc8;color:#5c5236}
+.chip b{color:var(--red)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:16px 0}
+.tcard{background:#fff;border:1px solid #e4ddc9;border-radius:6px;padding:14px 16px;box-shadow:0 1px 0 #e8e2cf,0 4px 10px rgba(60,50,30,.06);transition:transform .15s,box-shadow .15s;display:block;text-decoration:none;color:inherit}
+.tcard:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(60,50,30,.13)}
+.tcard .num{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#fdf1ef;color:var(--red);font-weight:800;font-size:13px;border:1.5px solid #f0cfc9;margin-bottom:6px}
+.tcard h3{margin:2px 0 4px;font-size:15.5px}
+.tcard p{font-size:12.5px;color:var(--ink-soft);margin:0 0 8px;line-height:1.55;background:transparent}
+.tcard .go{font-size:11.5px;font-weight:800;color:var(--blue);letter-spacing:.04em;text-transform:uppercase}
+.sect{background:var(--paper);border:1px solid #dcd5bf;border-radius:6px;box-shadow:0 2px 0 #cfc8b4,0 8px 20px rgba(60,50,30,.12);padding:24px 30px;margin-bottom:20px}
+.sect h2{font-size:19px;margin:0 0 12px}
+.check{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px dashed #e0d9c4;font-size:13.5px;line-height:1.5}
+.check:last-child{border-bottom:none}
+.check input{margin-top:3px;width:16px;height:16px;accent-color:var(--red);flex:0 0 auto}
+.check label{cursor:pointer;flex:1}
+.check small{display:block;color:var(--ink-soft);font-size:12px;margin-top:1px}
+.pwrap{display:flex;align-items:center;gap:10px;margin:10px 0 4px}
+.pwrap .bar{flex:1;height:8px;border-radius:999px;background:#e8e1cc;overflow:hidden}
+.pwrap .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#c0392b,#e07a5f);transition:width .3s}
+.pwrap b{font-size:12px;color:var(--red);min-width:38px;text-align:right}
+.btnrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.btn{display:inline-block;text-decoration:none;font-weight:800;font-size:13.5px;padding:10px 18px;border-radius:5px;border:1.5px solid var(--red);background:var(--red);color:#fff;box-shadow:0 2px 0 #8e2b20;transition:transform .1s}
+.btn:hover{transform:translateY(-1px)}
+.btn.ghost{background:#fff;color:var(--red);box-shadow:0 2px 0 #e6c7c2}
+.btn.blue{background:var(--blue);border-color:var(--blue);box-shadow:0 2px 0 #17436f}
+@media(max-width:900px){.hero{padding:22px 18px}.hero h1{font-size:23px}.sect{padding:18px 16px}}
+</style>
+</head>
+<body>
+<div class="wrap" style="grid-template-columns:minmax(0,1080px)">
+<main>
+
+<div class="hero">
+  <div class="sub" style="font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--red)">MATH6128031 · Dr. Yasi Dani</div>
+  <h1>UTS Discrete Math — belajar dari nol, malam ini.</h1>
+  <p>Semua materi sudah diringkas jadi 6 modul, 33 soal drill, dan 20 soal kuis berwaktu. Urutannya sudah disusun: baca → drill → uji.</p>
+  <div class="chips">
+    <span class="chip"><b>6</b> topik kisi-kisi</span>
+    <span class="chip"><b>33</b> soal drill</span>
+    <span class="chip"><b>20</b> soal kuis</span>
+    <span class="chip"><b>1</b> lembar A4 tulis tangan</span>
+    <span class="chip">Tanpa kalkulator</span>
+  </div>
+  <div class="btnrow">
+    <a class="btn" href="materi.html">Mulai baca materi</a>
+    <a class="btn ghost" href="materi.html#kamus">Drill soal</a>
+    <a class="btn blue" href="kuis.html">Kuis berwaktu</a>
+  </div>
+</div>
+
+<div class="sect">
+  <h2>Urutan belajar yang gua saranin</h2>
+  <p style="font-size:14px;color:var(--ink-soft);margin:0 0 12px">Jangan baca semua sekaligus. Satu putaran 3 langkah, total ±2,5 jam.</p>
+  <div class="grid">
+    <div class="tcard" style="cursor:default">
+      <div class="num">1</div>
+      <h3>Baca 6 modul · 90 menit</h3>
+      <p>Fokus ke kotak merah (jebakan) dan kotak hijau (contoh). Jangan hafal rumus dulu — pahami alurnya.</p>
+      <a class="go" href="materi.html" style="text-decoration:none">Buka materi →</a>
+    </div>
+    <div class="tcard" style="cursor:default">
+      <div class="num">2</div>
+      <h3>Drill 33 soal · 60 menit</h3>
+      <p>Kerjain di kertas dulu, baru buka jawaban. Tandai yang belum bisa, ulang besok subuh.</p>
+      <a class="go" href="materi.html#kamus" style="text-decoration:none">Buka drill →</a>
+    </div>
+    <div class="tcard" style="cursor:default">
+      <div class="num">3</div>
+      <h3>Kuis 20 soal · 25 menit</h3>
+      <p>Timer nyala, tanpa buka materi. Target minimal 16/20. Yang salah masuk daftar review.</p>
+      <a class="go" href="kuis.html" style="text-decoration:none">Mulai kuis →</a>
+    </div>
+  </div>
+</div>
+
+<div class="sect">
+  <h2>6 topik yang keluar</h2>
+  <div class="grid">
+    <a class="tcard" href="materi.html#m1"><div class="num">1</div><h3>Logika Proposisi</h3><p>Tabel kebenaran, ekuivalensi, De Morgan, tautologi, implikasi.</p><span class="go">Materi →</span></a>
+    <a class="tcard" href="materi.html#m2"><div class="num">2</div><h3>Predikat &amp; Kuantor</h3><p>∀, ∃, terjemahan kalimat, negasi kuantor, kuantor bersarang.</p><span class="go">Materi →</span></a>
+    <a class="tcard" href="materi.html#m3"><div class="num">3</div><h3>Metode Pembuktian</h3><p>Direct, kontraposisi, kontradiksi, counterexample.</p><span class="go">Materi →</span></a>
+    <a class="tcard" href="materi.html#m4"><div class="num">4</div><h3>Himpunan &amp; Fungsi</h3><p>Operasi himpunan, identitas, injektif/surjektif/bijektif, fuzzy.</p><span class="go">Materi →</span></a>
+    <a class="tcard" href="materi.html#m5"><div class="num">5</div><h3>Teori Bilangan</h3><p>Euclidean, Bézout, invers modulo, kongruensi linear.</p><span class="go">Materi →</span></a>
+    <a class="tcard" href="materi.html#m6"><div class="num">6</div><h3>Counting</h3><p>Sum/product rule, permutasi, kombinasi, inklusi-eksklusi.</p><span class="go">Materi →</span></a>
+  </div>
+</div>
+
+<div class="sect">
+  <h2>Aturan ujian (jangan sampai salah bawa)</h2>
+  <div class="trap-card" style="margin-top:0">
+    <b>Dari slide kisi-kisi dosen:</b>
+    <p>1. <b>Kalkulator tidak boleh.</b> Semua hitungan manual.</p>
+    <p>2. <b>Boleh 1 lembar A4 tulis tangan</b> (depan-belakang). Bukan ketikan, bukan fotokopi.</p>
+    <p>3. Tulis langkah lengkap: definisi → substitusi → kesimpulan. Hasil benar tapi langkah lompat tetap dipotong.</p>
+  </div>
+  <p style="font-size:13.5px;margin-top:10px">Rancangan isi cheat sheet ada di <a href="materi.html#cheat" style="color:var(--blue);font-weight:700">materi.html → bagian Cheat Sheet A4</a>.</p>
+</div>
+
+<div class="sect">
+  <h2>Checklist kesiapan</h2>
+  <div class="pwrap"><div class="bar"><i id="pfill"></i></div><b id="pct">0%</b></div>
+  <div id="list">
+    <div class="check"><input type="checkbox" id="c1"><label for="c1">Tabel kebenaran 2 &amp; 3 variabel bisa gua bikin tanpa mikir lama<small>Termasuk jebakan T→F satu-satunya FALSE</small></label></div>
+    <div class="check"><input type="checkbox" id="c2"><label for="c2">Hafal De Morgan + p→q ≡ ¬p∨q<small>Dipakai di hampir semua soal ekuivalensi</small></label></div>
+    <div class="check"><input type="checkbox" id="c3"><label for="c3">Bisa negasi kalimat berkuantor<small>¬∀ → ∃¬, ¬∃ → ∀¬</small></label></div>
+    <div class="check"><input type="checkbox" id="c4"><label for="c4">Bisa bedain direct / kontraposisi / kontradiksi<small>Tahu titik start masing-masing</small></label></div>
+    <div class="check"><input type="checkbox" id="c5"><label for="c5">Bisa buktikan "n ganjil → n² ganjil" dari nol<small>Contoh paling sering keluar</small></label></div>
+    <div class="check"><input type="checkbox" id="c6"><label for="c6">Bisa uji injektif &amp; surjektif dari diagram panah<small>Range vs kodomain</small></label></div>
+    <div class="check"><input type="checkbox" id="c7"><label for="c7">Bisa hitung fuzzy union/intersection/komplemen<small>max, min, 1−μ</small></label></div>
+    <div class="check"><input type="checkbox" id="c8"><label for="c8">Bisa Euclidean + substitusi mundur sampai Bézout<small>Tanpa lompat baris</small></label></div>
+    <div class="check"><input type="checkbox" id="c9"><label for="c9">Bisa cari invers &amp; selesaikan ax ≡ b (mod m)<small>Termasuk kasus gcd &gt; 1</small></label></div>
+    <div class="check"><input type="checkbox" id="c10"><label for="c10">Bisa bedain permutasi vs kombinasi + PIE<small>Urutan penting atau nggak</small></label></div>
+  </div>
+  <p style="font-size:12px;color:var(--ink-soft);margin-top:10px">Progress disimpan di browser ini (localStorage), jadi aman kalau lu tutup halamannya.</p>
+</div>
+
+<div class="sect" style="background:#fffdf4;border-color:#e6d69a">
+  <h2 style="font-size:16px">File lain di folder ini</h2>
+  <p style="font-size:13.5px;margin:4px 0"><b>materi.html</b> — buku materi 6 modul + cheat sheet + 10 jebakan.</p>
+  <p style="font-size:13.5px;margin:4px 0"><b>latihan.html</b> — 33 soal drill, jawaban bertahap, tandai paham/belum.</p>
+  <p style="font-size:13.5px;margin:4px 0"><b>kuis.html</b> — 20 soal pilihan ganda, timer 25 menit, skor + review.</p>
+</div>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var boxes=[].slice.call(document.querySelectorAll('#list input[type=checkbox]'));
+  var KEY='dm_uts_check_v1';
+  var saved={};
+  try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){saved={}}
+  function paint(){
+    var n=boxes.filter(function(b){return b.checked}).length;
+    var pct=Math.round(n/boxes.length*100);
+    document.getElementById('pfill').style.width=pct+'%';
+    document.getElementById('pct').textContent=pct+'%';
+  }
+  boxes.forEach(function(b){
+    if(saved[b.id])b.checked=true;
+    b.addEventListener('change',function(){
+      saved[b.id]=b.checked;
+      localStorage.setItem(KEY,JSON.stringify(saved));
+      paint();
+    });
+  });
+  paint();
+})();
+</script>
+</body>
+</html>
