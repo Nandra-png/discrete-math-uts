@@ -161,6 +161,11 @@ details p{background:transparent;font-size:14px}
 .tv{display:inline-block;font-family:monospace;font-weight:800;font-size:10.5px;padding:0 4px;border-radius:3px;vertical-align:1px;letter-spacing:0}
 .tv.t{background:#dff2e4;color:#1e7a3c;border:1px solid #b9dfc3}
 .tv.f{background:#fbe4e1;color:#a93226;border:1px solid #f0c2bb}
+
+.slide-crop{margin:18px 0 22px;padding:10px 10px 8px;background:#f8fafc;border:1px solid #cbd5e1;border-radius:8px}
+.slide-crop img{display:block;width:100%;height:auto;max-height:620px;object-fit:contain;background:#fff;border:1px solid #e2e8f0}
+.slide-crop figcaption{margin-top:7px;font:11px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace;color:#64748b}
+.slide-crop figcaption b{color:#334155}
 </style>
 </head>
 <body>
@@ -293,6 +298,11 @@ details p{background:transparent;font-size:14px}
     <p>✗ <i>"x + 2 = 5"</i> → Bukan proposisi, karena nilainya tergantung berapa <span class="m">x</span>-nya (ini namanya <b>predikat</b>, dibahas di Modul 2).</p>
   </div>
 
+  <figure class="slide-crop">
+    <img src="img/slides/m1_proposisi.png" alt="Slide Proposisi Binus Sesi 3 Halaman 7" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 3 Logic (p. 7) · Definisi Proposisi, Nilai Kebenaran, &amp; Contoh Kalimat</figcaption>
+  </figure>
+
   <div class="sec">5 Operator Logika Wajib Hafal</div>
   <div class="tblwrap">
     <table class="op">
@@ -307,6 +317,11 @@ details p{background:transparent;font-size:14px}
       </tbody>
     </table>
   </div>
+
+  <figure class="slide-crop">
+    <img src="img/slides/m1_conditional.png" alt="Slide Implikasi, Converse, Inverse, Contrapositive Binus Sesi 3 Halaman 16" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 3 Logic (p. 16) · Conditional Statement, Converse, Contrapositive, &amp; Inverse</figcaption>
+  </figure>
 
   <div class="trap-card">
     <b>JEBAKAN FATAL NOMOR 1: KENAPA F → F ITU TRUE?</b>
@@ -328,6 +343,16 @@ details p{background:transparent;font-size:14px}
   </div>
 <div class="sec">Hukum Ekuivalensi Logika (Logical Equivalence)</div>
   <p>Dua proposisi majemuk dikatakan <b>ekuivalen secara logika (<span class="m">p ≡ q</span>)</b> jika tabel kebenarannya bernilai persis sama di setiap baris, atau <span class="m">p ↔ q</span> merupakan <b>tautologi</b>.</p>
+
+  <figure class="slide-crop">
+    <img src="img/slides/m1_demorgan_identities.png" alt="Slide Tabel Ekuivalensi Logika De Morgan Binus Sesi 3 Halaman 27" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 3 Logic (p. 27) · Tabel Lengkap Logical Equivalences (De Morgan, Identity, Domination, Negation laws)</figcaption>
+  </figure>
+
+  <figure class="slide-crop">
+    <img src="img/slides/m1_conditional_equivalences.png" alt="Slide Ekuivalensi Kondisional dan Bikondisional Binus Sesi 3 Halaman 28" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 3 Logic (p. 28) · Logical Equivalences Involving Conditional &amp; Biconditional Statements</figcaption>
+  </figure>
   <div class="step"><div class="n">1</div><div class="body"><b>Bentuk Disjungsi Implikasi:</b> <span class="m big">p → q ≡ ¬p ∨ q</span> (Ini rumus paling sering dipakai!).</div></div>
   <div class="contoh">
     <span class="lbl2">Contoh Singkat</span>
@@ -416,6 +441,11 @@ details p{background:transparent;font-size:14px}
       • Kalimat (3) adalah proposisi tunggal: <span class="m">p</span>. Yang diuji: <span class="m">r</span>.<br>
       • <b>Pola soal ini:</b> ada "jika…maka…", ada "atau", lalu ditanya kesimpulannya sah atau tidak. Itu tanda soal <b>aturan inferensi</b>, bukan tabel kebenaran.
     </div>
+    <figure class="slide-crop">
+      <img src="img/slides/m1_rules_of_inference.png" alt="Slide Rules of Inference Binus Sesi 3 Halaman 34" loading="lazy">
+      <figcaption><b>Slide Asli Dosen:</b> Session 3 Logic (p. 34) · Rules of Inference (Modus Ponens, Modus Tollens, Hypothetical Syllogism, Disjunctive Syllogism)</figcaption>
+    </figure>
+
     <h5>2. Langkah Pengerjaan Standar Dr. Yasi</h5>
     <ol>
       <li><b>Premis 1:</b> <span class="m">p → ¬q</span> &nbsp;&nbsp; <b>Premis 2:</b> <span class="m">q ∨ r</span> &nbsp;&nbsp; <b>Premis 3:</b> <span class="m">p</span></li>
@@ -442,7 +472,20 @@ details p{background:transparent;font-size:14px}
     <p><b>Kuantor</b> = alat untuk bilang "berapa banyak <span class="m">x</span> yang bikin <span class="m">P(x)</span> benar" <i>tanpa</i> harus nyebut satu-satu.</p>
   </div>
 
+  <figure class="slide-crop">
+    <img src="img/slides/m2_predicates.png" alt="Slide Predicates Binus Sesi 6 Halaman 7" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 6 Quantifiers (p. 7) · Predicates, Propositional Functions P(x), &amp; Truth Values</figcaption>
+  </figure>
+
   <div class="sec">Dua Kuantor Utama</div>
+  <figure class="slide-crop">
+    <img src="img/slides/m2_universal.png" alt="Slide Universal Quantifier Binus Sesi 6 Halaman 11" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 6 Quantifiers (p. 11) · The Universal Quantifier ∀x P(x)</figcaption>
+  </figure>
+  <figure class="slide-crop">
+    <img src="img/slides/m2_existential.png" alt="Slide Existential Quantifier Binus Sesi 6 Halaman 13" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 6 Quantifiers (p. 13) · The Existential Quantifier ∃x P(x)</figcaption>
+  </figure>
   <div class="step">
     <div class="n">∀</div>
     <div class="body">
@@ -502,6 +545,10 @@ details p{background:transparent;font-size:14px}
     <p>"Ada mahasiswa BINUS yang punya laptop" → <span class="m">∃x (M(x) ∧ L(x))</span>. Untuk Andi: <span class="tv t">T</span> ∧ <span class="tv t">T</span> = <span class="tv t">T</span> → pernyataan <b>benar</b>. Kalau ada orang yang punya laptop tapi bukan mahasiswa BINUS (<span class="tv f">F</span> ∧ <span class="tv t">T</span> = <span class="tv f">F</span>), dia <b>tidak</b> dihitung.</p>
   </div>
 <div class="sec">Negasi Kuantor (De Morgan untuk Kuantor)</div>
+  <figure class="slide-crop">
+    <img src="img/slides/m2_quantifier_negation.png" alt="Slide De Morgan Quantifiers Binus Sesi 6 Halaman 22" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 6 Quantifiers (p. 22) · De Morgan's Laws for Quantifiers (Negating Universal &amp; Existential)</figcaption>
+  </figure>
   <p class="ind m">¬(∀x P(x)) ≡ ∃x ¬P(x)</p>
   <p class="ind m">¬(∃x P(x)) ≡ ∀x ¬P(x)</p>
   <p><b>Logikanya:</b> menyangkal "semua benar" cukup tunjukkan "ada yang salah". Menyangkal "ada yang benar" berarti "semuanya salah".</p>
@@ -527,6 +574,10 @@ details p{background:transparent;font-size:14px}
     <p><b>Jebakan:</b> negasi ∀ <u>bukan</u> ∀¬. Kuantornya ikut berubah (∀ → ∃), baru isinya dinegasi.</p>
   </div>
 <div class="sec">Kuantor Bersarang (Nested Quantifiers)</div>
+  <figure class="slide-crop">
+    <img src="img/slides/m2_nested_quantifiers.png" alt="Slide Nested Quantifiers Binus Sesi 6 Halaman 38" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 6 Quantifiers (p. 38) · Order of Quantifiers (∀x∃y vs ∃y∀x)</figcaption>
+  </figure>
   <p>Urutan kuantor <b>sangat menentukan</b> kalau jenisnya beda:</p>
   <div class="contoh">
     <span class="lbl2">Contoh Singkat</span>
@@ -594,6 +645,10 @@ details p{background:transparent;font-size:14px}
   </div>
 
   <div class="sec">1 · Bukti Langsung (Direct Proof)</div>
+  <figure class="slide-crop">
+    <img src="img/slides/m3_direct_proof.png" alt="Slide Direct Proof Binus Sesi 8 Halaman 8" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 8 Method of Proof (p. 8) · Direct Proof Method &amp; Definisi Ganjil/Genap</figcaption>
+  </figure>
   <p><b>Alur:</b> Asumsikan <span class="m">p</span> benar → pakai definisi &amp; aljabar → tunjukkan <span class="m">q</span> benar.</p>
 
   <div class="worked">
@@ -630,6 +685,10 @@ details p{background:transparent;font-size:14px}
     <p>Yang membuktikan adalah aljabar umum: <span class="m">n = 2k+1 → n² = 4k²+4k+1 = 2(2k²+2k)+1</span>, bentuk ganjil untuk <b>semua</b> k.</p>
   </div>
 <div class="sec">2 · Bukti Kontraposisi (Proof by Contraposition)</div>
+  <figure class="slide-crop">
+    <img src="img/slides/m3_contraposition.png" alt="Slide Proof by Contraposition Binus Sesi 8 Halaman 12" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 8 Method of Proof (p. 12) · Proof by Contraposition (Asumsikan ¬q Turunkan ¬p)</figcaption>
+  </figure>
   <p>Dasarnya ekuivalensi <span class="m">p → q ≡ ¬q → ¬p</span>. Jadi membuktikan kontraposisinya <b>sah</b> membuktikan pernyataan aslinya.</p>
   <p><b>Kapan dipakai?</b> Kalau asumsi <span class="m">p</span> susah diolah (misal bentuknya "tidak habis dibagi"), tapi <span class="m">¬q</span> gampang diolah.</p>
 
@@ -662,6 +721,10 @@ details p{background:transparent;font-size:14px}
     <p><b>Intinya:</b> tidak ada satu pun n yang membuat <span class="m">¬q</span> <span class="tv t">T</span> sementara <span class="m">¬p</span> <span class="tv f">F</span>, jadi kontraposisi selalu <span class="tv t">T</span> → pernyataan asli juga <span class="tv t">T</span>.</p>
   </div>
 <div class="sec">3 · Bukti Kontradiksi (Proof by Contradiction)</div>
+  <figure class="slide-crop">
+    <img src="img/slides/m3_contradiction.png" alt="Slide Proof by Contradiction Binus Sesi 8 Halaman 15" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 8 Method of Proof (p. 15) · Proof by Contradiction (Asumsikan p ∧ ¬q Muncul Kontradiksi)</figcaption>
+  </figure>
   <p><b>Alur:</b> Andaikan <span class="m">p ∧ ¬q</span> benar (premis benar TAPI kesimpulan salah). Olah sampai ketemu hal mustahil, misal <span class="m">r ∧ ¬r</span> atau <span class="m">1 = 0</span>.</p>
   <p>Karena kontradiksi mustahil, pengandaian salah → <span class="m">p → q</span> benar.</p>
 
@@ -758,6 +821,10 @@ details p{background:transparent;font-size:14px}
   </div>
 
   <div class="sec">Operasi Himpunan</div>
+  <figure class="slide-crop">
+    <img src="img/slides/m4_set_union.png" alt="Slide Set Operations Binus Sesi 11 Halaman 20" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 11 Set Theory (p. 20) · Set Operations (Union, Intersection, Difference, Complement)</figcaption>
+  </figure>
   <div class="tblwrap">
     <table>
       <thead><tr><th>Operasi</th><th>Notasi</th><th>Arti</th><th>Contoh (A={1,2,3}, B={3,4})</th></tr></thead>
@@ -782,6 +849,10 @@ details p{background:transparent;font-size:14px}
     <p><b>Aturan:</b> irisan butuh <b>dua-duanya</b> <span class="tv t">T</span>; gabungan cukup <b>salah satu</b> <span class="tv t">T</span> — persis seperti ∧ dan ∨.</p>
   </div>
 <div class="sec">Identitas Himpunan yang Sering Dipakai</div>
+  <figure class="slide-crop">
+    <img src="img/slides/m4_set_identities.png" alt="Slide Set Identities Table Binus Sesi 11 Halaman 27" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 11 Set Theory (p. 27) · Table of Set Identities (De Morgan, Distributive, Associative, Complementation)</figcaption>
+  </figure>
   <p class="ind m">A ∪ B = B ∪ A &nbsp;&nbsp;·&nbsp;&nbsp; A ∩ B = B ∩ A &nbsp;&nbsp;[Komutatif]</p>
   <p class="ind m">A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C) &nbsp;&nbsp;[Distributif]</p>
   <p class="ind m">A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)</p>
@@ -826,6 +897,14 @@ details p{background:transparent;font-size:14px}
     <p>Cek: <span class="m">9 ∈ range</span> = <span class="tv t">T</span> (dari x=3). <span class="m">−1 ∈ range</span> = <span class="tv f">F</span> — tidak ada angka yang dikuadratkan menghasilkan −1, walaupun <span class="m">−1 ∈ kodomain</span> = <span class="tv t">T</span>. <b>Range ⊆ kodomain, bukan sebaliknya.</b></p>
   </div>
 <div class="sec">Sifat Fungsi: Injektif, Surjektif, Bijektif</div>
+  <figure class="slide-crop">
+    <img src="img/slides/m4_function_types.png" alt="Slide One-to-one Onto Bijective Binus Sesi 11 Halaman 42" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 11 Set Theory &amp; Functions (p. 42) · One-to-One (Injective), Onto (Surjective), &amp; Bijective</figcaption>
+  </figure>
+  <figure class="slide-crop">
+    <img src="img/slides/m4_function_composition.png" alt="Slide Composition of Functions Binus Sesi 11 Halaman 47" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 11 Set Theory &amp; Functions (p. 47) · Composition of Functions (f ∘ g)(x) = f(g(x))</figcaption>
+  </figure>
   <div class="step"><div class="n">1</div><div class="body">
     <b>Injektif (one-to-one)</b> — tidak ada dua input berbeda yang hasilnya sama.
     <p class="ind m">f(a) = f(b) ⟹ a = b</p>
@@ -859,6 +938,14 @@ details p{background:transparent;font-size:14px}
     <p><b>Cara cepat:</b> injektif = "tidak ada panah menumpuk"; surjektif = "tidak ada anggota B yang menganggur".</p>
   </div>
 <div class="sec">Himpunan Fuzzy (Fuzzy Set) — Slide 57–63</div>
+  <figure class="slide-crop">
+    <img src="img/slides/m4_fuzzy_definition.png" alt="Slide Fuzzy Set Definition Binus Sesi 11 Halaman 54" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 11 Set Theory (p. 54) · Fuzzy Set Definition &amp; Membership Function μA(x)</figcaption>
+  </figure>
+  <figure class="slide-crop">
+    <img src="img/slides/m4_fuzzy_operations.png" alt="Slide Fuzzy Set Operations Binus Sesi 11 Halaman 57" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 11 Set Theory (p. 57) · Operations on Fuzzy Sets (Union = Max, Intersection = Min, Complement = 1 - μ)</figcaption>
+  </figure>
   <p>Di himpunan biasa (crisp), keanggotaan cuma 0 atau 1. Di <b>fuzzy set</b>, keanggotaan itu <b>derajat</b> di antara 0 dan 1:</p>
   <p class="big m">μ_A(x) ∈ [0, 1]</p>
   <p>Contoh: "tinggi badan 170 cm" tidak cuma "tinggi/bukan", tapi bisa <span class="m">μ = 0,7</span> (cukup tinggi).</p>
@@ -995,6 +1082,10 @@ details p{background:transparent;font-size:14px}
     <p>Kongruensi: <span class="m">17 ≡ 5 (mod 12)</span> = <span class="tv t">T</span> sebab <span class="m">17 − 5 = 12</span> habis dibagi 12. Tapi <span class="m">17 ≡ 6 (mod 12)</span> = <span class="tv f">F</span> sebab <span class="m">17 − 6 = 11</span> tidak habis dibagi 12.</p>
   </div>
 <div class="sec">Tahap 1 · Algoritma Euclidean</div>
+  <figure class="slide-crop">
+    <img src="img/slides/m5_euclidean_algorithm.png" alt="Slide Euclidean Algorithm Binus Sesi 12 Halaman 31" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 12 Number Theory (p. 31) · The Euclidean Algorithm (Pembagian Beruntun Mencari gcd)</figcaption>
+  </figure>
   <p>Untuk mencari <span class="m">gcd(141, 19)</span>, tulis pembagian bertingkat. <b>Wajib tulis semua baris</b> — ini yang dinilai:</p>
   <p class="ind m">141 = 7 · 19 + 8</p>
   <p class="ind m">19 &nbsp;= 2 · 8 &nbsp;+ 3</p>
@@ -1013,6 +1104,10 @@ details p{background:transparent;font-size:14px}
     <p>Pasangan ujian <span class="m">gcd(141, 19)</span>: <span class="m">141 = 7·19 + 8</span> → <span class="m">19 = 2·8 + 3</span> → <span class="m">8 = 2·3 + 2</span> → <span class="m">3 = 1·2 + 1</span> → <span class="m">2 = 2·1 + 0</span>. Sisa terakhir bukan nol = 1 → <b>koprima</b>.</p>
   </div>
 <div class="sec">Tahap 2 · Substitusi Mundur (Identitas Bézout)</div>
+  <figure class="slide-crop">
+    <img src="img/slides/m5_bezout_identity.png" alt="Slide Bezout Identity Binus Sesi 12 Halaman 34" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 12 Number Theory (p. 34) · Bézout's Theorem &amp; Linear Combination sa + tb = gcd(a,b)</figcaption>
+  </figure>
   <p>Target: menemukan <span class="m">s</span> dan <span class="m">t</span> sehingga</p>
   <p class="big m">s·a + t·b = gcd(a, b)</p>
   <p>Caranya: <b>mulai dari baris sisa 1</b>, lalu ganti setiap sisa dengan bentuk <span class="m">(bilangan − hasil kali)</span> dari baris di atasnya.</p>
@@ -1032,6 +1127,10 @@ details p{background:transparent;font-size:14px}
     <p><b>Cek angka (wajib, biar yakin):</b> <span class="m">−7 · 141 = −987</span> (<span class="tv t">T</span>), <span class="m">52 · 19 = 988</span> (<span class="tv t">T</span>), dan <span class="m">−987 + 988 = 1</span> (<span class="tv t">T</span>). Kalau hasilnya bukan 1, berarti ada langkah substitusi yang salah.</p>
   </div>
 <div class="sec">Tahap 3 · Invers Modulo</div>
+  <figure class="slide-crop">
+    <img src="img/slides/m5_modulo_inverse.png" alt="Slide Inverses Modulo Binus Sesi 12 Halaman 37" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 12 Number Theory (p. 37) · Inverses Modulo m &amp; Relatif Prima gcd(a,m) = 1</figcaption>
+  </figure>
   <p>Dari <span class="m">52·19 − 7·141 = 1</span>, ambil modulo 141. Suku <span class="m">−7·141</span> jadi 0 (karena kelipatan 141), sisanya:</p>
   <p class="big m">52 · 19 ≡ 1 (mod 141)</p>
   <p>Bentuk <span class="m">a·x ≡ 1 (mod m)</span> berarti <span class="m">x</span> adalah <b>invers</b> dari <span class="m">a</span>. Jadi:</p>
@@ -1050,6 +1149,10 @@ details p{background:transparent;font-size:14px}
     <p><b>Cek:</b> <span class="m">19 · 52 = 988 = 7 · 141 + 1</span> → sisanya 1 (<span class="tv t">T</span>). Kalau sisanya bukan 1, berarti 19 tidak punya invers (gcd ≠ 1).</p>
   </div>
 <div class="sec">Tahap 4 · Menyelesaikan Kongruensi Linear ax ≡ b (mod m)</div>
+  <figure class="slide-crop">
+    <img src="img/slides/m5_linear_congruence.png" alt="Slide Linear Congruence Binus Sesi 12 Halaman 39" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 12 Number Theory (p. 39) · Solving Linear Congruences ax ≡ b (mod m)</figcaption>
+  </figure>
   <p><b>Aturan keberadaan solusi:</b> <span class="m">ax ≡ b (mod m)</span> punya solusi <b>jika dan hanya jika</b> <span class="m">gcd(a, m) | b</span>.</p>
 
   <div class="worked">
@@ -1156,6 +1259,16 @@ details p{background:transparent;font-size:14px}
     <p>Contoh: mau minum kopi (4 pilihan) <b>atau</b> teh (3 pilihan) → <span class="m">4 + 3 = 7</span> pilihan.</p>
   </div>
 
+  <figure class="slide-crop">
+    <img src="img/slides/m6_product_rule.png" alt="Slide The Product Rule Binus Sesi 14 Halaman 7" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 14 Counting (p. 7) · The Product Rule (Aturan Perkalian / DAN)</figcaption>
+  </figure>
+
+  <figure class="slide-crop">
+    <img src="img/slides/m6_sum_rule.png" alt="Slide The Sum Rule Binus Sesi 14 Halaman 10" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 14 Counting (p. 10) · The Sum Rule (Aturan Penjumlahan / ATAU)</figcaption>
+  </figure>
+
   <div class="sec">Rumus Inti</div>
   <div class="tblwrap">
     <table>
@@ -1171,6 +1284,21 @@ details p{background:transparent;font-size:14px}
   <p class="ind" style="font-size:13.5px"><b>Cara cepat bedain P vs C:</b> tanya "kalau urutannya ditukar, hasilnya jadi kasus berbeda nggak?"</p>
   <p class="ind" style="font-size:13.5px">Ketua–Wakil: (A,B) beda dengan (B,A) → <b>Permutasi</b>. Panitia 2 orang: (A,B) sama aja → <b>Kombinasi</b>.</p>
   <p class="ind" style="font-size:13.5px">Nilai <span class="m">0! = 1</span> (bukan 0!) dan <span class="m">C(n,0) = C(n,n) = 1</span>.</p>
+
+  <figure class="slide-crop">
+    <img src="img/slides/m6_permutations.png" alt="Slide Permutations Binus Sesi 14 Halaman 31" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 14 Counting (p. 31) · Permutations P(n,r) &amp; Formula Faktorial</figcaption>
+  </figure>
+
+  <figure class="slide-crop">
+    <img src="img/slides/m6_combinations.png" alt="Slide Combinations Binus Sesi 14 Halaman 37" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 14 Counting (p. 37) · Combinations C(n,r) Formula</figcaption>
+  </figure>
+
+  <figure class="slide-crop">
+    <img src="img/slides/m6_combinations_permutations_summary.png" alt="Slide Permutations vs Combinations Binus Sesi 14 Halaman 39" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 14 Counting (p. 39) · Summary: Kapan Pakai Permutasi vs Kombinasi</figcaption>
+  </figure>
 
   <div class="worked">
     <h4>Contoh 1: Permutasi — Juara 1, 2, 3 dari 10 peserta</h4>
@@ -1209,6 +1337,10 @@ details p{background:transparent;font-size:14px}
     <p><b>Permutasi vs kombinasi:</b> <span class="m">P(10,3) = 10·9·8 = 720</span> (urutan penting: juara 1, 2, 3) vs <span class="m">C(10,3) = 720 / 3! = 120</span> (urutan tidak penting: tim 3 orang). Cek: <span class="m">120 · 6 = 720</span> (<span class="tv t">T</span>), jadi C selalu lebih kecil dari P.</p>
   </div>
 <div class="sec">Prinsip Inklusi–Eksklusi (PIE)</div>
+  <figure class="slide-crop">
+    <img src="img/slides/m6_inclusion_exclusion.png" alt="Slide Principle of Inclusion-Exclusion Binus Sesi 14 Halaman 44" loading="lazy">
+    <figcaption><b>Slide Asli Dosen:</b> Session 14 Counting (p. 44) · The Principle of Inclusion-Exclusion (PIE Formula)</figcaption>
+  </figure>
   <p>Dipakai kalau himpunan <b>tumpang tindih</b> dan kita nggak mau hitung dobel:</p>
   <p class="big m">|A ∪ B| = |A| + |B| − |A ∩ B|</p>
   <p class="big m">|A ∪ B ∪ C| = |A| + |B| + |C| − |A∩B| − |A∩C| − |B∩C| + |A∩B∩C|</p>
