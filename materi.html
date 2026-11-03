@@ -318,15 +318,19 @@ details p{background:transparent;font-size:14px}
   <div class="step"><div class="n">1</div><div class="body"><b>Bentuk Disjungsi Implikasi:</b> <span class="m big">p → q ≡ ¬p ∨ q</span> (Ini rumus paling sering dipakai!).</div></div>
   <div class="contoh">
     <span class="lbl2">Contoh Singkat</span>
-    <b>Bentuk Disjungsi Implikasi:</b> "Jika lu lapar (p), maka makan (q)".
-    <p>Ini ekuivalen dengan: "Lu tidak lapar (¬p), <b>atau</b> lu makan (q)". Nilai keduanya persis sama dalam kondisi apa pun. Makanya <span class="m">p → q ≡ ¬p ∨ q</span>.</p>
+    <b>Bentuk Disjungsi Implikasi:</b> misal <span class="m">p = T</span> (lu lapar) dan <span class="m">q = T</span> (lu makan).<br>
+    Kalimat awal: "Jika lu lapar (p = T), maka lu makan (q = T)" → <span class="m">T → T = T</span>.<br>
+    Bentuk ekuivalen: "Lu tidak lapar (¬p = F), atau lu makan (q = T)" → <span class="m">F ∨ T = T</span>. Ingat: disjungsi <span class="m">a ∨ b</span> bernilai F hanya jika kedua sisi F; jadi nilai kedua kalimat sama.<br>
+    <p>Contoh lain yang menguji kondisi F: jika <span class="m">p = T, q = F</span>, maka <span class="m">T → F = F</span> dan <span class="m">¬p ∨ q = F ∨ F = F</span>. Jadi <span class="m">p → q ≡ ¬p ∨ q</span>.</p>
   </div>
 
   <div class="step"><div class="n">2</div><div class="body"><b>Hukum De Morgan:</b>
   <div class="contoh">
     <span class="lbl2">Contoh Singkat</span>
-    <b>De Morgan:</b> "Gua tidak makan nasi DAN ayam" = "Gua tidak makan nasi, ATAU gua tidak makan ayam" (cukup salah satu nggak dimakan).
-    <p><span class="m">¬(p ∧ q) ≡ ¬p ∨ ¬q</span> — tanda kurung dibuka, ∧ berbalik jadi ∨, tiap huruf dinegasi.</p>
+    <b>De Morgan:</b> misal <span class="m">p = T</span> (makan nasi) dan <span class="m">q = F</span> (makan ayam).<br>
+    Kiri: <span class="m">¬(p ∧ q) = ¬(T ∧ F) = ¬(F) = T</span>. Kalimatnya: "Gua tidak makan nasi DAN ayam sekaligus" bernilai benar karena cuma makan nasi.<br>
+    Kanan: <span class="m">¬p ∨ ¬q = (¬T) ∨ (¬F) = F ∨ T = T</span>. Nilai kedua sisi sama-sama T.<br>
+    Jika kondisi dibalik (<span class="m">p = T, q = T</span>), kedua sisi menjadi F. Maka <span class="m">¬(p ∧ q) ≡ ¬p ∨ ¬q</span>.
   </div>
 
     <p class="ind m">¬(p ∧ q) ≡ ¬p ∨ ¬q</p>
@@ -335,7 +339,10 @@ details p{background:transparent;font-size:14px}
   <div class="step"><div class="n">3</div><div class="body"><b>Kontraposisi:</b> <span class="m big">p → q ≡ ¬q → ¬p</span> (Nilai kebenarannya identik!).</div></div>
   <div class="contoh">
     <span class="lbl2">Contoh Singkat</span>
-    <b>Kontraposisi:</b> "Jika hari hujan, jalanan basah" ≡ "Jika jalanan tidak basah, maka hari tidak hujan". Keduanya sama-sama benar.
+    <b>Kontraposisi:</b> misal <span class="m">p = T</span> (hujan) dan <span class="m">q = T</span> (jalanan basah).<br>
+    Implikasi awal: <span class="m">p → q = T → T = T</span>.<br>
+    Kontraposisi: <span class="m">¬q → ¬p = (¬T) → (¬T) = F → F = T</span> (ingat premis F membuat implikasi bernilai T).<br>
+    Jika <span class="m">p = T, q = F</span> (hujan tapi jalan kering), <span class="m">T → F = F</span> dan <span class="m">¬F → ¬T = T → F = F</span>. Nilai kebenaran keduanya selalu sama.
   </div>
 
   <div class="step"><div class="n">4</div><div class="body"><b>Distributif:</b>
