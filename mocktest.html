@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mocktest UTS — Discrete Mathematics</title>
+<style>
+:root{--ink:#1d2733;--muted:#5b6470;--red:#b83b2f;--blue:#1e5c9f;--paper:#fffdf5;--desk:#e7e2d3;--line:#dfe7f0;--green:#247642}
+*{box-sizing:border-box}body{margin:0;background:var(--desk);color:var(--ink);font-family:Segoe UI,Arial,sans-serif;padding:24px 14px 70px;line-height:1.6}.wrap{max-width:980px;margin:auto}.paper{background:var(--paper);border:1px solid #d5cdb8;border-radius:5px;box-shadow:0 8px 22px #766c5726;padding:28px 34px;margin-bottom:18px}h1{margin:0 0 5px;font-size:28px}h2{font-size:20px;margin:0 0 8px;color:var(--red)}h3{font-size:16px;margin:20px 0 5px}.meta{color:var(--muted);font-size:13px}.notice{border-left:4px solid var(--blue);background:#eef5fc;padding:12px 15px;margin:16px 0;font-size:14px}.q{border:1px solid #ded8c8;border-radius:7px;padding:16px;margin:16px 0;background:#fff}.qhead{display:flex;gap:10px;align-items:baseline}.no{color:var(--red);font-weight:800;font-size:18px}.points{font-size:12px;color:var(--muted)}.formula{font-family:Cambria Math,Cambria,serif;background:#f7f7f1;border-left:3px solid #c5b77f;padding:7px 10px;margin:9px 0}.sub{margin:10px 0 0;padding:10px 12px;background:#fbfaf5;border:1px dashed #d6ceb7;border-radius:5px}.sub b{display:block}.work{width:100%;min-height:105px;resize:vertical;border:1px solid #cfc8b8;border-radius:5px;padding:9px;font:14px/1.5 Segoe UI,Arial,sans-serif;background:#fffefb}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.btn{border:0;border-radius:5px;padding:10px 15px;background:var(--red);color:#fff;font-weight:800;cursor:pointer}.btn.secondary{background:#fff;border:1px solid var(--red);color:var(--red)}.key{display:none;border-top:2px solid #d8e7d3;margin-top:18px;padding-top:12px;background:#f7fcf4}.key.on{display:block}.step{margin:8px 0;padding:9px 11px;border-left:3px solid var(--green);background:#fff}.ans{font-weight:800;color:var(--green);padding:9px 11px;border:1px solid #bcd7b8;background:#f4fbf1;border-radius:4px}.small{font-size:12.5px;color:var(--muted)}a{color:var(--blue);font-weight:700}@media(max-width:600px){body{padding:10px 8px}.paper{padding:19px 14px}h1{font-size:23px}.q{padding:12px}.formula{overflow-x:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="paper">
+<p class="meta">MATH6128031 · MOCKTEST BERDASARKAN UTS 25 OKTOBER 2025</p>
+<h1>Mocktest UTS Discrete Mathematics</h1>
+<p>Kerjain di kertas dulu. Di bawah tiap nomor ada tempat buat lu nulis cara pengerjaan. Kunci tidak langsung kelihatan; buka setelah selesai supaya lu bisa breakdown jawaban satu per satu.</p>
+<div class="notice"><b>Format jawaban yang aman:</b> Diketahui → Ditanya → Definisi/teorema → substitusi dan langkah rinci → kesimpulan. Untuk nomor 1, tulis ekspresi, tabel kebenaran, K-map, hasil sederhana, lalu gerbang logika.</div>
+<p class="small">Catatan: pada soal fungsi, domain dan kodomain di PDF agak buram. Versi latihan ini memakai fungsi yang terbaca sebagai <span class="formula">f(x)=2x−5 dan g(x)=2x+1, A={2,4,5}</span>. Fokuskan latihan ke metode.</p>
+</section>
+
+<section class="paper">
+<h2>Soal</h2>
+<div class="q"><div class="qhead"><span class="no">1.</span><b>Sistem hak akses dan K-map</b><span class="points">30 poin</span></div>
+<p>Gunakan variabel: <span class="formula">P=1</span> jika pintu terbuka, <span class="formula">I=1</span> jika kartu valid, dan <span class="formula">T=1</span> jika sedang jam kerja. Akses diberikan jika kartu valid dan pintu terbuka saat jam kerja, atau pintu tertutup dengan kartu valid.</p>
+<div class="sub"><b>a. [5]</b> Tuliskan ekspresi Boolean A.<br><b>b. [10]</b> Buat tabel kebenaran untuk semua kombinasi P, I, T.<br><b>c. [5]</b> Buat K-map 3 variabel.<br><b>d. [10]</b> Sederhanakan dengan K-map dan gambarkan gerbang AND, OR, NOT berdasarkan hasil akhir.</div>
+<label class="small">Cara pengerjaan lu:</label><textarea class="work" data-q="1"></textarea>
+<div class="key"><b>Breakdown pembahasan</b><div class="step"><b>1. Terjemahkan kondisi.</b> Kondisi pertama = I∧P∧T. Kondisi kedua = ¬P∧I. Jadi A=(I∧P∧T)∨(¬P∧I).</div><div class="step"><b>2. Isi tabel.</b> A bernilai T pada (P,I,T)=(0,1,0),(0,1,1),(1,1,1), yaitu minterm m₂,m₃,m₇. Pada contoh (P,I,T)=(1,1,1), A=T∨F=T.</div><div class="step"><b>3. K-map.</b> Kelompok m₂ dan m₃ menghasilkan ¬P∧I. Kelompok m₃ dan m₇ menghasilkan I∧T.</div><div class="ans">A = I¬P ∨ IT = I(¬P∨T)</div><div class="step"><b>4. Gerbang.</b> NOT pada P menghasilkan ¬P; OR-kan ¬P dengan T; AND-kan hasilnya dengan I.</div></div></div>
+
+<div class="q"><div class="qhead"><span class="no">2.</span><b>Metode pembuktian</b><span class="points">10 poin</span></div><div class="sub"><b>a. [5]</b> Buktikan: jika n bilangan bulat genap, maka n² juga genap.<br><b>b. [5]</b> Buktikan: jika 3n+2 bilangan ganjil, maka n bilangan ganjil. Gunakan kontraposisi.</div><label class="small">Cara pengerjaan lu:</label><textarea class="work" data-q="2"></textarea><div class="key"><b>Breakdown pembahasan</b><div class="step"><b>2a — direct proof.</b> n genap berarti n=2k untuk suatu k∈ℤ. Maka n²=(2k)²=4k²=2(2k²), sehingga n² genap.</div><div class="step"><b>2b — kontraposisi.</b> Kontraposisinya: jika n tidak ganjil, maka 3n+2 tidak ganjil. “n tidak ganjil” berarti n genap, n=2k. Maka 3n+2=3(2k)+2=6k+2=2(3k+1), jadi genap, bukan ganjil. Maka pernyataan asli terbukti.</div><div class="ans">Jangan mulai 2b dengan asumsi 3n+2 ganjil lagi; itu direct proof, bukan kontraposisi.</div></div></div>
+
+<div class="q"><div class="qhead"><span class="no">3.</span><b>Fungsi, invers, komposisi, dan fuzzy</b><span class="points">20 poin</span></div><p>Diberikan <span class="formula">f(x)=2x−5, g(x)=2x+1, A={2,4,5}</span>.</p><div class="sub"><b>a. [5]</b> Tentukan semua anggota f(A) melalui evaluasi fungsi.<br><b>b. [5]</b> Apakah f memiliki invers pada domain A? Jelaskan.<br><b>c. [5]</b> Hitung (g∘f)(x) dan (f∘g)(x).<br><b>d. [5]</b> Diberikan fuzzy A={(2,0.3),(4,0.6),(5,0.4)} dan B={(1,0.2),(4,0.9),(6,0.7)}. Tentukan A∪B dan A∩B.</div><label class="small">Cara pengerjaan lu:</label><textarea class="work" data-q="3"></textarea><div class="key"><b>Breakdown pembahasan</b><div class="step"><b>3a.</b> f(2)=−1, f(4)=3, f(5)=5, sehingga f(A)={−1,3,5}.</div><div class="step"><b>3b.</b> Nilai f pada tiga input berbeda juga berbeda: −1,3,5. Jadi f injektif pada A dan inversnya ada pada range f(A). f⁻¹(y)=(y+5)/2.</div><div class="step"><b>3c.</b> (g∘f)(x)=g(2x−5)=2(2x−5)+1=4x−9. (f∘g)(x)=f(2x+1)=2(2x+1)−5=4x−3.</div><div class="step"><b>3d.</b> Union memakai max dan intersection memakai min. A∪B={(1,0.2),(2,0.3),(4,0.9),(5,0.4),(6,0.7)}. A∩B={(1,0),(2,0),(4,0.6),(5,0),(6,0)} jika semesta digabung dan anggota yang tidak muncul diberi derajat 0.</div><div class="ans">Untuk elemen yang sama, union=max(0.6,0.9)=0.9 dan intersection=min(0.6,0.9)=0.6.</div></div></div>
+
+<div class="q"><div class="qhead"><span class="no">4.</span><b>Euclidean, Bézout, dan kongruensi</b><span class="points">30 poin</span></div><div class="sub"><b>a. [10]</b> Gunakan algoritma Euclidean untuk gcd(73,17).<br><b>b. [10]</b> Cari bilangan bulat s dan t yang memenuhi gcd(73,17)=s·73+t·17.<br><b>c. [10]</b> Tentukan apakah 17x≡5 (mod 73) punya solusi. Jika punya, cari x positif terkecil.</div><label class="small">Cara pengerjaan lu:</label><textarea class="work" data-q="4"></textarea><div class="key"><b>Breakdown pembahasan</b><div class="step"><b>4a.</b> 73=4·17+5; 17=3·5+2; 5=2·2+1; 2=2·1+0. Jadi gcd=1.</div><div class="step"><b>4b.</b> Substitusi mundur: 1=5−2·2=5−2(17−3·5)=7·5−2·17=7(73−4·17)−2·17=7·73−30·17. Jadi s=7,t=−30.</div><div class="step"><b>4c.</b> Karena gcd(17,73)=1, invers 17 ada. Dari Bézout, 17(−30)≡1 (mod 73), jadi 17⁻¹≡43 (mod 73). Kalikan 5: x≡43·5=215≡69 (mod 73).</div><div class="ans">x positif terkecil = 69.</div></div></div>
+
+<div class="q"><div class="qhead"><span class="no">5.</span><b>Counting</b><span class="points">10 poin</span></div><p>Klub memiliki 25 anggota; 5 adalah mantan peraih medali olimpiade informatika nasional. Berapa banyak cara membentuk tim 4 orang jika:</p><div class="sub"><b>a. [5]</b> Tepat 2 anggota adalah mantan peraih medali.<br><b>b. [5]</b> Setidaknya 1 anggota adalah mantan peraih medali.</div><label class="small">Cara pengerjaan lu:</label><textarea class="work" data-q="5"></textarea><div class="key"><b>Breakdown pembahasan</b><div class="step"><b>5a.</b> Pilih 2 dari 5 medalist dan 2 dari 20 lainnya: C(5,2)·C(20,2)=10·190.</div><div class="ans">Jawaban 5a = 1900 cara.</div><div class="step"><b>5b.</b> Pakai komplemen: semua tim dikurangi tim tanpa medalist = C(25,4)−C(20,4)=12650−4845.</div><div class="ans">Jawaban 5b = 7805 cara.</div></div></div>
+</section>
+
+<section class="paper"><h2>Kontrol latihan</h2><p class="small">Klik untuk membuka semua breakdown setelah lu selesai. Isi textarea tidak dikirim ke mana-mana; hanya tersimpan di browser ini.</p><div class="actions"><button class="btn" id="show">Buka semua pembahasan</button><button class="btn secondary" id="hide">Tutup semua pembahasan</button><a class="btn secondary" href="index.html">Kembali ke dashboard</a></div></section>
+</div>
+<script>
+(function(){
+  var keys=[].slice.call(document.querySelectorAll('.work'));
+  keys.forEach(function(x){var k='dm_mock_'+x.dataset.q;try{x.value=localStorage.getItem(k)||''}catch(e){}x.addEventListener('input',function(){try{localStorage.setItem(k,x.value)}catch(e){}})});
+  var blocks=[].slice.call(document.querySelectorAll('.key'));
+  document.getElementById('show').addEventListener('click',function(){blocks.forEach(function(x){x.classList.add('on')})});
+  document.getElementById('hide').addEventListener('click',function(){blocks.forEach(function(x){x.classList.remove('on')})});
+})();
+</script>
+</body>
+</html>
